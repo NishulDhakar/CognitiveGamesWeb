@@ -5,19 +5,23 @@ export interface NavItem {
 
 export const navbarConfig = {
   logo: {
-    src: '/assets/logo.png',
-    alt: 'logo',
-    width: 100,
-    height: 100,
+    src: '/logo.png',
+    alt: 'Blync',
+    width: 70,
+    height: 70,
   },
   navItems: [
-    {
-      label: 'Home',
-      href: '/',
-    },
-     {
-      label: 'Contact',
-      href: 'https://www.nishul.dev/',
-    },
+    // {
+    //   label: 'Home',
+    //   href: '/',
+    // },
+    // {
+    //   label: 'Games',
+    //   href: '/games',
+    // },
+    //  {
+    //   label: 'Contact',
+    //   href: 'https://www.nishul.dev/',
+    // },
   ] as NavItem[],
 };

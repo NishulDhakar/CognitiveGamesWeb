@@ -1,5 +1,5 @@
 @import "tailwindcss";
-
+@import "tw-animate-css";
 
 @font-face {
   font-family: 'Hanken Grotesk';

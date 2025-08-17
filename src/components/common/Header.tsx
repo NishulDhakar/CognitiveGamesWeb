@@ -1,47 +1,70 @@
 'use client';
 
 import { navbarConfig } from '@/config/Header';
+import Image from 'next/image';
 import Link from 'next/link';
-
-// import Image from 'next/image';
 import React from 'react';
-// import ThemeSwitch from './ThemeSwitch';
+import { Button } from '../ui/button';
 
 export default function Navbar() {
   return (
-    <div className="border-b-2 border-gray-600 px-6 py-4 h-16">
-      <div className="max-w-7xl mx-auto flex items-center justify-between relative">
+    <header className="border-b border-gray-700/60 backdrop-blur-sm  sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 h-16">
         
         {/* Left: Logo */}
-        {/* <div className="flex-shrink-0">
-          <Link href="/">
-            <Image
-              src={navbarConfig.logo.src}
-              alt={navbarConfig.logo.alt}
-              width={navbarConfig.logo.width}
-              height={navbarConfig.logo.height}
-            />
-          </Link>
-        </div> */}
+        <Link href="/" className="flex items-center ">
+          <Image
+            src={navbarConfig.logo.src}
+            alt={navbarConfig.logo.alt}
+            width={navbarConfig.logo.width}
+            height={navbarConfig.logo.height}
+            priority
+          />
+          <span className="font-bold text-lg hidden md:block text-">{navbarConfig.logo.alt}</span>
+        </Link>
 
-        {/* Center: Nav Items (absolute center) */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 mt-4 flex gap-6">
+        {/* Center: Nav Items */}
+        <nav className="hidden md:flex items-center gap-8">
           {navbarConfig.navItems.map((item) => (
             <Link
               key={item.label}
               href={item.href}
-              className="transition-all duration-300 ease-in-out hover:underline hover:decoration-2 hover:underline-offset-4"
+              className=" transition-colors duration-300"
             >
               {item.label}
             </Link>
           ))}
-        </div>
+        </nav>
 
-        {/* Right: Optional - Theme Switch or Buttons */}
-        {/* <div className="flex items-center gap-4">
-          <ThemeSwitch />
-        </div> */}
-      </div>
-    </div>
+        {/* Right: Actions */}
+          {/* Theme Switch (optional) */}
+          {/* <button className="p-2 rounded-lg hover:bg-gray-800 transition">
+            <Moon className="w-5 h-5 text-gray-300" />
+          </button> */}
+
+          <div className='flex items-center gap-2'>
+            {/* <Link href="/games">
+  <Button
+    size="lg"
+    className="rounded-xl border  border-black bg-zinc-100 font-semibold text-black transition-all duration-200 hover:bg-[#A35C2D] hover:shadow-md dark:border-zinc-700 dark:bg-zinc-900 hover:text-zinc-100 dark:hover:bg-zinc-800"
+  >
+    Games
+  </Button>
+</Link> */}
+
+<Link href="https://www.nishul.dev/" target="_blank">
+  <Button
+    size="lg"
+    className="rounded-xl border border-black bg-[#A35C2D] font-semibold text-white transition-all duration-200 hover:bg-zinc-100 hover:text-black hover:shadow-md dark:border-zinc-200 dark:bg-white dark:text-black dark:hover:bg-zinc-100"
+  >
+    Contact
+  </Button>
+</Link>
+
+          </div>
+
+
+        </div>
+    </header>
   );
 }

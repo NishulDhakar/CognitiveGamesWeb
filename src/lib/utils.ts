@@ -1,8 +1,6 @@
-// General-purpose utilities (not game-specific)
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
 
-export function noop() {}
-
-// Class name concatenation utility
-export function cn(...args: (string | undefined | null | false)[]): string {
-  return args.filter(Boolean).join(" ");
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
 }
