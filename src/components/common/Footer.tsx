@@ -45,13 +45,6 @@ export default function Footer() {
         © 2025 Blync. All rights reserved.
       </div> */}
       <div className="font-excon relative text-5xl font-black tracking-tighter text-nowrap opacity-15 lg:text-9xl">
-        <Image
-          src="/doodles/superman.svg"
-          width={200}
-          height={50}
-          alt="Notes Buddy"
-          className="absolute -top-12 -right-14 size-16 md:-top-16 md:-right-22 md:size-28"
-        />
         Click in a Blync.
       </div>
       <div className="group flex items-center gap-2">
