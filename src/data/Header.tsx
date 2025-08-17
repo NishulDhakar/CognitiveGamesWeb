@@ -6,7 +6,6 @@ export interface NavItem {
 export const navbarConfig = {
   logo: {
     src: '/og-logo.png',
-    alt: 'Blync',
     width: 70,
     height: 70,
   },

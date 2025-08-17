@@ -12,7 +12,6 @@ export default function Home() {
   <Container>
     <GamesCard />
   </Container>
-  <Footer />
   
 </div>
 
