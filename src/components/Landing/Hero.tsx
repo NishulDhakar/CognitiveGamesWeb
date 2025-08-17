@@ -9,7 +9,7 @@ export default function Hero() {
   const [titleNumber, setTitleNumber] = useState(0);
   const titles = useMemo(
     () =>[
-  "Swich Challenge",
+  "Swith Challenge",
   "Deductive Challenge",
   "Grid Challenge",
   "Inductive Challenge"

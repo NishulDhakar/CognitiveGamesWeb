@@ -16,7 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "grid-challenge",
     "inductive-challenge",
     "motion-challenge",
-    "swith-challenge", // typo? maybe should be "switch-challenge"
+    "swith-challenge", 
   ];
 
   const urls: MetadataRoute.Sitemap = [
