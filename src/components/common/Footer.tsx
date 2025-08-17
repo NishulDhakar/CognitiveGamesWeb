@@ -53,7 +53,7 @@ export default function Footer() {
           src="/logo.png"
           width={48}
           height={48}
-          alt="Ram"
+          alt="logo"
         />
         <p className="opacity-50 transition-all duration-300 ease-in-out group-hover:opacity-100">
           <Link target="_blank" href="https://www.nishul.dev">
