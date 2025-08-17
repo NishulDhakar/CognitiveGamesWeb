@@ -15,6 +15,13 @@ export const metadata: Metadata = {
   description:
     "Blync helps students prepare for campus placements like Capgemini and Cognizant with interactive cognitive games. Practice Swich Challenge, Deductive Challenge, Grid Challenge, and Inductive Challenge to sharpen your problem-solving skills.",
   keywords: [
+    "capgemini games",
+"Capgemini games online",
+"Capgemini game based Aptitude test online Free",
+
+    "cognizant games",
+    "capgemini aptitude games",
+    "games for placement prep",
     "placement preparation games",
     "Capgemini aptitude games",
     "Cognizant puzzle round",
