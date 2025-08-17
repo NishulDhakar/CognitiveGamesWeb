@@ -2,8 +2,8 @@
 import Container from "@/components/common/Container";
 import Footer from "@/components/common/Footer";
 // import Footer from "@/components/common/Footer";
-import GamesCard from "@/components/GamePage/GamesCard";
-import Hero from "@/components/GamePage/Hero";
+import GamesCard from "@/components/Landing/GamesCard";
+import Hero from "@/components/Landing/Hero";
 
 export default function Home() {
   return (
@@ -13,6 +13,7 @@ export default function Home() {
     <GamesCard />
   </Container>
   <Footer />
+  
 </div>
 
   );

@@ -1,15 +1,16 @@
 'use client';
 
-import { navbarConfig } from '@/config/Header';
+import { navbarConfig } from '@/data/Header';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { Button } from '../ui/button';
+import GitHubStars from '../Landing/GithubStar';
 
 export default function Navbar() {
   return (
     <header className="border-b border-gray-700/60 backdrop-blur-sm  sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 h-16">
+      <div className="max-w-8xl mx-auto flex items-center justify-between px-6 h-16">
         
         {/* Left: Logo */}
         <Link href="/" className="flex items-center ">
@@ -52,7 +53,8 @@ export default function Navbar() {
   </Button>
 </Link> */}
 
-<Link href="https://www.nishul.dev/" target="_blank">
+<div className="flex justify-between gap-2">
+  <Link href="https://www.nishul.dev/" target="_blank">
   <Button
     size="lg"
     className="rounded-xl border border-black bg-[#A35C2D] font-semibold text-white transition-all duration-200 hover:bg-zinc-100 hover:text-black hover:shadow-md dark:border-zinc-200 dark:bg-white dark:text-black dark:hover:bg-zinc-100"
@@ -60,6 +62,12 @@ export default function Navbar() {
     Contact
   </Button>
 </Link>
+
+   <GitHubStars />
+
+</div>
+
+
 
           </div>
 
