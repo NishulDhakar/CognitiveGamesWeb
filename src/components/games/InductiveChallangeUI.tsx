@@ -118,7 +118,6 @@ export default function InductiveChallengeUI({
   return (
     <div className="space-y-8">
       
-      {/* Game info bar */}
       <div className="flex justify-between items-center bg-white/20 backdrop-blur-sm rounded-xl px-6 py-3 border-white/30   p-4 shadow-lg border ">
         <div className="flex items-center gap-4">
           <div className="text-sm text-gray-600">
@@ -134,12 +133,9 @@ export default function InductiveChallengeUI({
         </div>
       </div>
 
-      {/* Main game area - Desktop Layout */}
       <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl border border-gray-100 relative overflow-hidden">
         
-        {/* Mobile Layout */}
         <div className="block lg:hidden p-4 md:p-8">
-          {/* Examples section */}
           <div className="mb-4">
             <div className="text-center mb-2">
             </div>
@@ -156,14 +152,12 @@ export default function InductiveChallengeUI({
             </div>
           </div>
 
-          {/* Divider */}
           <div className="flex items-center justify-center mb-4">
             <div className="flex-1 h-px bg-gray-200"></div>
             <div className="px-4 text-gray-500 text-sm font-medium">Find the Pattern</div>
             <div className="flex-1 h-px bg-gray-200"></div>
           </div>
 
-          {/* Candidates section */}
           <div className="">
             
             <div className="grid grid-cols-2 gap-6">
