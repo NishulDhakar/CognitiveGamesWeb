@@ -2,6 +2,7 @@
 
 import React from "react";
 import { SwitchPuzzle } from "@/app/games/Switchchallenge/gameLogic";
+import ResultCard from "../common/Result";
 
 interface Props {
   puzzle: SwitchPuzzle | null;
@@ -13,6 +14,7 @@ interface Props {
   gameStatus: "playing" | "results";
   correct: number;
   resetGame: () => void;
+  wrong: number;
 }
 
 const SwitchChallengeUI: React.FC<Props> = ({
@@ -25,6 +27,7 @@ const SwitchChallengeUI: React.FC<Props> = ({
   gameStatus,
   correct,
   resetGame,
+  wrong,
 }) => {
   if (!puzzle) return null;
 
@@ -33,23 +36,11 @@ const SwitchChallengeUI: React.FC<Props> = ({
   return (
     <div className=" px-4 py-8">
       {gameStatus === "results" ? (
-        <div className="w-full max-w-lg bg-white rounded-3xl shadow-2xl p-6 md:p-10 border border-gray-200 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6">
-            🎉 Session Complete!
-          </h2>
-
-          <div className="bg-emerald-50 p-6 rounded-2xl border border-emerald-200 shadow mb-8">
-            <div className="text-emerald-600 text-sm font-semibold mb-2">Correct Answers</div>
-            <div className="text-3xl font-bold text-emerald-700">{correct}</div>
-          </div>
-
-          <button
-            onClick={resetGame}
-            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-xl font-semibold text-base shadow-md transition-transform hover:scale-105"
-          >
-            🔁 Play Again
-          </button>
-        </div>
+    <ResultCard
+        correct={correct} 
+        wrong={wrong} 
+        resetGame={resetGame} 
+      />
       ) : (
         <div className="w-full max-w-2xl bg-white rounded-3xl shadow-xl p-6 md:p-10 border border-gray-200 relative">
           {/* Feedback Overlay */}

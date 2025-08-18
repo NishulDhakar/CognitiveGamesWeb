@@ -21,9 +21,6 @@ const GamePage: React.FC<GamePageProps> = ({
   {/* Responsive Header */}
 
   <div className="w-full max-w-2xl flex flex-col md:flex-row md:justify-between md:items-center gap-4 px-4 md:px-8 mb-8">
-    
-      
-
     {/* Title & Extra Content */}
     <div className=" hidden md:flex flex-col md:flex-row items-center justify-center md:justify-end gap-2 md:space-x-4">
       <div className="bg-white/20 backdrop-blur-sm rounded-xl px-4 py-2 border border-white/30">

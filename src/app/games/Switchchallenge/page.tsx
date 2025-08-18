@@ -6,10 +6,9 @@ import Container from "@/components/common/Container";
 import GamePage from "@/components/common/GamePage";
 import SwitchChallengeUI from "@/components/games/SwitchChallengeUI";
 import { formatTime } from "@/utils/gameUtils";
-import Music from "@/components/common/music";
 
 const TIME_PER_QUESTION = 30;
-const SESSION_TIME = 180;
+const SESSION_TIME = 360;
 
 export default function SwitchChallenge() {
   const [level, setLevel] = useState(1);
@@ -86,6 +85,7 @@ export default function SwitchChallenge() {
           timeLeft={timeLeft}
           gameStatus={gameStatus}
           correct={correct}
+          wrong={wrong}
           resetGame={resetGame}
         />
       </GamePage>

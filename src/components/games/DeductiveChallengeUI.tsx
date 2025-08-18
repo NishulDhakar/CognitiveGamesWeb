@@ -1,6 +1,6 @@
 import React from "react";
 import { Puzzle, Symbol as GameSymbol } from "@/types/game";
-import { Button } from "../ui/button";
+import ResultCard from "../common/Result";
 
 interface DeductiveChallengeUIProps {
   puzzle: Puzzle | null;
@@ -36,31 +36,13 @@ const DeductiveChallengeUI: React.FC<DeductiveChallengeUIProps> = ({
   return (
     <>
       {gameStatus === "results" ? (
-        <div className="text-center space-y-8">
-          <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl 	p-4 md:p-8 border border-white/50">
-            <h2 className="text-xl md:text-3xl font-bold text-gray-800 mb-8">Session Complete!</h2>
-            <div className="grid grid-cols-3 gap-4 mb-8">
-              <div className="bg-emerald-50 p-6 rounded-2xl border-2 border-emerald-200 shadow-lg">
-                <div className="text-emerald-600 text-sm font-semibold mb-2">Correct</div>
-                <div className="text-xl md:text-3xl font-bold text-emerald-700">{correct}</div>
-              </div>
-              <div className="bg-rose-50 p-6 rounded-2xl border-2 border-rose-200 shadow-lg">
-                <div className="text-rose-600 text-sm font-semibold mb-2">Wrong</div>
-                <div className="text-xl md:text-3xl font-bold text-rose-700">{wrong}</div>
-              </div>
-              <div className="bg-slate-50 p-6 rounded-2xl border-2 border-slate-200 shadow-lg">
-                <div className="text-slate-600 text-sm font-semibold mb-2">Total</div>
-                <div className="text-xl md:text-3xl font-bold text-slate-700">{correct + wrong}</div>
-              </div>
-            </div>
-            <Button
-              onClick={resetGame}
-             variant={"outline"}
-            >
-              Play Again
-            </Button>
-          </div>
-        </div>
+
+      <ResultCard 
+        correct={correct} 
+        wrong={wrong} 
+        resetGame={resetGame} 
+      />
+
       ) : (
         <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl 	p-4 md:p-8 relative border border-white/50">
           {/* Enhanced instruction */}
