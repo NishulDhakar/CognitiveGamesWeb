@@ -6,7 +6,7 @@ import GamePage from "@/components/common/GamePage";
 import DeductiveChallengeUI from "@/components/games/DeductiveChallengeUI";
 
 const TIME_PER_QUESTION = 20;
-const SESSION_TIME = 360;
+const SESSION_TIME = 180;
 
 export default function DeductiveChallenge() {
   const [level, setLevel] = useState<number>(1);
