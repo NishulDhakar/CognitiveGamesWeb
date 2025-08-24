@@ -1,4 +1,3 @@
-// app/layout.tsx
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import ReactLenis from "lenis/react";
