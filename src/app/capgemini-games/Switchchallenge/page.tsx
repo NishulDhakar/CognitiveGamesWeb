@@ -74,7 +74,6 @@ export default function SwitchChallenge() {
 
   return (
     <Container>
-      
       <GamePage title="Switch Operator Challenge" level={level} timer={formatTime(sessionTime)}>
         <SwitchChallengeUI
           puzzle={puzzle}

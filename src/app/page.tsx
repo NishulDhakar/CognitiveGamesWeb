@@ -1,15 +1,18 @@
 "use client"
-import Container from "@/components/common/Container";
-import GamesCard from "@/components/Landing/GamesCard";
+import About from "@/components/Landing/About";
+import FAQ from "@/components/Landing/FAQ";
 import Hero from "@/components/Landing/Hero";
+import Testimonial from "@/components/Landing/Testimonial";
 
 export default function Home() {
   return (
 <div>
   <Hero />
-  <Container>
-    <GamesCard />
-  </Container>
+  <About />
+
+  <Testimonial />
+    <FAQ />
+
   
 </div>
 

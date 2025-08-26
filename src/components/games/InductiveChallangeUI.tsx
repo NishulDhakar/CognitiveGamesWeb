@@ -1,6 +1,6 @@
 import React from 'react';
 import { Clock, Lightbulb } from 'lucide-react';
-import { Grid, InductivePuzzle, Shape } from '@/app/games/Inductivechallenge/gameLogic';
+import { Grid, InductivePuzzle, Shape } from '@/app/capgemini-games/Inductivechallenge/gameLogic';
 import ResultCard from '../common/Result';
 
 interface InductiveChallengeUIProps {

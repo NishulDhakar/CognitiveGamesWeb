@@ -28,8 +28,7 @@ export default function Navbar() {
           <span className="font-bold text-lg hidden md:block">{altText}</span>
         </Link>
 
-        {/* Center: Nav Items */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="flex items-center gap-8">
           {navbarConfig.navItems.map((item) => (
             <Link
               key={item.label}
@@ -40,18 +39,8 @@ export default function Navbar() {
             </Link>
           ))}
         </nav>
-
-        {/* Right: Actions */}
         <div className="flex items-center gap-2">
           <div className="flex justify-between gap-2">
-            <Link href="https://www.nishul.dev/" target="_blank">
-              <Button
-                size="lg"
-                className="rounded-xl border border-black bg-[#A35C2D] font-semibold text-white transition-all duration-200 hover:bg-zinc-100 hover:text-black hover:shadow-md dark:border-zinc-200 dark:bg-white dark:text-black dark:hover:bg-zinc-100"
-              >
-                Contact
-              </Button>
-            </Link>
             <GitHubStars />
           </div>
         </div>
