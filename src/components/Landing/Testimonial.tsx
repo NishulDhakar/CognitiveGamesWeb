@@ -86,14 +86,14 @@ function TestimonialCard({
 
 const testimonials = [
   {
-    name: "Dolly Singh",
+    name: "Rohit Singh",
     role: "B. Tech CSE",
     content:
       "Blync’s cognitive games made my preparation fun and effective. I felt confident going into my Capgemini placement test.",
     rating: 5,
   },
   {
-    name: "Samriddhi",
+    name: "Shubham Kumar",
     role: "Engineering Student",
     content:
       "The puzzles on Blync helped me improve speed and accuracy. Practicing daily really boosted my logical thinking.",
@@ -107,21 +107,21 @@ const testimonials = [
     rating: 5,
   },
   {
-    name: "Rajat",
+    name: "Siddharth",
     role: "B. Tech CSE ",
     content:
       "Thanks to Blync’s practice challenges, I cleared my aptitude round with ease. The game format kept me motivated.",
     rating: 5,
   },
   {
-    name: "Aman",
+    name: "Vishal",
     role: "B. Tech CSE ",
     content:
       "Unlike boring PDFs, Blync turns preparation into interactive games. It’s the best way to stay consistent with practice.",
     rating: 5,
   },
   {
-    name: "Nikhil",
+    name: "siya",
     role: "B. Tech IT ",
     content:
       "Blync sharpened my problem-solving mindset. The variety of cognitive puzzles is exactly what I needed for placements.",
