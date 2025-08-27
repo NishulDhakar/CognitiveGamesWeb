@@ -7,43 +7,42 @@ import "./globals.css";
 
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
-// import Providers from "@/components/common/Providers";
 
 export const metadata: Metadata = {
-  title: "Blync - Placement Puzzle Games for Students",
+  title: "Capgemini Games Practice | Blync Placement Puzzle Prep",
   description:
-    "Blync helps students prepare for campus placements like Capgemini and Cognizant with interactive cognitive games. Practice Swich Challenge, Deductive Challenge, Grid Challenge, and Inductive Challenge to sharpen your problem-solving skills.",
+    "Play free Capgemini cognitive games online with Blync. Practice Switch, Deductive, Grid, and Inductive Challenges to prepare for Capgemini and Cognizant placement assessments.",
   keywords: [
-    "capgemini games",
-"Capgemini games online",
-"Capgemini game based Aptitude test online Free",
-
-    "cognizant games",
-    "capgemini aptitude games",
-    "games for placement prep",
-    "placement preparation games",
+    "Capgemini games",
+    "Capgemini games online",
+    "Capgemini cognitive assessment practice",
     "Capgemini aptitude games",
+    "Capgemini gamified aptitude test",
+    "Capgemini placement games",
+    "Capgemini puzzle test",
+    "Cognizant games",
     "Cognizant puzzle round",
+    "placement preparation games",
     "campus placement practice",
     "logical reasoning games",
-    "Swich Challenge",
+    "Switch Challenge",
     "Deductive Challenge",
     "Grid Challenge",
     "Inductive Challenge",
     "cognitive test practice",
   ],
   openGraph: {
-    title: "Blync - Placement Puzzle Practice",
+    title: "Capgemini Games Practice | Blync",
     description:
-      "Prepare for campus placements with fun, interactive cognitive puzzles like Swich, Deductive, Grid, and Inductive challenges.",
-    url: "https://games.nishul.dev",
+      "Prepare for Capgemini and Cognizant placement tests with fun, interactive cognitive games like Switch, Deductive, Grid, and Inductive Challenges.",
+    url: "https://games.nishul.dev/capgemini-games",
     siteName: "Blync",
     images: [
       {
         url: "/og-logo.png",
         width: 1200,
         height: 630,
-        alt: "Blync Placement Puzzle Games",
+        alt: "Capgemini Games - Blync Placement Puzzle Practice",
       },
     ],
     locale: "en_US",
@@ -51,9 +50,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blync - Cognitive Puzzle Games for Placement Prep",
+    title: "Capgemini Games Practice | Blync",
     description:
-      "Sharpen your brain with placement-focused puzzles like Swich, Deductive, Grid, and Inductive Challenges.",
+      "Sharpen your brain with placement-focused cognitive games. Play Switch, Deductive, Grid, and Inductive challenges to prepare for Capgemini & Cognizant tests.",
     images: ["/og-logo.png"],
     creator: "@nishuldhakar",
   },
@@ -61,7 +60,6 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
   },
 };
-
 
 export default function RootLayout({
   children,
