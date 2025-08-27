@@ -94,6 +94,15 @@ export default function Hero() {
             </Link>
           </div>
 
+          <a href="https://peerlist.io/nishuldhakar/project/cognitive-games" target="_blank" rel="noreferrer">
+	<img
+  src="https://peerlist.io/api/v1/projects/embed/PRJHGNQ8DD6ALORLGIDRL7J7DAQMLE?showUpvote=true&theme=light"
+  alt="Cognitive games"
+  style={{ width: "auto", height: "72px" }}
+/>
+
+			</a>
+
           <p className="text-muted-foreground text-sm">
             Trusted by 1000+ students
           </p>
