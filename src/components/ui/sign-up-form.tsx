@@ -14,44 +14,45 @@ import { authClient } from "@/lib/auth-client"
 import { formSchema } from "@/lib/auth-schema"
 
 import { zodResolver } from "@hookform/resolvers/zod"
-import { redirect } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod"
 
 export default function SignUpForm() {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      password: "",
-    },
-  })
+  const router = useRouter()
+
+const form = useForm<z.infer<typeof formSchema>>({
+resolver: zodResolver(formSchema),
+  defaultValues: {
+    name: "",
+    email: "",
+    password: "",
+  },
+})
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const { name, email, password } = values;
-    await authClient.signUp.email({
-      email,
-      password,
-      name,
-    }, {
-      onRequest: () => {
-        toast("Signing up...")
-      },
-      onSuccess: () => {
-        form.reset()
-        redirect("/sign-in")
-      },
-      onError: (ctx) => {
-        toast.error(ctx.error.message);
-      },
-    });
+    const { name, email, password } = values
+    await authClient.signUp.email(
+      { email, password, name },
+      {
+        onRequest: () => {
+          toast("Signing up...")
+        },
+        onSuccess: () => {
+          form.reset()
+          router.push("/sign-in")
+        },
+        onError: (ctx) => {
+          toast.error(ctx.error.message)
+        },
+      }
+    )
   }
 
   return (
     <div className="flex items-center justify-center dark:from-zinc-950 dark:to-zinc-900 px-4">
-      <div className="w-full max-w-md border-2 border-black dark:border-white/20  dark:bg-zinc-900 
+      <div className="w-full max-w-md border-2 border-black dark:border-white/20 dark:bg-zinc-900 
                       shadow-[6px_6px_0px_0px_#000] dark:shadow-[6px_6px_0px_0px_#757373] 
                       rounded-xl p-8 space-y-6">
         
