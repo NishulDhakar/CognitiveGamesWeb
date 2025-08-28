@@ -14,7 +14,7 @@ export default async function DashboardLayout({
   });
 
   if (!session) {
-    return redirect("/sign-in");
+    return redirect("/sign-up");
   }
 
   const user = session?.user;

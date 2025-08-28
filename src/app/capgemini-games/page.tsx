@@ -7,7 +7,6 @@ const page = () => {
     <div>
 
        <Container>
-
     <GamesCard />
   </Container>
     </div>
