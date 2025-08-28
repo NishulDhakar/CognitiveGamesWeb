@@ -86,8 +86,8 @@ function TestimonialCard({
 
 const testimonials = [
   {
-    name: "Rohit Singh",
-    role: "B. Tech CSE",
+    name: "Akshay",
+    role: "B. Tech AIML (TIT Bhopal)",
     content:
       "Blync’s cognitive games made my preparation fun and effective. I felt confident going into my Capgemini placement test.",
     rating: 5,
@@ -107,8 +107,8 @@ const testimonials = [
     rating: 5,
   },
   {
-    name: "Siddharth",
-    role: "B. Tech CSE ",
+    name: "Hardh jaiswal",
+    role: "B. Tech CSE (Oriental) ",
     content:
       "Thanks to Blync’s practice challenges, I cleared my aptitude round with ease. The game format kept me motivated.",
     rating: 5,

@@ -73,7 +73,7 @@ export default function RootLayout({
           {/* <Providers> */}
           <ReactLenis root>
             <Header />
-            <main className="min-h-screen px-4 sm:px-8 max-w-7xl mx-auto">
+            <main className="min-h-screen px-4 sm:px-8 max-w-8xl mx-auto">
               {children}
             </main>
             <Footer />
