@@ -13,7 +13,6 @@
     "@google/generative-ai": "^0.24.1",
     "@hookform/resolvers": "^5.2.1",
     "@phosphor-icons/react": "^2.1.10",
-    "@prisma/client": "^6.15.0",
     "@radix-ui/react-avatar": "^1.1.10",
     "@radix-ui/react-checkbox": "^1.3.3",
     "@radix-ui/react-collapsible": "^1.1.12",
@@ -53,6 +52,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@prisma/client": "^5.22.0",
     "@tailwindcss/postcss": "^4",
     "@types/next": "^8.0.7",
     "@types/node": "^20",
@@ -61,6 +61,7 @@
     "@types/react-icons": "^2.2.7",
     "eslint": "^9",
     "eslint-config-next": "15.4.1",
+    "prisma": "^5.22.0",
     "tailwindcss": "^4",
     "tw-animate-css": "^1.3.7",
     "typescript": "^5"
