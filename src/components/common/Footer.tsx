@@ -2,6 +2,7 @@ import React from "react";
 import { Separator } from "../ui/separator";
 import { Link } from "next-view-transitions";
 import Image from "next/image";
+import SignOutForm from "../ui/sign-out-form";
 
 const footerItems = [
   {
@@ -28,6 +29,7 @@ export default function Footer() {
             {item.label}
           </Link>
         ))}
+
       </div>
       <div className="text-muted-foreground text-sm">
         © 2025 Blync. All rights reserved.

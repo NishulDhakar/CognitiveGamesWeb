@@ -1,22 +1,23 @@
-'use client';
+"use client";
 
-import { navbarConfig } from '@/data/Header';
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
-import { Button } from '../ui/button';
-import GitHubStars from '../Landing/GithubStar';
-import { usePathname } from 'next/navigation';
+import { navbarConfig } from "@/data/Header";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import GitHubStars from "../Landing/GithubStar";
+import { usePathname } from "next/navigation";
+import { useUser } from "@/context/UserContext";
+import { Button } from "../ui/button";
+import { LogIn } from "lucide-react";
 
 export default function Navbar() {
   const pathname = usePathname();
-  const altText = pathname === '/' ? 'Blync' : 'Dashboard';
+  const altText = pathname === "/" ? "Blync" : "Dashboard";
+  const user = useUser();
 
   return (
     <header className="border-b border-gray-700/60 backdrop-blur-sm sticky top-0 z-50">
       <div className="max-w-8xl mx-auto flex items-center justify-between px-6 h-16">
-        
-        {/* Left: Logo */}
         <Link href="/" className="flex items-center">
           <Image
             src={navbarConfig.logo.src}
@@ -40,9 +41,22 @@ export default function Navbar() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          <div className="flex justify-between gap-2">
-            <GitHubStars />
-          </div>
+              {!user && (
+        <Link href="/sign-up">
+      <Button
+        variant="outline"
+        size="lg"
+        className="rounded-xl border border-black font-semibold transition-all duration-200 
+                   hover:bg-zinc-100 hover:text-black hover:shadow-md 
+                   dark:border-zinc-200 dark:bg-white dark:text-black dark:hover:bg-zinc-100"
+      >
+        <LogIn className="w-4 h-4 mr-2 stroke-black dark:stroke-white" />
+        <span>Sign In</span>
+      </Button>
+    </Link>
+          )}
+          <GitHubStars />
+      
         </div>
       </div>
     </header>

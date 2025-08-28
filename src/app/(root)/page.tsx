@@ -1,22 +1,21 @@
-"use client"
+"use client";
 import About from "@/components/Landing/About";
 import FAQ from "@/components/Landing/FAQ";
+import GamesCard from "@/components/Landing/GamesCard";
 import Hero from "@/components/Landing/Hero";
 import Testimonial from "@/components/Landing/Testimonial";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
 export default function Home() {
-
-    const [isExpanded, setIsExpanded] = useState(false);
-    const [isMobile, setIsMobile] = useState(false);
-    const [isArrowVisible, setIsArrowVisible] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isArrowVisible, setIsArrowVisible] = useState(true);
 
   return (
-<div>
-  <div className="relative w-full flex justify-end">
-
-      {!isExpanded && isArrowVisible && (
+    <div>
+      <div className="relative w-full flex justify-end">
+        {!isExpanded && isArrowVisible && (
           <motion.div
             className=" absolute -translate-x-1 "
             initial={{ opacity: 0 }}
@@ -43,39 +42,11 @@ export default function Home() {
             </div>
           </motion.div>
         )}
-
-  </div>
-  
-  <Hero />
-  <About />
-
-  <Testimonial />
-    <FAQ />
-
-  
-</div>
-
+      </div>
+      <Hero />
+      <About />
+      <Testimonial />
+      <FAQ />
+    </div>
   );
 }
-
-//   <div className="relative w-full ml-180">
-//   {!isExpanded && isArrowVisible && (
-//     <motion.div
-//       className="flex flex-col items-center"
-//       initial={{ opacity: 0 }}
-//       animate={{ opacity: [0.4, 1, 0.4], y: [0, -5, 0] }}
-//       transition={{ repeat: Infinity, duration: 1.5 }}
-//     >
-//       <img
-//         src="./arrow.gif"
-//         alt="Click the page curl"
-//         className="size-12 rotate-90 md:size-16"
-//       />
-//       {!isMobile && (
-//         <p className="text-sm italic mt-1 whitespace-nowrap text-center">
-//           Please give star on github.
-//         </p>
-//       )}
-//     </motion.div>
-//   )}
-// </div>

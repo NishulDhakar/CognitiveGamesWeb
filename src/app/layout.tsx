@@ -3,10 +3,12 @@ import { Analytics } from "@vercel/analytics/next";
 import ReactLenis from "lenis/react";
 import { ViewTransitions } from "next-view-transitions";
 
+
 import "./globals.css";
 
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
+import { UserProvider } from "@/context/UserContext";
 
 export const metadata: Metadata = {
   title: "Capgemini Games Practice | Blync Placement Puzzle Prep",
@@ -70,16 +72,12 @@ export default function RootLayout({
     <ViewTransitions>
       <html lang="en" suppressHydrationWarning>
         <body className="font-hanken-grotesk antialiased bg-[#efe9d5] text-gray-900">
-          {/* <Providers> */}
           <ReactLenis root>
-            <Header />
-            <main className="min-h-screen px-4 sm:px-8 max-w-8xl mx-auto">
-              {children}
-            </main>
-            <Footer />
-            <Analytics />
+              <main className="min-h-screen px-4 sm:px-8 max-w-7xl mx-auto">
+                {children}
+              </main>
+              <Analytics />
           </ReactLenis>
-          {/* </Providers> */}
         </body>
       </html>
     </ViewTransitions>

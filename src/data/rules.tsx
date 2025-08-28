@@ -11,7 +11,7 @@ export const deductiveChallengeRules: RuleData = {
     "One mark is added for each correct attempt and one mark is subtracted for each wrong attempt.",
   ],
   playLink:
-    "/capgemini-games/Deductivechallenge",
+    "/play/Deductivechallenge",
 };
 
 export const SwitchChallengeRules: RuleData = {
@@ -23,7 +23,7 @@ export const SwitchChallengeRules: RuleData = {
     "Click the box that matches the actual color (not the text meaning).",
     "Gain points for correct matches. Wrong selections will reduce your score.",
   ],
-  playLink: "/capgemini-games/Switchchallenge",
+  playLink: "/play/Switchchallenge",
 };
 
 export const gridChallengeRules: RuleData = {
@@ -36,7 +36,7 @@ export const gridChallengeRules: RuleData = {
     "Check if the columns are also in alphabetical order from top to bottom.",
     "Select 'YES' or 'NO' based on your answer.",
   ],
-  playLink: "/capgemini-games/Gridchallenge",
+  playLink: "/play/Gridchallenge",
 };
 
 export const inductiveChallengeRules: RuleData = {
@@ -48,7 +48,7 @@ export const inductiveChallengeRules: RuleData = {
     "Choose the figure that best continues the sequence.",
     "The faster and more accurate you are, the better your score.",
   ],
-  playLink: "/capgemini-games/Inductivechallenge",
+  playLink: "/play/Inductivechallenge",
 };
 
 export const motionChallengeRules: RuleData = {
@@ -60,5 +60,5 @@ export const motionChallengeRules: RuleData = {
     "After they stop, you need to recall the position of a specific object.",
     "Answer accurately and quickly to earn a higher score.",
   ],
-  playLink: "/capgemini-games/Motionchallenge",
+  playLink: "/play/Motionchallenge",
 };
