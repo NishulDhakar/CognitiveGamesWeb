@@ -41,7 +41,7 @@ resolver: zodResolver(formSchema),
         },
         onSuccess: () => {
           form.reset()
-          router.push("/sign-in")
+          router.push("/")
         },
         onError: (ctx) => {
           toast.error(ctx.error.message)
