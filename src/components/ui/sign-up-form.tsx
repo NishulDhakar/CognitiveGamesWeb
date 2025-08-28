@@ -31,24 +31,35 @@ resolver: zodResolver(formSchema),
   },
 })
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    const { name, email, password } = values
+async function onSubmit(values: z.infer<typeof formSchema>) {
+  const { email, password } = values;
+
+  if (!email || !password) {
+    toast.error("Email and password are required");
+    return;
+  }
+
+  try {
     await authClient.signUp.email(
-      { email, password, name },
+      { email, password },
       {
-        onRequest: () => {
-          toast("Signing up...")
-        },
+        onRequest: () => toast("Signing up..."),
         onSuccess: () => {
-          form.reset()
-          router.push("/")
+          form.reset();
+          router.push("/");
         },
         onError: (ctx) => {
-          toast.error(ctx.error.message)
+          console.error("Sign-up error:", ctx.error);
+          toast.error(ctx.error?.message || "Sign-up failed");
         },
       }
-    )
+    );
+  } catch (err) {
+    console.error("Unexpected sign-up error:", err);
+    toast.error("Something went wrong");
   }
+}
+
 
   return (
     <div className="flex items-center justify-center dark:from-zinc-950 dark:to-zinc-900 px-4">

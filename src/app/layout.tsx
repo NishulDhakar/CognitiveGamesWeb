@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   title: "Capgemini Games Practice | Blync Placement Puzzle Prep",
   description:
     "Play free Capgemini cognitive games online with Blync. Practice Switch, Deductive, Grid, and Inductive Challenges to prepare for Capgemini and Cognizant placement assessments.",
+      metadataBase: new URL("https://games.nishul.dev/"),
   keywords: [
     "Capgemini games",
     "Capgemini games online",
