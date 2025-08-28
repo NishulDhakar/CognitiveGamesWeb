@@ -14,7 +14,7 @@ export default function Home() {
 
   return (
     <div>
-      <div className="relative w-full flex justify-end">
+      <div className="hidden md:flex  relative w-full justify-end">
         {!isExpanded && isArrowVisible && (
           <motion.div
             className=" absolute -translate-x-1 "
