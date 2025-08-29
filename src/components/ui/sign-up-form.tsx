@@ -46,7 +46,7 @@ async function onSubmit(values: z.infer<typeof formSchema>) {
         onRequest: () => toast("Signing up..."),
         onSuccess: () => {
           form.reset();
-          router.push("/");
+          router.push("/sign-in");
         },
         onError: (ctx) => {
           console.error("Sign-up error:", ctx.error);

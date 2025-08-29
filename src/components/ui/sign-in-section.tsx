@@ -1,8 +1,6 @@
 "use client"
 
 import { signInWithGoogle } from "@/actions/google-auth-action"
-
-
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { JSX, SVGProps } from "react"
