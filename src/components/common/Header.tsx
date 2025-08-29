@@ -41,7 +41,7 @@ export default function Navbar() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
-              {/* {!user && (
+              {!user && (
         <Link href="/register">
       <Button
         variant="outline"
@@ -54,7 +54,7 @@ export default function Navbar() {
         <span>Sign In</span>
       </Button>
     </Link>
-          )} */}
+          )}
           <GitHubStars />
       
         </div>
