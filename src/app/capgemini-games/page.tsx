@@ -7,7 +7,7 @@ const page = () => {
     <div>
 
        <Container>
-        <h1 className='text-2xl md:text-4xl font-bold text-[#3B3024] mb-3 sm:mb-4'>All Games...</h1>
+        <h1 className='text-2xl mt-16 md:text-4xl font-bold text-[#3B3024] mb-3 sm:mb-4'>All Games...</h1>
     <GamesCard />
   </Container>
     </div>
