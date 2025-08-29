@@ -42,7 +42,7 @@ export default function Navbar() {
         </nav>
         <div className="flex items-center gap-2">
               {!user && (
-        <Link href="/sign-up">
+        <Link href="/register">
       <Button
         variant="outline"
         size="lg"

@@ -1,7 +1,6 @@
 "use client";
 import About from "@/components/Landing/About";
 import FAQ from "@/components/Landing/FAQ";
-import GamesCard from "@/components/Landing/GamesCard";
 import Hero from "@/components/Landing/Hero";
 import Testimonial from "@/components/Landing/Testimonial";
 import { motion } from "framer-motion";
