@@ -2,7 +2,6 @@ import React from "react";
 import { Separator } from "../ui/separator";
 import { Link } from "next-view-transitions";
 import Image from "next/image";
-import SignOutForm from "../ui/sign-out-form";
 
 const footerItems = [
   {
