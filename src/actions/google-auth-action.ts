@@ -1,7 +1,7 @@
 import { authClient } from "@/lib/auth-client";
 
-export const signInWithGoogle = () => {
-  authClient.signIn.social({
-    provider: "google",
-  });
-};
+export const signInWithGoogle = async () => {
+   await authClient.signIn.social({
+      provider: "google"
+   })
+}
