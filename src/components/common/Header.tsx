@@ -17,6 +17,7 @@ import {
   DropdownMenuItem,
 } from "../ui/ui/dropdown-menu";
 import { signOut } from "@/actions/auth-actions";
+import TopBanner from "./TopBanner";
 
 
 export default function Navbar() {
