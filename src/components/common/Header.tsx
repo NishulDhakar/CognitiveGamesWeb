@@ -20,9 +20,15 @@ import { signOut } from "@/actions/auth-actions";
 
 
 export default function Navbar() {
+  interface UserWithAvatar {
+    avatar?: string;
+  }
+
+  const user = useUser();
+  const userWithAvatar = user && 'avatar' in user ? user as UserWithAvatar : null;
+
   const pathname = usePathname();
   const altText = pathname === "/" ? "Blync" : "Dashboard";
-  const user = useUser();
 
   const handleSignOut = async () => {
     await signOut();
@@ -73,7 +79,7 @@ export default function Navbar() {
             <DropdownMenu>
               <DropdownMenuTrigger>
                 <Avatar>
-                  <AvatarImage src={user.avatar} alt={user.email} />
+      <AvatarImage src={userWithAvatar?.avatar} alt={user.email} />
                   <AvatarFallback>{user.email?.[0].toUpperCase()}</AvatarFallback>
                 </Avatar>
               </DropdownMenuTrigger>
