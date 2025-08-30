@@ -160,7 +160,7 @@ export default function FAQ() {
             className="text-[#756b60]  font-satoshi mx-auto max-w-3xl text-center text-lg leading-relaxed tracking-tight md:text-xl"
             variants={titleVariants}
           >
-            Everything you need to know about Capgemini Games Practice
+            Everything you need to know about Capgemini or Cognizant Games Practice
           </motion.p>
         </motion.div>
 

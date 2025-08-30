@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Card } from "@/components/ui/card";
+import { Card } from "@/components/ui/ui/card";
 import { gameCards } from "@/data/GamesData";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
@@ -29,7 +29,7 @@ export default function GamesCard() {
                   alt={game.name}
                   width={400}
                   height={200}
-                  className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110"
+                  className=" h-48 object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>

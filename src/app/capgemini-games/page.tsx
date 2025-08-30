@@ -6,10 +6,10 @@ const page = () => {
   return (
     <div>
 
-       <Container>
+       <div className='container mx-auto max-w-6xl px-4 animate-fade-in-blur'>
         <h1 className='text-2xl mt-16 md:text-4xl font-bold text-[#3B3024] mb-3 sm:mb-4'>All Games...</h1>
     <GamesCard />
-  </Container>
+  </div>
     </div>
   )
 }

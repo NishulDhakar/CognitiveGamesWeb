@@ -1,4 +1,5 @@
 "use client";
+import Container from "@/components/common/Container";
 import About from "@/components/Landing/About";
 import FAQ from "@/components/Landing/FAQ";
 import Hero from "@/components/Landing/Hero";
@@ -42,10 +43,12 @@ export default function Home() {
           </motion.div>
         )}
       </div>
+          <Container>
       <Hero />
       <About />
       <Testimonial />
       <FAQ />
+      </Container>
     </div>
   );
 }

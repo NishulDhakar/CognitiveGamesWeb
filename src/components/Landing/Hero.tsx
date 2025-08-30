@@ -4,7 +4,7 @@ import Container from "../common/Container";
 import { motion } from "framer-motion";
 import HandDrawnArrow from "../svgs/HandDrawnArrow";
 import { useEffect, useMemo, useState } from "react";
-import { Button } from "../ui/button";
+import { Button } from "../ui/ui/button";
 import Link from "next/link";
 import { CgGames } from "react-icons/cg";
 

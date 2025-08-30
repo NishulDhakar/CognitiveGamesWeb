@@ -7,7 +7,7 @@ import React from "react";
 import GitHubStars from "../Landing/GithubStar";
 import { usePathname } from "next/navigation";
 import { useUser } from "@/context/UserContext";
-import { Button } from "../ui/button";
+import { Button } from "../ui/ui/button";
 import { LogIn, LogOut } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage, } from "../ui/ui/avatar";
 import {
