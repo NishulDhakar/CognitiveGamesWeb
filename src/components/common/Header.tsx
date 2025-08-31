@@ -153,7 +153,7 @@ export default function Navbar() {
                       className={`block transition-colors duration-300 ${
                         isActive
                           ? "font-semibold"
-                          : "border-b"
+                          : ""
                       }`}
                     >
                       {item.label}

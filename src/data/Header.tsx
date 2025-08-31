@@ -18,13 +18,14 @@ export const navbarConfig = {
       label: 'Games',
       href: '/capgemini-games',
     },
-     {
-      label: 'Contact',
-      href: '/contact',
-    },
+
        {
       label: 'Leaderboard',
       href: '/Leaderboard',
+    },
+         {
+      label: 'Contact',
+      href: '/contact',
     },
   ] as NavItem[],
 };
