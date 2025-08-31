@@ -15,7 +15,9 @@ export default function TopBanner() {
       </span>
       <Button
         variant="outline"
-        className="bg-white border-black text-black hover:bg-black hover:text-white hover:shadow-md transition ml-2"
+      className="rounded-xl border border-black font-semibold transition-all duration-200 
+                           hover:bg-zinc-100 hover:text-black hover:shadow-md 
+                           dark:border-zinc-200 dark:bg-white dark:text-black dark:hover:bg-zinc-100"
         onClick={() =>
           window.open("https://placementprep.nishul.dev", "_blank")
         }

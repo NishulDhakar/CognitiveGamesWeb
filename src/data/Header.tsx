@@ -10,17 +10,21 @@ export const navbarConfig = {
     height: 70,
   },
   navItems: [
-    // {
-    //   label: 'Home',
-    //   href: '/',
-    // },
-    // {
-    //   label: 'Games',
-    //   href: '/games',
-    // },
-    //  {
-    //   label: 'Contact',
-    //   href: 'https://www.nishul.dev/',
-    // },
+    {
+      label: 'Blog',
+      href: '/capgemini-game',
+    },
+    {
+      label: 'Games',
+      href: '/capgemini-games',
+    },
+     {
+      label: 'Contact',
+      href: '/contact',
+    },
+       {
+      label: 'Leaderboard',
+      href: '/Leaderboard',
+    },
   ] as NavItem[],
 };

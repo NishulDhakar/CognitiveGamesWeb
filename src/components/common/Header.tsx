@@ -3,13 +3,13 @@
 import { navbarConfig } from "@/data/Header";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import GitHubStars from "../Landing/GithubStar";
 import { usePathname } from "next/navigation";
 import { useUser } from "@/context/UserContext";
 import { Button } from "../ui/ui/button";
-import { LogIn, LogOut } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage, } from "../ui/ui/avatar";
+import { LogIn, LogOut, Menu, X } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -17,16 +17,17 @@ import {
   DropdownMenuItem,
 } from "../ui/ui/dropdown-menu";
 import { signOut } from "@/actions/auth-actions";
-import TopBanner from "./TopBanner";
-
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
   interface UserWithAvatar {
     avatar?: string;
   }
 
+  const [mobileOpen, setMobileOpen] = useState(false);
   const user = useUser();
-  const userWithAvatar = user && 'avatar' in user ? user as UserWithAvatar : null;
+  const userWithAvatar =
+    user && "avatar" in user ? (user as UserWithAvatar) : null;
 
   const pathname = usePathname();
   const altText = pathname === "/" ? "Blync" : "Dashboard";
@@ -39,7 +40,8 @@ export default function Navbar() {
   return (
     <header className="border-b border-gray-700/60 backdrop-blur-sm sticky top-0 z-50">
       <div className="max-w-8xl mx-auto flex items-center justify-between px-6 h-16">
-        <Link href="/" className="flex items-center">
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2">
           <Image
             src={navbarConfig.logo.src}
             alt={altText}
@@ -50,18 +52,27 @@ export default function Navbar() {
           <span className="font-bold text-lg hidden md:block">{altText}</span>
         </Link>
 
-        <nav className="flex items-center gap-8">
-          {navbarConfig.navItems.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className="transition-colors duration-300"
-            >
-              {item.label}
-            </Link>
-          ))}
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center gap-8">
+          {navbarConfig.navItems.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <Link
+                key={item.label}
+                href={item.href}
+                className={`transition-colors duration-300 ${
+                  isActive
+                    ? "font-semibold"
+                    : " hover:border-b hover:border-gray-900"
+                }`}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
+        {/* Right side (Sign In / Avatar / Stars) */}
         <div className="flex items-center gap-2">
           {!user ? (
             <Link href="/register">
@@ -80,8 +91,10 @@ export default function Navbar() {
             <DropdownMenu>
               <DropdownMenuTrigger>
                 <Avatar>
-      <AvatarImage src={userWithAvatar?.avatar} alt={user.email} />
-                  <AvatarFallback>{user.email?.[0].toUpperCase()}</AvatarFallback>
+                  <AvatarImage src={userWithAvatar?.avatar} alt={user.email} />
+                  <AvatarFallback>
+                    {user.email?.[0].toUpperCase()}
+                  </AvatarFallback>
                 </Avatar>
               </DropdownMenuTrigger>
               <DropdownMenuContent sideOffset={5}>
@@ -93,8 +106,65 @@ export default function Navbar() {
             </DropdownMenu>
           )}
           <GitHubStars />
+
+          {/* Mobile Menu Toggle */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="md:hidden p-2 rounded-lg hover:bg-zinc-200 dark:hover:bg-zinc-800 transition"
+            aria-label="Toggle Menu"
+          >
+            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
       </div>
+
+      {/* Animated Mobile Nav */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.1, ease: "easeInOut" }}
+            className="md:hidden px-6 py-4 border-t border-gray-700/60"
+          >
+            <motion.nav
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: 0.1 } },
+              }}
+              className="flex flex-col gap-4"
+            >
+              {navbarConfig.navItems.map((item) => {
+                const isActive = pathname === item.href;
+                return (
+                  <motion.div
+                    key={item.label}
+                    variants={{
+                      hidden: { opacity: 0, x: -20 },
+                      visible: { opacity: 1, x: 0 },
+                    }}
+                  >
+                    <Link
+                      href={item.href}
+                      onClick={() => setMobileOpen(false)}
+                      className={`block transition-colors duration-300 ${
+                        isActive
+                          ? "font-semibold"
+                          : "border-b"
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  </motion.div>
+                );
+              })}
+            </motion.nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
