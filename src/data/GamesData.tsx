@@ -29,7 +29,7 @@ export const gameCards: GameCardData[] = [
     image: "/games/InductiveChallenge.jpeg",
     rulesLink: "/rules/Inductive-Challenge",
     description:
-      "A visual puzzle where you find the next figure in a sequence by spotting hidden patterns — sharpens logical and abstract thinking. (Game is not added yet)"
+      "A visual puzzle where you find the next figure in a sequence by spotting hidden patterns — sharpens logical and abstract thinking."
   },
   {
     id: 4,

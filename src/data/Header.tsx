@@ -12,7 +12,7 @@ export const navbarConfig = {
   navItems: [
     {
       label: 'Blog',
-      href: '/capgemini-game',
+      href: '/capgemini-cognitive-ability-games',
     },
     {
       label: 'Games',
