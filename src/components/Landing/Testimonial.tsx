@@ -152,7 +152,7 @@ const titleVariants = {
 
 export default function Testimonial() {
   return (
-    <section className="relative overflow-hidden py-20 lg:py-32">
+    <section className="relative overflow-hidden py-10 lg:py-10">
       <div className="absolute inset-0" />
 
       <div className="relative z-10 container mx-auto">

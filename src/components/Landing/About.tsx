@@ -120,7 +120,7 @@ export default function About() {
   const animatedWords = ["practice", "prepare", "improve"];
 
   return (
-    <section className="relative overflow-hidden py-20 lg:py-32 ">
+    <section className="relative overflow-hidden py-10 lg:py-24 ">
       <div className="relative z-10 container mx-auto">
         <motion.div
           className="mb-16 text-center md:mb-20"

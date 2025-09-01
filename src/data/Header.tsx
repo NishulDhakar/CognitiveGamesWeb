@@ -23,6 +23,10 @@ export const navbarConfig = {
       label: 'Leaderboard',
       href: '/Leaderboard',
     },
+    //          {
+    //   label: 'Feedback',
+    //   href: '/feedback',
+    // },
          {
       label: 'Contact',
       href: '/contact',

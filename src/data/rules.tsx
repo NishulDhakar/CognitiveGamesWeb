@@ -23,6 +23,7 @@ export const SwitchChallengeRules: RuleData = {
     "Click the box that matches the actual color (not the text meaning).",
     "Gain points for correct matches. Wrong selections will reduce your score.",
   ],
+  Solution: "/Switchchallenge-solution.png",
   playLink: "/play/Switchchallenge",
 };
 
