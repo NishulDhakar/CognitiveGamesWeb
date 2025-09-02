@@ -13,7 +13,7 @@ export const gamesData: GameData[] = [
     id: 5,
     name: "Switch Challenge",
     typeOfQuestions:
-      "Match the displayed color names with their actual colors as quickly as possible.",
+      "Match the displayed color names with their actual colors as quickly as possible",
     duration: "6 mins",
     description:
       "Sequence of geometrical shapes or color names goes through a switch code. The challenge is to match the correct output or actual colors, not the misleading text.",
