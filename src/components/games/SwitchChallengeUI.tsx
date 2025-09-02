@@ -1,7 +1,7 @@
 'use client';
 
 import React from "react";
-import { SwitchPuzzle } from "@/app/Capgemini/Switchchallenge/gameLogic";
+import { SwitchPuzzle } from "@/app/play/Switchchallenge/gameLogic";
 import ResultCard from "../common/Result";
 
 interface Props {

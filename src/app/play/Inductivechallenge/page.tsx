@@ -126,12 +126,13 @@ export default function Page() {
       </h1>
 
       <p className="text-lg sm:text-xl md:text-2xl t mb-8">
-        We have added only 2 games so far:
+        We have added only 3 games so far:
       </p>
 
       <ul className=" text-sm sm:text-2xl md:text-3xl space-y-2 mb-12">
         <li>Swich Challenge</li>
         <li>Deductive challengee</li>
+        <li>Digit Challenge</li>
       </ul>
 
       <p className=" text-lg sm:text-xl md:text-2xl">

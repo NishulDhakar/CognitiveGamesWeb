@@ -24,7 +24,7 @@ export const SwitchChallengeRules: RuleData = {
     "Gain points for correct matches. Wrong selections will reduce your score.",
   ],
   Solution: "/Switchchallenge-solution.png",
-  playLink: "/Capgemini/Switchchallenge",
+  playLink: "/play/Switchchallenge",
 };
 
 export const DigitChallengeRules: RuleData = {
