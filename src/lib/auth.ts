@@ -17,7 +17,7 @@ export const auth = betterAuth({
       },
    },
    rateLimit: {
-      window: 60, // time window in seconds
+      window: 60, 
       max: 10,
    },
 })

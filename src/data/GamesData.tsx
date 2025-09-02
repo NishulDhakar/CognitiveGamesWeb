@@ -15,6 +15,14 @@ export const gameCards: GameCardData[] = [
     description:
       "A fast-paced game where you match color names with their actual displayed colors, testing speed and focus under tricky visual cues."
   },
+      {
+    id: 3,
+    name: "Digit Challenge",
+    image: "/games/digitChallenge.jpeg",
+    rulesLink: "/rules/digit-challenge",
+    description:
+      "A mathematical Operation needs to be solved, by using a few available digits only once. One digit will come only once."
+  },
   {
     id: 2,
     name: "Deductive Challenge",
@@ -23,8 +31,9 @@ export const gameCards: GameCardData[] = [
     description:
       "Mental or logical puzzle that tests deductive reasoning ability, your skill in drawing specific conclusions based on general rules or facts."
   },
+
   {
-    id: 3,
+    id: 4,
     name: "Inductive Challenge",
     image: "/games/InductiveChallenge.jpeg",
     rulesLink: "/rules/Inductive-Challenge",
@@ -32,7 +41,7 @@ export const gameCards: GameCardData[] = [
       "A visual puzzle where you find the next figure in a sequence by spotting hidden patterns — sharpens logical and abstract thinking."
   },
   {
-    id: 4,
+    id: 5,
     name: "Grid Challenge",
     image: "/games/GridChallenge.jpeg",
     rulesLink: "/rules/Grid-Challenge",
@@ -40,7 +49,7 @@ export const gameCards: GameCardData[] = [
       "A logic-based game where you sort rows of letters and check if columns stay in order — testing pattern recognition and analytical speed. (Game is not added yet)"
   },
   {
-    id: 5,
+    id: 6,
     name: "Motion Challenge",
     image: "/games/MotionChallenge.jpeg",
     rulesLink: "/rules/Motion-Challenge",

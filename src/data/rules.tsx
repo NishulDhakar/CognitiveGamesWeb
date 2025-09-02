@@ -24,7 +24,22 @@ export const SwitchChallengeRules: RuleData = {
     "Gain points for correct matches. Wrong selections will reduce your score.",
   ],
   Solution: "/Switchchallenge-solution.png",
-  playLink: "/play/Switchchallenge",
+  playLink: "/Capgemini/Switchchallenge",
+};
+
+export const DigitChallengeRules: RuleData = {
+  title: "Digit Challenge",
+  description:
+    "Match the displayed color names with their actual colors as quickly as possible. Be alert — the text and color may differ to trick your mind.",
+howToPlay: [
+  "You will be given a mathematical operation to solve.",
+  "Use the available digits shown on the screen to form your answer.",
+  "Each digit can be used only once; no digit will repeat.",
+  "Correct answers earn you points, while wrong answers reduce your score.",
+  "Try to solve as many as possible before the timer runs out."
+]
+,
+  playLink: "/play/Digitchallenge",
 };
 
 export const gridChallengeRules: RuleData = {

@@ -22,7 +22,7 @@ export const gamesData: GameData[] = [
       "Click the option that matches the actual color (not the text meaning).",
       "Gain points for correct matches. Wrong selections reduce your score.",
     ],
-    playLink: "/play/Switchchallenge",
+    playLink: "/Capgemini/Switchchallenge",
   },
   {
     id: 1,

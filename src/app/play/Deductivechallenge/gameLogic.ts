@@ -43,29 +43,8 @@ function generateLatinSquare(size: number, symbols: Symbol[]): (Symbol | null)[]
   return grid;
 }
 
-// export function generatePuzzle(level: number): Puzzle {
-//   const size = Math.min(3 + Math.floor(level / 2), 6); 
-//   const availableSymbols = SYMBOLS.slice(0, size);
-//   const grid = generateLatinSquare(size, availableSymbols);
-//   const numToRemove = Math.min(size + 1, Math.floor(size * 1.5));
-//   const allCells = [];
-//   for (let r = 0; r < size; r++) for (let c = 0; c < size; c++) allCells.push({ row: r, col: c });
-//   const shuffled = allCells.sort(() => Math.random() - 0.5);
-//   const emptyCells = shuffled.slice(0, numToRemove);
-//   const targetCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
-//   const answer = grid[targetCell.row][targetCell.col]!;
-//   for (const cell of emptyCells) {
-//     grid[cell.row][cell.col] = null;
-//   }
-//   const options = [
-//     answer,
-//     ...availableSymbols.filter(s => s !== answer).sort(() => Math.random() - 0.5).slice(0, 3)
-//   ].sort(() => Math.random() - 0.5);
-//   return { grid, emptyCells, targetCell, answer, options };
-// }
-
 export function generatePuzzle(gameNumber: number): Puzzle {
-  // 1. Grid size only increases every 6 games (max 8x8)
+  // 1. Grid size only increases every 10 games (max 8x8)
   const size = Math.min(3 + Math.floor((gameNumber - 1) / 10), 8);
 
   // Shuffle symbols for variety
