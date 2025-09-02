@@ -16,7 +16,7 @@ export const gamesData: GameData[] = [
       "Match the displayed color names with their actual colors as quickly as possible",
     duration: "6 mins",
     description:
-      "Sequence of geometrical shapes or color names goes through a switch code. The challenge is to match the correct output or actual colors, not the misleading text.",
+      "Sequence of geometrical shapes or color names goes through a switch code. The challenge is match the correct output or actual colors, not the misleading text.",
     howToPlay: [
       "You will see color names shown in different font colors.",
       "Click the option that matches the actual color (not the text meaning).",
