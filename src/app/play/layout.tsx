@@ -21,7 +21,8 @@ export default async function DashboardLayout({
   return (
     <UserProvider user={user}>
               <Header />
-      <main className="flex-1 p-6">{children}</main>=
+      <main className="flex-1 p-6">{children}</main>
+
     </UserProvider>
   );
 }

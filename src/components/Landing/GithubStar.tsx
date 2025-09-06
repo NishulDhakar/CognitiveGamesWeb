@@ -35,10 +35,10 @@ export default function GitHubStars() {
             size="lg"
            className=" rounded-xl border border-black  font-semibold transition-all duration-200 hover:bg-zinc-100 hover:text-black hover:shadow-md dark:border-zinc-200 dark:bg-white dark:text-black dark:hover:bg-zinc-100">
           <Star className="w-4 h-4 stroke-black dark:stroke-white" />
-          <span>Star</span>
-          <span className="px-2 py-0.5 text-xs bg-gray-200 dark:bg-[#2f2f2f] rounded-full font-medium text-black dark:text-white">
+          <span>Star Project</span>
+          {/* <span className="px-2 py-0.5 text-xs bg-gray-200 dark:bg-[#2f2f2f] rounded-full font-medium text-black dark:text-white">
             {stars !== null ? stars : "..."}
-          </span>
+          </span> */}
           <ChevronDown className="w-3 h-3 stroke-black dark:stroke-white" />
         </Button>
       </Link>

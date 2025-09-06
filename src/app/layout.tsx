@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/next";
 import ReactLenis from "lenis/react";
 import { ViewTransitions } from "next-view-transitions";
 import "./globals.css";
+import ChatBubble from "@/components/common/ChatBubble";
 
 export const metadata: Metadata = {
   title: "Capgemini Games Practice | Blync Placement Puzzle Prep",
@@ -71,6 +72,7 @@ export default function RootLayout({
               <main className="">
                 {children}
               </main>
+                      <ChatBubble />
               <Analytics />
           </ReactLenis>
         </body>

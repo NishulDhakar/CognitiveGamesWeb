@@ -18,7 +18,7 @@ export default function RegisterPage() {
       <div className="flex flex-col items-center justify-center px-6 py-12 rounded-2xl dark:bg-zinc-900 w-full max-w-md">
         
         <h1 className="text-3xl font-bold text-foreground mb-8 text-center">
-          Welcome Back!
+          Welcome !
         </h1>
         {/* <p className="text-sm text-muted-foreground mb-8 text-center">
           Don’t have an account?{" "}
