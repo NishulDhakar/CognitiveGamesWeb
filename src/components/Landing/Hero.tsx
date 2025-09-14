@@ -7,6 +7,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Button } from "../ui/ui/button";
 import Link from "next/link";
 import { CgGames } from "react-icons/cg";
+import { MdOutlineReviews } from "react-icons/md";
 
 export default function Hero() {
   const [titleNumber, setTitleNumber] = useState(0);
@@ -87,6 +88,16 @@ export default function Hero() {
                   className="gap-4 border-2 border-black bg-white text-black shadow-[4px_4px_0px_0px_#000] hover:translate-x-1 hover:translate-y-1 hover:text-white hover:bg-[#A35C2D] hover:shadow-[2px_2px_0px_0px_#000] dark:border-white/20 dark:bg-zinc-900 dark:text-white dark:shadow-[4px_4px_0px_0px_#757373] dark:hover:shadow-[2px_2px_0px_0px_#757373]"
                 >
                   Visit Games <CgGames size={20} />
+                </Button>
+              </Link>
+
+                <Link href="https://www.linkedin.com/feed/update/urn:li:activity:7368774982589394945/">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="gap-4 border-2 border-black bg-white text-black shadow-[4px_4px_0px_0px_#000] hover:translate-x-1 hover:translate-y-1 hover:text-white hover:bg-[#A35C2D] hover:shadow-[2px_2px_0px_0px_#000] dark:border-white/20 dark:bg-zinc-900 dark:text-white dark:shadow-[4px_4px_0px_0px_#757373] dark:hover:shadow-[2px_2px_0px_0px_#757373]"
+                >
+                  Give Review <MdOutlineReviews size={20} />
                 </Button>
               </Link>
             </div>
