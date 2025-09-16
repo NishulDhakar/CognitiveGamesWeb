@@ -91,7 +91,7 @@ export default function Hero() {
                 </Button>
               </Link>
 
-                <Link href="https://www.linkedin.com/feed/update/urn:li:activity:7368774982589394945/">
+                {/* <Link href="https://www.linkedin.com/feed/update/urn:li:activity:7368774982589394945/">
                 <Button
                   variant="outline"
                   size="lg"
@@ -99,7 +99,8 @@ export default function Hero() {
                 >
                   Give Review <MdOutlineReviews size={20} />
                 </Button>
-              </Link>
+              </Link> */}
+              
             </div>
 
             <p className="text-muted-foreground text-sm">

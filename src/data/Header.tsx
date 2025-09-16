@@ -10,6 +10,10 @@ export const navbarConfig = {
     height: 70,
   },
   navItems: [
+        {
+      label: 'Check Video',
+      href: 'https://www.linkedin.com/feed/update/urn:li:activity:7368774982589394945'
+    },
     {
       label: 'Blog',
       href: '/capgemini-cognitive-ability-games',
