@@ -91,10 +91,23 @@ export default function Hero() {
                 </Button>
               </Link>
             </div>
+            
+            <div className="w-full max-w-[700px] mx-auto">
+  <iframe
+    src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7368738749461028864?compact=1"
+    height="550"
+    width="100%"
+    frameBorder="0"
+    allowFullScreen
+    title="LinkedIn Embedded Post"
+    className="rounded-lg shadow-lg"
+  ></iframe>
+</div>
 
-            <p className="text-muted-foreground text-sm">
+
+            {/* <p className="text-muted-foreground text-sm">
               Trusted by 1000+ students
-            </p>
+            </p> */}
           </motion.div>
         </div>
       </Container>
