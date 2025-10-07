@@ -7,7 +7,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Button } from "../ui/ui/button";
 import Link from "next/link";
 import { CgGames } from "react-icons/cg";
-import { MdOutlineReviews } from "react-icons/md";
+
 
 export default function Hero() {
   const [titleNumber, setTitleNumber] = useState(0);
@@ -91,18 +91,21 @@ export default function Hero() {
                 </Button>
               </Link>
             </div>
+
+  
             
-            <div className="w-full max-w-[700px] mx-auto">
-  <iframe
-    src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7368738749461028864?compact=1"
-    height="550"
-    width="100%"
-    frameBorder="0"
-    allowFullScreen
-    title="LinkedIn Embedded Post"
-    className="rounded-lg shadow-lg"
-  ></iframe>
-</div>
+<div className="relative w-full max-w-[1200px] mx-auto">
+      {/* LinkedIn Iframe */}
+      <iframe
+        src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7368738749461028864?compact=1"
+        height="794"
+        width="100%"
+        frameBorder="0"
+        allowFullScreen
+        title="LinkedIn Embedded Post"
+        className="rounded-lg shadow-lg w-full"
+      ></iframe>
+    </div>
 
 
             {/* <p className="text-muted-foreground text-sm">
