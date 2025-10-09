@@ -94,18 +94,25 @@ export default function Hero() {
 
   
             
-<div className="relative w-full max-w-[1200px] mx-auto">
-      {/* LinkedIn Iframe */}
-      <iframe
-        src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7368738749461028864?compact=1"
-        height="794"
-        width="100%"
-        frameBorder="0"
-        allowFullScreen
-        title="LinkedIn Embedded Post"
-        className="rounded-lg shadow-lg w-full"
-      ></iframe>
-    </div>
+            <div className="w-full max-w-[600px] mx-auto">
+  <blockquote className="twitter-tweet" data-media-max-width="560">
+    <p lang="en" dir="ltr">
+      Nearly 1,000 users on Blync 😳
+      <br />
+      <br />
+      Still can’t believe game rounds decide placements for so many… and there’s nowhere solid to prep for them{' '}
+      <a href="https://t.co/gcJOPRdIRo">pic.twitter.com/gcJOPRdIRo</a>
+    </p>
+    &mdash; Nishul (@NishulDhakar){' '}
+    <a href="https://twitter.com/NishulDhakar/status/1975633313370145247?ref_src=twsrc%5Etfw">
+    
+    </a>
+  </blockquote>
+  <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
+</div>
+
+
+
 
 
             {/* <p className="text-muted-foreground text-sm">
