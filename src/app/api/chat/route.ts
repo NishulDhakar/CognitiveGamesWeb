@@ -4,6 +4,54 @@ import { createParser } from 'eventsource-parser';
 import { NextRequest, NextResponse } from 'next/server';
 import * as z from 'zod';
 
+// --- Gemini Retry Helper ----------------------------------------------------
+
+async function fetchWithRetry(
+  url: string,
+  init: RequestInit,
+  retries = 4
+): Promise<Response> {
+  let attempt = 0;
+
+  while (attempt <= retries) {
+    const res = await fetch(url, init);
+
+    if (res.ok) return res;
+
+    const bodyText = await res.text().catch(() => '');
+
+    console.error(`Gemini API error on attempt ${attempt}:`, {
+      status: res.status,
+      body: bodyText,
+      headers: Object.fromEntries(res.headers.entries()),
+    });
+
+    if (res.status !== 429 || attempt === retries) {
+      throw new Error(`Gemini API error: ${res.status} - ${bodyText}`);
+    }
+
+    const retryAfter = res.headers.get("retry-after");
+    let delay = 0;
+
+    if (retryAfter) {
+      const seconds = Number(retryAfter);
+      delay = !isNaN(seconds)
+        ? seconds * 1000
+        : 1000;
+    } else {
+      delay = Math.min(2000 * 2 ** attempt, 15000) + Math.random() * 500;
+    }
+
+    console.warn(`Retrying Gemini request in ${delay}ms...`);
+    await new Promise((resolve) => setTimeout(resolve, delay));
+
+    attempt++;
+  }
+
+  throw new Error("Failed after retrying Gemini API");
+}
+
+
 const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
 
 const RATE_LIMIT_WINDOW = 60 * 1000;
@@ -131,15 +179,21 @@ export async function POST(request: NextRequest) {
       },
     };
 
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:streamGenerateContent?alt=sse&key=${apiKey}`;
+const geminiUrl = `https://generativelanguage.googleapis.com/v1beta2/models/gemini-1.5-flash:streamGenerateContent?alt=sse&key=${apiKey}`;
 
-    const response = await fetch(geminiUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(requestBody),
-    });
+
+
+
+const response = await fetchWithRetry(
+  geminiUrl,
+  {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(requestBody),
+  },
+  4 
+);
+
 
     if (!response.ok) {
       throw new Error(`Gemini API error: ${response.status}`);

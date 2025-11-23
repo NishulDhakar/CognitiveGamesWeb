@@ -107,8 +107,8 @@ const testimonials = [
     rating: 5,
   },
   {
-    name: "Hardh jaiswal",
-    role: "B. Tech CSE (Oriental) ",
+    name: "lovlesh",
+    role: "B. Tech CSE ",
     content:
       "Thanks to Blync’s practice challenges, I cleared my aptitude round with ease. The game format kept me motivated.",
     rating: 5,

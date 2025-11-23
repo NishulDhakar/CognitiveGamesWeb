@@ -97,7 +97,7 @@ export default function Hero() {
             <div className="w-full max-w-[600px] mx-auto">
   <blockquote className="twitter-tweet" data-media-max-width="560">
     <p lang="en" dir="ltr">
-      Nearly 1,000 users on Blync 😳
+      Over 2,000 users on Blync 😳
       <br />
       <br />
       Still can’t believe game rounds decide placements for so many… and there’s nowhere solid to prep for them{' '}
