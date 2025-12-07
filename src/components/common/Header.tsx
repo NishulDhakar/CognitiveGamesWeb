@@ -3,21 +3,23 @@
 import { navbarConfig } from "@/data/Header";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import GitHubStars from "../Landing/GithubStar";
 import { usePathname } from "next/navigation";
 import { useUser } from "@/context/UserContext";
-import { Button } from "../ui/ui/button";
+import { Button } from "../ui/button";
 import { LogIn, LogOut, Menu, X } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
-} from "../ui/ui/dropdown-menu";
+  DropdownMenuSeparator,
+} from "../ui/dropdown-menu";
 import { signOut } from "@/actions/auth-actions";
 import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 export default function Navbar() {
   interface UserWithAvatar {
@@ -25,6 +27,7 @@ export default function Navbar() {
   }
 
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const user = useUser();
   const userWithAvatar =
     user && "avatar" in user ? (user as UserWithAvatar) : null;
@@ -32,24 +35,49 @@ export default function Navbar() {
   const pathname = usePathname();
   const altText = pathname === "/" ? "Blync" : "Dashboard";
 
+  // Handle scroll effect for glassmorphism
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const handleSignOut = async () => {
     await signOut();
     window.location.reload();
   };
 
   return (
-    <header className="border-b border-gray-700/60 backdrop-blur-sm sticky top-0 z-50">
-      <div className="max-w-8xl mx-auto flex items-center justify-between px-6 h-16">
+    <header
+      className={cn(
+        "fixed top-4 inset-x-0 z-50 mx-auto max-w-7xl px-4 transition-all duration-300 ease-in-out",
+        scrolled ? "top-4" : "top-4"
+      )}
+    >
+      <div
+        className={cn(
+          "flex items-center justify-between px-6 h-16 rounded-full border transition-all duration-300",
+          scrolled || mobileOpen
+            ? "bg-background/70 backdrop-blur-xl border-border/40 shadow-sm"
+            : "bg-background/40 backdrop-blur-md border-transparent"
+        )}
+      >
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <Image
-            src={navbarConfig.logo.src}
-            alt={altText}
-            width={navbarConfig.logo.width}
-            height={navbarConfig.logo.height}
-            priority
-          />
-          <span className="font-bold text-lg hidden md:block">{altText}</span>
+        <Link href="/" className="flex items-center gap-2 group">
+          <div className="relative w-8 h-8 transition-transform group-hover:scale-110 duration-300">
+            <Image
+              src={navbarConfig.logo.src}
+              alt={altText}
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
+          <span className="font-bold text-lg hidden md:block tracking-tight">
+            {altText}
+          </span>
         </Link>
 
         {/* Desktop Nav */}
@@ -60,57 +88,93 @@ export default function Navbar() {
               <Link
                 key={item.label}
                 href={item.href}
-                className={`transition-colors duration-300 ${
+                className={cn(
+                  "text-sm font-medium transition-colors duration-300 relative py-1",
                   isActive
-                    ? "font-semibold"
-                    : " hover:border-b hover:border-gray-900"
-                }`}
+                    ? "text-primary"
+                    : "text-muted-foreground hover:text-foreground"
+                )}
               >
                 {item.label}
+                {isActive && (
+                  <motion.div
+                    layoutId="navbar-indicator"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full"
+                    initial={false}
+                    transition={{
+                      type: "spring",
+                      stiffness: 380,
+                      damping: 30,
+                    }}
+                  />
+                )}
               </Link>
             );
           })}
         </nav>
 
         {/* Right side (Sign In / Avatar / Stars) */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
+          <div className="hidden sm:block">
+            <GitHubStars />
+          </div>
+
           {!user ? (
-            <Link href="/register">
-              <Button
-                variant="outline"
-                size="lg"
-                className="rounded-xl border border-black font-semibold transition-all duration-200 
-                           hover:bg-zinc-100 hover:text-black hover:shadow-md 
-                           dark:border-zinc-200 dark:bg-white dark:text-black dark:hover:bg-zinc-100"
-              >
-                <LogIn className="w-4 h-4 mr-2 stroke-black dark:stroke-white" />
+            <Button
+              asChild
+              variant="default"
+              size="sm"
+              className="rounded-full px-6 font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-300"
+            >
+              <Link href="/register">
+                <LogIn className="w-4 h-4 mr-2" />
                 <span>Sign In</span>
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           ) : (
             <DropdownMenu>
-              <DropdownMenuTrigger>
-                <Avatar>
-                  <AvatarImage src={userWithAvatar?.avatar} alt={user.email} />
-                  <AvatarFallback>
-                    {user.email?.[0].toUpperCase()}
-                  </AvatarFallback>
-                </Avatar>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className="relative h-9 w-9 rounded-full overflow-hidden border border-border/50 hover:border-primary/50 transition-colors"
+                >
+                  <Avatar className="h-full w-full">
+                    <AvatarImage src={userWithAvatar?.avatar} alt={user.email} />
+                    <AvatarFallback className="bg-primary/10 text-primary">
+                      {user.email?.[0].toUpperCase()}
+                    </AvatarFallback>
+                  </Avatar>
+                </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent sideOffset={5}>
-                <DropdownMenuItem onSelect={handleSignOut}>
+              <DropdownMenuContent align="end" className="w-56 glass-effect">
+                <div className="flex items-center justify-start gap-2 p-2">
+                  <div className="flex flex-col space-y-1 leading-none">
+                    {user.name && (
+                      <p className="font-medium">{user.name}</p>
+                    )}
+                    {user.email && (
+                      <p className="w-[200px] truncate text-xs text-muted-foreground">
+                        {user.email}
+                      </p>
+                    )}
+                  </div>
+                </div>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  onSelect={handleSignOut}
+                  className="text-red-500 focus:text-red-500 cursor-pointer"
+                >
                   <LogOut className="w-4 h-4 mr-2" />
                   Sign Out
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           )}
-          <GitHubStars />
 
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-zinc-200 dark:hover:bg-zinc-800 transition"
+            className="md:hidden p-2 rounded-full hover:bg-muted transition-colors"
             aria-label="Toggle Menu"
           >
             {mobileOpen ? <X size={20} /> : <Menu size={20} />}
@@ -122,46 +186,35 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.1, ease: "easeInOut" }}
-            className="md:hidden px-6 py-4 border-t border-gray-700/60"
+            initial={{ opacity: 0, scale: 0.95, y: -20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="absolute top-20 inset-x-0 mx-4 p-4 rounded-2xl bg-background/80 backdrop-blur-xl border border-border/40 shadow-xl md:hidden z-40 overflow-hidden"
           >
-            <motion.nav
-              initial="hidden"
-              animate="visible"
-              variants={{
-                hidden: {},
-                visible: { transition: { staggerChildren: 0.1 } },
-              }}
-              className="flex flex-col gap-4"
-            >
+            <nav className="flex flex-col gap-2">
               {navbarConfig.navItems.map((item) => {
                 const isActive = pathname === item.href;
                 return (
-                  <motion.div
+                  <Link
                     key={item.label}
-                    variants={{
-                      hidden: { opacity: 0, x: -20 },
-                      visible: { opacity: 1, x: 0 },
-                    }}
+                    href={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    className={cn(
+                      "flex items-center px-4 py-3 rounded-xl transition-all duration-200",
+                      isActive
+                        ? "bg-primary/10 text-primary font-semibold"
+                        : "hover:bg-muted text-muted-foreground hover:text-foreground"
+                    )}
                   >
-                    <Link
-                      href={item.href}
-                      onClick={() => setMobileOpen(false)}
-                      className={`block transition-colors duration-300 ${
-                        isActive
-                          ? "font-semibold"
-                          : ""
-                      }`}
-                    >
-                      {item.label}
-                    </Link>
-                  </motion.div>
+                    {item.label}
+                  </Link>
                 );
               })}
-            </motion.nav>
+              <div className="pt-2 sm:hidden flex justify-center w-full">
+                <GitHubStars />
+              </div>
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Button } from "@/components/ui/ui/button";
+import { Button } from "@/components/ui/button";
 import { DigitProblem } from "@/app/play/Digitchallenge/gameLogic";
 import ResultCard from "../common/Result";
 
@@ -53,27 +53,23 @@ export default function DigitChallengeUI({
       <div className="w-full max-w-2xl bg-white rounded-3xl shadow-xl p-6 md:p-10 border border-gray-200 relative">
         {isAnswered && (
           <div
-            className={`absolute inset-0 flex flex-col items-center justify-center bg-white/90 backdrop-blur-sm rounded-3xl transition-all duration-500 z-10 pointer-events-none ${
-              isCorrect ? "border-4 border-emerald-300" : "border-4 border-rose-300"
-            }`}
+            className={`absolute inset-0 flex flex-col items-center justify-center bg-white/90 backdrop-blur-sm rounded-3xl transition-all duration-500 z-10 pointer-events-none ${isCorrect ? "border-4 border-emerald-300" : "border-4 border-rose-300"
+              }`}
           >
             <div
-              className={`mb-4 w-20 h-20 rounded-full flex items-center justify-center ${
-                isCorrect ? "bg-emerald-100" : "bg-rose-100"
-              }`}
+              className={`mb-4 w-20 h-20 rounded-full flex items-center justify-center ${isCorrect ? "bg-emerald-100" : "bg-rose-100"
+                }`}
             >
               <span
-                className={`text-4xl ${
-                  isCorrect ? "text-emerald-600" : "text-rose-600"
-                }`}
+                className={`text-4xl ${isCorrect ? "text-emerald-600" : "text-rose-600"
+                  }`}
               >
                 {isCorrect ? "✓" : "✗"}
               </span>
             </div>
             <span
-              className={`text-2xl font-bold ${
-                isCorrect ? "text-emerald-700" : "text-rose-700"
-              }`}
+              className={`text-2xl font-bold ${isCorrect ? "text-emerald-700" : "text-rose-700"
+                }`}
             >
               {isCorrect ? "Correct!" : "Wrong!"}
             </span>
@@ -122,11 +118,10 @@ export default function DigitChallengeUI({
                 key={n}
                 onClick={() => handleDigitClick(n)}
                 disabled={disabled}
-                className={`h-14 text-lg rounded-2xl font-semibold shadow-md ${
-                  disabled
+                className={`h-14 text-lg rounded-2xl font-semibold shadow-md ${disabled
                     ? "opacity-40 cursor-not-allowed"
                     : "hover:scale-105 transition-transform"
-                }`}
+                  }`}
               >
                 {n}
               </Button>
@@ -159,9 +154,8 @@ export default function DigitChallengeUI({
           <div>
             Time Left:{" "}
             <span
-              className={`font-mono font-semibold ${
-                timeLeft <= 5 ? "text-red-600 animate-pulse" : "text-slate-800"
-              }`}
+              className={`font-mono font-semibold ${timeLeft <= 5 ? "text-red-600 animate-pulse" : "text-slate-800"
+                }`}
             >
               {timeLeft}s
             </span>

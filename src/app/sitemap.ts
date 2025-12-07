@@ -2,61 +2,79 @@ import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://games.nishul.dev";
+  const lastModified = new Date();
 
+  // ✅ MAIN GAME ROUTES (Play Pages)
   const games = [
-    "deductivechallenge",
-    "gridchallenge",
-    "inductivechallenge",
-    "motionchallenge",
     "switchchallenge",
+    "gridchallenge",
+    "digitchallenge",
+    "motionchallenge",
+    "spaciochallenge",
+    "inductivechallenge",
+    "deductivechallenge",
   ];
 
+  // ✅ RULES / GUIDE ROUTES (SEO GOLD)
   const rules = [
-    "deductive-challenge",
+    "switch-challenge",
     "grid-challenge",
-    "inductive-challenge",
+    "digit-challenge",
     "motion-challenge",
-    "swith-challenge", 
+    "spacio-challenge",
+    "inductive-challenge",
+    "deductive-challenge",
   ];
 
-  const urls: MetadataRoute.Sitemap = [
+  // ✅ CORE SITE PAGES (HIGH PRIORITY)
+  const corePages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1,
+      lastModified,
+      changeFrequency: "daily",
+      priority: 1.0,
     },
     {
       url: `${baseUrl}/games`,
-      lastModified: new Date(),
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.95,
+    },
+    {
+      url: `${baseUrl}/rules`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/capgemini-games`,
+      lastModified,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/rules`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
+      url: `${baseUrl}/cognizant-games`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.9,
     },
   ];
 
-  games.forEach((slug) => {
-    urls.push({
-      url: `${baseUrl}/games/${slug}`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    });
-  });
+  // ✅ GAME PAGES
+  const gamePages: MetadataRoute.Sitemap = games.map((slug) => ({
+    url: `${baseUrl}/games/${slug}`,
+    lastModified,
+    changeFrequency: "weekly",
+    priority: 0.8,
+  }));
 
-  rules.forEach((slug) => {
-    urls.push({
-      url: `${baseUrl}/rules/${slug}`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    });
-  });
+  // ✅ RULE / GUIDE PAGES
+  const rulePages: MetadataRoute.Sitemap = rules.map((slug) => ({
+    url: `${baseUrl}/rules/${slug}`,
+    lastModified,
+    changeFrequency: "monthly",
+    priority: 0.75,
+  }));
 
-  return urls;
+  return [...corePages, ...gamePages, ...rulePages];
 }

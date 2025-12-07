@@ -1,113 +1,136 @@
-'use client';
+"use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/ui/button";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { gamesData } from "@/data/BlogData";
-import { ArrowLeft } from "lucide-react";
-import { Separator } from "@/components/ui/ui/separator";
+import { ArrowLeft, Clock, Brain, Gamepad2, ChevronDown, ChevronUp } from "lucide-react";
+import BackToDashboard from "@/components/common/BackToDashboard";
+import { motion, AnimatePresence } from "framer-motion";
+import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 export default function BlogPage() {
   const [openGame, setOpenGame] = useState<number | null>(null);
 
   return (
-    <div className="relative min-h-screen">
-      {/* Back Button */}
-      <div className="hidden md:block px-4 pt-6 sm:pt-8">
-        <button
-          onClick={() => window.location.replace("/")}
-          className="flex  hover:bg-[#A35C2D]  items-center gap-3 rounded-lg border-2 border-black bg-zinc-100 px-4 py-2 text-base font-bold tracking-wide text-black shadow-[3px_3px_0px_0px_#000] transition-all duration-200 hover:text-white dark:border-white/20 dark:bg-zinc-900 dark:text-white dark:shadow-[3px_3px_0px_0px_#757373] dark:hover:bg-white dark:hover:text-black sm:px-6 sm:py-2 sm:text-lg"
-        >
-          <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5" /> Back to Dashboard
-        </button>
+    <div className="min-h-screen bg-gradient-to-b from-background via-background/95 to-background/90 relative overflow-hidden">
+      {/* Decorative Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[10%] left-[-10%] w-[600px] h-[600px] bg-purple-500/5 rounded-full blur-[140px]" />
       </div>
 
-      {/* Content */}
-      <div className="max-w-6xl mx-auto px-4 py-8 sm:py-12">
-        <h1 className="text-2xl sm:text-3xl font-bold text-center mb-6">
-          Capgemini Game Based Aptitude
-        </h1>
-        <Separator className="w-full max-w-6xl bg-[#756b60]" />
+      <div className="container mx-auto max-w-5xl px-4 py-8 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="mb-8"
+        >
+          <BackToDashboard />
+        </motion.div>
 
-        <p className="mb-4 mt-6 text-sm sm:text-lg text-gray-700">
-          Capgemini has introduced a <strong>Game-Based Aptitude Test</strong> in
-          its hiring process. Instead of traditional aptitude questions, candidates
-          play <strong>4 randomly selected games</strong> out of 24 available.
-          These games measure logical thinking, problem-solving, multitasking,
-          memory, and decision-making.
-        </p>
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12 mt-12"
+        >
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-10">
+            Capgemini Game Based Aptitude 
+          </h1>
 
-        <p className="mb-6 text-gray-700 text-base sm:text-lg">
-          Here are some of the most common games that appear in the test. Click{" "}
-          <Link href="/capgemini-games" className="text-blue-600 underline">
-            here
-          </Link>{" "}
-          to practice directly.
-        </p>
-
-        {/* Table */}
-        <div className="overflow-x-auto rounded-lg shadow mb-8">
-          <table className="w-full border-collapse text-xs sm:text-sm md:text-base">
-            <thead className="bg-gray-100">
-              <tr>
-                <th className="border px-2 sm:px-4 py-2 text-left">Game</th>
-                <th className="border px-2 sm:px-4 py-2 text-left">Type of Questions</th>
-                <th className="border px-2 sm:px-4 py-2 text-center">Duration</th>
-                <th className="border px-2 sm:px-4 py-2 text-center">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {gamesData.map((game) => (
-                <tr key={game.id} className="odd:bg-white even:bg-gray-50">
-                  <td className="border px-2 sm:px-4 py-3 font-medium">{game.name}</td>
-                  <td className="border px-2 sm:px-4 py-3">{game.typeOfQuestions}</td>
-                  <td className="border px-2 sm:px-4 py-3 text-center">{game.duration}</td>
-                  <td className="border px-2 sm:px-4 py-3 text-center">
-                    <Button
-                      className="rounded-lg border border-black px-2 sm:px-4 text-xs sm:text-sm font-semibold transition-all duration-200 hover:bg-zinc-100 hover:text-black hover:shadow-md dark:border-zinc-200 dark:bg-white dark:text-black dark:hover:bg-zinc-100"
-                      size="sm"
-                      variant="outline"
-                      onClick={() =>
-                        setOpenGame(openGame === game.id ? null : game.id)
-                      }
-                    >
-                      {openGame === game.id ? "Hide Details" : "View Details"}
-                    </Button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Details Section */}
-        {gamesData.map(
-          (game) =>
-            openGame === game.id && (
-              <div
-                key={game.id}
-                className="border rounded-xl shadow p-4 sm:p-6 bg-white/70 mb-8"
-              >
-                <h2 className="text-lg sm:text-xl font-semibold mb-2">{game.name}</h2>
-                <p className="text-gray-700 mb-3">{game.description}</p>
-
-                <h3 className="font-medium mb-1">How to Play:</h3>
-                <ul className="list-disc list-inside mb-4 text-gray-700 text-sm sm:text-base">
-                  {game.howToPlay.map((rule, idx) => (
-                    <li key={idx}>{rule}</li>
-                  ))}
-                </ul>
-
-                <Link href={game.playLink}>
-                  <Button
-                    className="gap-2 sm:gap-4 border-2 border-black bg-white text-black shadow-[3px_3px_0px_0px_#000] hover:translate-x-1 hover:translate-y-1 hover:text-white hover:bg-[#A35C2D] hover:shadow-[2px_2px_0px_0px_#000] dark:border-white/20 dark:bg-zinc-900 dark:text-white dark:shadow-[3px_3px_0px_0px_#757373] dark:hover:shadow-[2px_2px_0px_0px_#757373]"
-                  >
-                    🎮 Play Game
-                  </Button>
+          <div className="max-w-3xl mx-auto p-6 rounded-2xl bg-card/40 backdrop-blur-md border border-border/50 shadow-sm text-left">
+            <p className="text-muted-foreground text-lg leading-relaxed">
+              Capgemini has introduced a <strong className="text-foreground">Game-Based Aptitude Test</strong> in its hiring process.
+              Candidates play <strong className="text-foreground">4 randomly selected games</strong> out of 24 available, measuring logical thinking,
+              problem-solving, multitasking, memory, and decision-making.
+            </p>
+            <div className="mt-4 pt-4 border-t border-border/30 flex gap-2">
+              <Button asChild size="sm" variant="default" className="gap-2">
+                <Link href="/capgemini-games">
+                  <Gamepad2 className="w-4 h-4" /> Practice Games
                 </Link>
-              </div>
-            )
-        )}
+              </Button>
+            </div>
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="grid gap-4"
+        >
+          {gamesData.map((game, index) => (
+            <motion.div
+              key={game.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.05 }}
+            >
+              <Card className="overflow-hidden border-border/50 bg-card/40 backdrop-blur-sm hover:border-primary/20 transition-all duration-300">
+                <div
+                  onClick={() => setOpenGame(openGame === game.id ? null : game.id)}
+                  className="p-4 sm:p-6 cursor-pointer flex items-center justify-between gap-4 group"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300">
+                      <Brain className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-lg group-hover:text-primary transition-colors">{game.name}</h3>
+                      <div className="flex items-center gap-2 text-xs text-muted-foreground mt-1">
+                        <Badge variant="secondary" className="text-[10px] h-5">{game.typeOfQuestions}</Badge>
+                        <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {game.duration}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className={`p-2 rounded-full border border-border/50 transition-transform duration-300 ${openGame === game.id ? 'rotate-180 bg-accent' : 'bg-background'}`}>
+                    <ChevronDown className="w-4 h-4 text-muted-foreground" />
+                  </div>
+                </div>
+
+                <AnimatePresence>
+                  {openGame === game.id && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div className="px-6 pb-6 pt-0 border-t border-border/30">
+                        <div className="pt-4 grid sm:grid-cols-2 gap-6">
+                          <div>
+                            <h4 className="font-semibold text-sm mb-2 text-primary">About the Game</h4>
+                            <p className="text-muted-foreground text-sm leading-relaxed mb-4">{game.description}</p>
+
+                            <Button asChild size="sm" className="w-full sm:w-auto gap-2">
+                              <Link href={game.playLink}>
+                                🎮 Play Now
+                              </Link>
+                            </Button>
+                          </div>
+                          <div className="bg-muted/30 p-4 rounded-xl">
+                            <h4 className="font-semibold text-sm mb-2 text-primary">How to Play</h4>
+                            <ul className="space-y-2">
+                              {game.howToPlay.map((rule, idx) => (
+                                <li key={idx} className="text-sm text-muted-foreground flex gap-2">
+                                  <span className="text-primary font-bold">•</span>
+                                  {rule}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </Card>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </div>
   );

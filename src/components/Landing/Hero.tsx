@@ -2,125 +2,93 @@
 
 import Container from "../common/Container";
 import { motion } from "framer-motion";
-import HandDrawnArrow from "../svgs/HandDrawnArrow";
-import { useEffect, useMemo, useState } from "react";
-import { Button } from "../ui/ui/button";
+import { Button } from "../ui/button";
 import Link from "next/link";
-import { CgGames } from "react-icons/cg";
-
+import { Gamepad2, ArrowRight } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 export default function Hero() {
-  const [titleNumber, setTitleNumber] = useState(0);
-
-  const titles = useMemo(
-    () => [
-      "Switch Challenge",
-      "Deductive Challenge",
-      "Grid Challenge",
-      "Inductive Challenge",
-    ],
-    []
-  );
-
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setTitleNumber((prev) => (prev === titles.length - 1 ? 0 : prev + 1));
-    }, 2000);
-    return () => clearTimeout(timeoutId);
-  }, [titleNumber, titles]);
-
   return (
-    <div>
+    <section className="relative overflow-hidden py-24 md:py-32">
       <Container>
-        <div className="relative py-12 mt-2 md:mt-12 overflow-hidden">
-          {/* Glow background circles */}
-          <div className="absolute -top-10 -left-10 w-40 md:w-80 h-80 rounded-full filter blur-3xl opacity-30 animate-pulse" />
-          <div className="absolute -bottom-16 -right-10 w-96 h-96 rounded-full filter blur-3xl opacity-30 animate-pulse" />
+        <div className="relative z-10 flex flex-col items-center justify-center text-center max-w-4xl mx-auto">
 
           <motion.div
-            className="flex flex-col items-center justify-center gap-6 text-center relative z-10"
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.5 }}
           >
-            {/* Main Title */}
-            <h1 className="relative text-3xl md:text-7xl font-extrabold font-one leading-tight tracking-tight text-[#3B3024]">
-              Cognitive Ability{" "}
-              <span className="bg-gradient-to-r from-[#7fb236] to-[#7fb236] bg-clip-text text-transparent">
-                Games
-              </span>
-              <HandDrawnArrow className="absolute right-2 mx-auto mt-4 size-8 md:-right-8 md:size-12" />
-            </h1>
-
-            {/* Rotating Subtitles */}
-            <span className="font-ranade relative flex w-full justify-center overflow-hidden text-center md:pt-1 md:pb-4 h-8 md:h-12">
-              {titles.map((title, index) => (
-                <motion.div
-                  key={index}
-                  className="absolute text-2xl text-[#3B3024] md:text-4xl font-semibold italic"
-                  initial={{ opacity: 0, y: -100 }}
-                  transition={{ type: "spring", stiffness: 50 }}
-                  animate={
-                    titleNumber === index
-                      ? { y: 0, opacity: 1 }
-                      : {
-                          y: titleNumber > index ? -150 : 150,
-                          opacity: 0,
-                        }
-                  }
-                >
-                  {title}
-                </motion.div>
-              ))}
-            </span>
-
-            {/* Description */}
-            <p className="max-w-xl text-sm md:text-lg text-[#756b60] mt-4">
-              Challenge your brain, not your patience. <br /> Explore Cognitive
-              Ability Games to enhance your logic and problem-solving skills.
-            </p>
-
-            {/* CTA Button */}
-            <div className="flex flex-row gap-3">
-              <Link href="/capgemini-games">
-                <Button
-                  size="lg"
-                  className="gap-4 border-2 border-black bg-white text-black shadow-[4px_4px_0px_0px_#000] hover:translate-x-1 hover:translate-y-1 hover:text-white hover:bg-[#A35C2D] hover:shadow-[2px_2px_0px_0px_#000] dark:border-white/20 dark:bg-zinc-900 dark:text-white dark:shadow-[4px_4px_0px_0px_#757373] dark:hover:shadow-[2px_2px_0px_0px_#757373]"
-                >
-                  Visit Games <CgGames size={20} />
-                </Button>
-              </Link>
-            </div>
-
-  
-            
-            <div className="w-full max-w-[600px] mx-auto">
-  <blockquote className="twitter-tweet" data-media-max-width="560">
-    <p lang="en" dir="ltr">
-      Over 2,000 users on Blync 😳
-      <br />
-      <br />
-      Still can’t believe game rounds decide placements for so many… and there’s nowhere solid to prep for them{' '}
-      <a href="https://t.co/gcJOPRdIRo">pic.twitter.com/gcJOPRdIRo</a>
-    </p>
-    &mdash; Nishul (@NishulDhakar){' '}
-    <a href="https://twitter.com/NishulDhakar/status/1975633313370145247?ref_src=twsrc%5Etfw">
-    
-    </a>
-  </blockquote>
-  <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
-</div>
-
-
-
-
-
-            {/* <p className="text-muted-foreground text-sm">
-              Trusted by 1000+ students
-            </p> */}
+            <Badge variant="outline" className="mb-6 px-4 py-1 text-sm border-primary/20 bg-primary/5 text-primary rounded-full">
+              Level Up Your Mind
+            </Badge>
           </motion.div>
+
+          <motion.h1
+            className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground mb-6 leading-tight"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            Master Your <br className="hidden md:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-600">
+              Cognitive Potential
+            </span>
+          </motion.h1>
+
+          <motion.p
+            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            Enhance logical reasoning, pattern recognition, and problem-solving skills with our scientifically designed game suite. Prepare for success with precision.
+          </motion.p>
+
+          <motion.div
+            className="flex flex-col sm:flex-row items-center gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <Button asChild size="lg" className="h-12 px-8 text-base">
+              <Link href="/capgemini-games">
+                Start Training <ArrowRight className="ml-2 w-4 h-4" />
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="h-12 px-8 text-base">
+              <Link href="/capgemini-cognitive-ability-games">
+                Learn Methodology
+              </Link>
+            </Button>
+          </motion.div>
+
+          {/* Stats / Trust Indicators (Optional placeholder for professional look) */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 1 }}
+            className="mt-16 pt-8 border-t border-border/50 grid grid-cols-2 md:grid-cols-3 gap-8 w-full max-w-2xl items-center justify-center text-center"
+          >
+            <div>
+              <h4 className="text-2xl font-bold text-foreground">6+</h4>
+              <p className="text-sm text-muted-foreground">Cognitive Games</p>
+            </div>
+            <div>
+              <h4 className="text-2xl font-bold text-foreground">5k+</h4>
+              <p className="text-sm text-muted-foreground">Active Users</p>
+            </div>
+            <div className="col-span-2 md:col-span-1">
+              <h4 className="text-2xl font-bold text-foreground">98%</h4>
+              <p className="text-sm text-muted-foreground">Improvement Rate</p>
+            </div>
+          </motion.div>
+
         </div>
       </Container>
-    </div>
+
+      {/* Subtle Background */}
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-primary/5 rounded-full blur-[100px] -z-10 pointer-events-none" />
+    </section>
   );
 }

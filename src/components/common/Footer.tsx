@@ -1,6 +1,6 @@
 import React from "react";
 import { Separator } from "../ui/separator";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import Image from "next/image";
 
 

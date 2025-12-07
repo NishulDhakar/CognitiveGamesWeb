@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Star, ChevronDown } from "lucide-react";
 import Link from "next/link";
-import { Button } from "@/components/ui/ui/button";
+import { Button } from "@/components/ui/button";
 
 
 export default function GitHubStars() {
@@ -32,8 +32,8 @@ export default function GitHubStars() {
         aria-label="Star NishulDhakar/CognitiveGamesWeb on GitHub">
         <Button
           variant="outline"
-            size="lg"
-           className=" rounded-xl border border-black  font-semibold transition-all duration-200 hover:bg-zinc-100 hover:text-black hover:shadow-md dark:border-zinc-200 dark:bg-white dark:text-black dark:hover:bg-zinc-100">
+          size="lg"
+          className=" rounded-xl border border-black  font-semibold transition-all duration-200 hover:bg-zinc-100 hover:text-black hover:shadow-md dark:border-zinc-200 dark:bg-white dark:text-black dark:hover:bg-zinc-100">
           <Star className="w-4 h-4 stroke-black dark:stroke-white" />
           <span>Star Project</span>
           {/* <span className="px-2 py-0.5 text-xs bg-gray-200 dark:bg-[#2f2f2f] rounded-full font-medium text-black dark:text-white">

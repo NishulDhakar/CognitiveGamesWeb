@@ -1,7 +1,7 @@
 "use client";
 
 import { signInWithGoogle } from "@/actions/google-auth-action";
-import { Button } from "@/components/ui/ui/button";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { JSX, SVGProps } from "react";
 
@@ -16,7 +16,7 @@ export default function RegisterPage() {
   return (
     <div className="flex items-center justify-center min-h-screen  dark:from-zinc-900 dark:to-zinc-800">
       <div className="flex flex-col items-center justify-center px-6 py-12 rounded-2xl dark:bg-zinc-900 w-full max-w-md">
-        
+
         <h1 className="text-3xl font-bold text-foreground mb-8 text-center">
           Welcome !
         </h1>

@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/ui/button";
+import { Button } from "@/components/ui/button";
 import { GraduationCap } from "lucide-react";
 
 export default function TopBanner() {
@@ -15,7 +15,7 @@ export default function TopBanner() {
       </span>
       <Button
         variant="outline"
-      className="rounded-xl border border-black font-semibold transition-all duration-200 
+        className="rounded-xl border border-black font-semibold transition-all duration-200 
                            hover:bg-zinc-100 hover:text-black hover:shadow-md 
                            dark:border-zinc-200 dark:bg-white dark:text-black dark:hover:bg-zinc-100"
         onClick={() =>

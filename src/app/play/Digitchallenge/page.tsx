@@ -6,6 +6,7 @@ import Container from "@/components/common/Container";
 import GamePage from "@/components/common/GamePage";
 import { generateDigitProblem, checkAnswer, DigitProblem } from "./gameLogic";
 import DigitChallengeUI from "@/components/games/DigitGameUI";
+import { saveScore } from "@/actions/saveScore";
 
 const TIME_PER_QUESTION = 30; // seconds
 const SESSION_TIME = 180; // total session seconds
@@ -25,6 +26,15 @@ export default function DigitChallengePage() {
 
   const [correctCount, setCorrectCount] = useState(0);
   const [wrongCount, setWrongCount] = useState(0);
+  const [isScoreSaved, setIsScoreSaved] = useState(false);
+
+  // --- save score on results ---
+  useEffect(() => {
+    if (gameStatus === "results" && !isScoreSaved) {
+      saveScore("digit-challenge", correctCount);
+      setIsScoreSaved(true);
+    }
+  }, [gameStatus, correctCount, isScoreSaved]);
 
   // --- generate a problem whenever level changes ---
   useEffect(() => {
@@ -120,6 +130,7 @@ export default function DigitChallengePage() {
     setIsAnswered(false);
     setIsCorrect(null);
     setUserDigits([]);
+    setIsScoreSaved(false);
   };
 
   const formatTime = (t: number) =>
@@ -128,24 +139,24 @@ export default function DigitChallengePage() {
   return (
     <Container>
       <GamePage title="Digit Challenge" level={level} timer={formatTime(sessionTime)}>
-        
-    
-  <DigitChallengeUI
-  problem={problem}
-  userDigits={userDigits}
-  timeLeft={timeLeft}
-  sessionTime={sessionTime}
-  isAnswered={isAnswered}
-  isCorrect={isCorrect}
-  correctCount={correctCount}
-  wrongCount={wrongCount}
-  gameStatus={gameStatus} 
-  handleDigitClick={handleDigitClick}
-  handleDelete={handleDelete}
-  handleSubmit={handleSubmit}
-  resetGame={resetGame}
-/>
-    
+
+
+        <DigitChallengeUI
+          problem={problem}
+          userDigits={userDigits}
+          timeLeft={timeLeft}
+          sessionTime={sessionTime}
+          isAnswered={isAnswered}
+          isCorrect={isCorrect}
+          correctCount={correctCount}
+          wrongCount={wrongCount}
+          gameStatus={gameStatus}
+          handleDigitClick={handleDigitClick}
+          handleDelete={handleDelete}
+          handleSubmit={handleSubmit}
+          resetGame={resetGame}
+        />
+
       </GamePage>
     </Container>
   );

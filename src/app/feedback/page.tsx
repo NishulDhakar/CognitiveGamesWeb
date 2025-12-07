@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/ui/card";
-import { Button } from "@/components/ui/ui/button";
-import { Input } from "@/components/ui/ui/input";
-import { Textarea } from "@/components/ui/ui/textarea";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Star } from "lucide-react";
 
 export default function FeedbackPage() {
@@ -46,9 +46,8 @@ export default function FeedbackPage() {
                 {[1, 2, 3, 4, 5].map((star) => (
                   <Star
                     key={star}
-                    className={`cursor-pointer ${
-                      star <= rating ? "text-yellow-500 fill-yellow-500" : ""
-                    }`}
+                    className={`cursor-pointer ${star <= rating ? "text-yellow-500 fill-yellow-500" : ""
+                      }`}
                     onClick={() => setRating(star)}
                   />
                 ))}

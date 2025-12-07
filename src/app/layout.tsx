@@ -1,62 +1,128 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import ReactLenis from "lenis/react";
-import { ViewTransitions } from "next-view-transitions";
 import "./globals.css";
-// import ChatBubble from "@/components/common/ChatBubble";
+
+// ✅ OFFICIAL SITE CANONICAL URL
+const SITE_URL = "https://games.nishul.dev";
 
 export const metadata: Metadata = {
-  title: "Capgemini Games Practice | Blync Placement Puzzle Prep",
+  metadataBase: new URL(SITE_URL),
+
+  title: {
+    default:
+      "Capgemini & Cognizant Game-Based Aptitude Practice | Blync Placement Games",
+    template: "%s | Blync Cognitive Games",
+  },
+
   description:
-    "Play free Capgemini cognitive games online with Blync. Practice Switch, Deductive, Grid, and Inductive Challenges to prepare for Capgemini and Cognizant placement assessments.",
-      metadataBase: new URL("https://games.nishul.dev"),
+    "Play real Capgemini & Cognizant game-based aptitude tests on Blync. Practice Switch, Grid, Digit, Motion, Spacio, Inductive & Deductive Challenges with full tutorials, rules, mock tests & solutions for 2025 placements.",
+
   keywords: [
-    "Capgemini games",
-    "Capgemini games online",
-    "Capgemini cognitive assessment practice",
-    "Capgemini aptitude games",
-    "Capgemini gamified aptitude test",
-    "Capgemini placement games",
-    "Capgemini puzzle test",
-    "Cognizant games",
+    "Capgemini game based aptitude test 2025",
+    "Capgemini game round practice",
+    "Capgemini cognitive ability test",
+    "Cognizant GenC game based test",
     "Cognizant puzzle round",
-    "placement preparation games",
-    "campus placement practice",
-    "logical reasoning games",
-    "Switch Challenge",
-    "Deductive Challenge",
-    "Grid Challenge",
-    "Inductive Challenge",
-    "cognitive test practice",
+    "placement game based aptitude",
+    "Switch Challenge practice",
+    "Digit Challenge practice",
+    "Grid Challenge practice",
+    "Motion Challenge practice",
+    "Spacio Challenge practice",
+    "Inductive Challenge puzzles",
+    "Deductive Challenge puzzles",
+    "placement aptitude games",
+    "campus placement 2025 preparation",
+    "cognitive assessment practice online",
   ],
+
+  alternates: {
+    canonical: SITE_URL,
+  },
+
   openGraph: {
-    title: "Capgemini Games Practice | Blync",
+    title: "Capgemini & Cognizant Game-Based Aptitude Practice | Blync",
     description:
-      "Prepare for Capgemini and Cognizant placement tests with fun, interactive cognitive games like Switch, Deductive, Grid, and Inductive Challenges.",
-    url: "https://games.nishul.dev/capgemini-games",
+      "Free game-based aptitude practice for Capgemini & Cognizant. Play Switch, Digit, Grid, Motion, Spacio, Inductive & Deductive challenges with full solutions.",
+    url: SITE_URL,
     siteName: "Blync",
     images: [
       {
         url: "/og-logo.png",
         width: 1200,
         height: 630,
-        alt: "Capgemini Games - Blync Placement Puzzle Practice",
+        alt: "Blync – Game-Based Placement Aptitude Practice",
       },
     ],
-    locale: "en_US",
+    locale: "en_IN",
     type: "website",
   },
+
   twitter: {
     card: "summary_large_image",
-    title: "Capgemini Games Practice | Blync",
+    title: "Capgemini & Cognizant Placement Games | Blync",
     description:
-      "Sharpen your brain with placement-focused cognitive games. Play Switch, Deductive, Grid, and Inductive challenges to prepare for Capgemini & Cognizant tests.",
+      "Crack Capgemini & Cognizant game-based rounds using Blync cognitive games. Real exam-style practice.",
     images: ["/og-logo.png"],
     creator: "@nishuldhakar",
   },
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
+
   icons: {
     icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
+};
+
+// ✅ STRUCTURED DATA (EXTREME SEO BOOST)
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Blync Cognitive Games",
+  alternateName: "Capgemini & Cognizant Placement Games",
+  url: SITE_URL,
+  description:
+    "Free platform for practicing game-based cognitive aptitude tests used in Capgemini, Cognizant & other campus placements.",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: `${SITE_URL}/?q={search_term_string}`,
+    "query-input": "required name=search_term_string",
+  },
+};
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Blync",
+  url: SITE_URL,
+  logo: `${SITE_URL}/og-logo.png`,
+  sameAs: [
+    "https://twitter.com/nishuldhakar",
+    "https://github.com/Nishuldhakar",
+  ],
+};
+
+const webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Blync Cognitive Placement Games",
+  url: SITE_URL,
+  applicationCategory: "EducationalApplication",
+  operatingSystem: "All",
+  description:
+    "Interactive game-based aptitude practice platform for placement preparation.",
 };
 
 export default function RootLayout({
@@ -65,18 +131,33 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ViewTransitions>
       <html lang="en" suppressHydrationWarning>
-        <body className="font-hanken-grotesk antialiased bg-[#efe9d5] text-gray-900">
+        <head>
+          {/* ✅ STRUCTURED DATA */}
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }}
+          />
+
+          {/* ✅ PERFORMANCE */}
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        </head>
+
+        <body className="font-hanken-grotesk antialiased bg-neutral text-gray-900">
           <ReactLenis root>
-              <main className="">
-                {children}
-              </main>
-                      {/* <ChatBubble /> */}
-              <Analytics />
+            <main>{children}</main>
+            <Analytics />
           </ReactLenis>
         </body>
       </html>
-    </ViewTransitions>
   );
 }

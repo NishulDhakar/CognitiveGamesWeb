@@ -18,8 +18,21 @@ model User {
   updatedAt     DateTime
   accounts      Account[]
   sessions      Session[]
+  scores        GameScore[]
 
   @@map("user")
+}
+
+model GameScore {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  gameId    String   // e.g., 'grid-challenge', 'digit-challenge'
+  score     Int
+  createdAt DateTime @default(now())
+
+  @@index([userId, gameId])
+  @@map("game_score")
 }
 
 model Session {

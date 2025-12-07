@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "../ui/ui/button";
+import { Button } from "../ui/button";
 
 interface ResultCardProps {
   correct: number;
@@ -14,7 +14,7 @@ const ResultCard: React.FC<ResultCardProps> = ({ correct, wrong, resetGame }) =>
   return (
     <div className="text-center space-y-12">
       <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 md:p-12 border border-gray-100">
-        
+
         {/* Header */}
         <div className="mb-12">
           <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-2">
@@ -25,7 +25,7 @@ const ResultCard: React.FC<ResultCardProps> = ({ correct, wrong, resetGame }) =>
 
         {/* Stats */}
         <div className="space-y-6 mb-12">
-          
+
           {/* Accuracy */}
           {total > 0 && (
             <div className="mb-8">
@@ -42,16 +42,16 @@ const ResultCard: React.FC<ResultCardProps> = ({ correct, wrong, resetGame }) =>
               <div className="text-2xl font-semibold text-emerald-600 mb-1">{correct}</div>
               <div className="text-gray-500">correct</div>
             </div>
-            
+
             <div className="w-px h-8 bg-gray-200"></div>
-            
+
             <div className="text-center">
               <div className="text-2xl font-semibold text-rose-500 mb-1">{wrong}</div>
               <div className="text-gray-500">wrong</div>
             </div>
-            
+
             <div className="w-px h-8 bg-gray-200"></div>
-            
+
             <div className="text-center">
               <div className="text-2xl font-semibold text-gray-700 mb-1">{total}</div>
               <div className="text-gray-500">total</div>
@@ -62,9 +62,9 @@ const ResultCard: React.FC<ResultCardProps> = ({ correct, wrong, resetGame }) =>
           {total > 0 && (
             <div className="w-full max-w-md mx-auto">
               <div className="w-full bg-gray-100 rounded-full h-2">
-                <div 
+                <div
                   className="bg-emerald-500 h-2 rounded-full transition-all duration-1000 ease-out"
-                  style={{width: `${accuracy}%`}}
+                  style={{ width: `${accuracy}%` }}
                 ></div>
               </div>
             </div>

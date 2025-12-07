@@ -6,6 +6,7 @@ import Container from "@/components/common/Container";
 import GamePage from "@/components/common/GamePage";
 import SwitchChallengeUI from "@/components/games/SwitchChallengeUI";
 import { formatTime } from "@/utils/gameUtils";
+import { saveScore } from "@/actions/saveScore";
 
 const TIME_PER_QUESTION = 20;
 const SESSION_TIME = 180;
@@ -21,6 +22,14 @@ export default function SwitchChallenge() {
   const [timeLeft, setTimeLeft] = useState(TIME_PER_QUESTION);
   const [sessionTime, setSessionTime] = useState(SESSION_TIME);
   const [gameStatus, setGameStatus] = useState<'playing' | 'results'>("playing");
+  const [isScoreSaved, setIsScoreSaved] = useState(false);
+
+  useEffect(() => {
+    if (gameStatus === "results" && !isScoreSaved) {
+      saveScore("switch-challenge", correct);
+      setIsScoreSaved(true);
+    }
+  }, [gameStatus, correct, isScoreSaved]);
 
   useEffect(() => {
     setPuzzle(generateSwitchPuzzle(level));
@@ -70,6 +79,7 @@ export default function SwitchChallenge() {
     setWrong(0);
     setSessionTime(SESSION_TIME);
     setGameStatus("playing");
+    setIsScoreSaved(false);
   };
 
   return (

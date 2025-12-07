@@ -1,53 +1,16 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Puzzle, Brain, Zap } from "lucide-react";
-
-interface AnimatedTextCycleProps {
-  words: string[];
-  interval?: number;
-  className?: string;
-}
-
-function AnimatedTextCycle({
-  words,
-  interval = 3000,
-  className = "",
-}: AnimatedTextCycleProps) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % words.length);
-    }, interval);
-
-    return () => clearInterval(timer);
-  }, [interval, words.length]);
-
-  const containerVariants = {
-    hidden: { y: -20, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.4 } },
-    exit: { y: 20, opacity: 0, transition: { duration: 0.3 } },
-  };
-
-  return (
-    <span className="relative inline-block">
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.span
-          key={currentIndex}
-          className={`inline-block font-light ${className}`}
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          exit="exit"
-        >
-          {words[currentIndex]}
-        </motion.span>
-      </AnimatePresence>
-    </span>
-  );
-}
+import React from "react";
+import { motion } from "framer-motion";
+import { Puzzle, Brain, Zap, Target, TrendingUp, Users } from "lucide-react";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import Container from "../common/Container";
 
 interface FeatureCardProps {
   icon: React.ReactNode;
@@ -56,41 +19,33 @@ interface FeatureCardProps {
   delay?: number;
 }
 
-function FeatureCard({ icon, title, description, delay = 0 }: FeatureCardProps) {
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.7, delay },
-    },
-  };
-
+function FeatureCard({
+  icon,
+  title,
+  description,
+  delay = 0,
+}: FeatureCardProps) {
   return (
     <motion.div
-      className="group relative"
-      variants={cardVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay }}
+      className="h-full"
     >
-      <div className="relative hover:bg-[#A35C2D]  rounded-2xl border p-8 shadow-[6px_6px_0px_0px]  dark:bg-zinc-900 border-black/20 dark:border-white/10 transition-all duration-300 hover:shadow-[3px_3px_0px_0px] ">
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
-        <div className="relative z-10">
-          <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-md bg-primary/10 group-hover:bg-zinc-200 transition-colors duration-300">
+      <Card className="h-full  border-border/40 bg-card/40 backdrop-blur-md hover:border-primary/20 hover:bg-card/60 hover:shadow-lg transition-all duration-300 group">
+        <CardHeader>
+          <div className="mb-4 w-12 h-12 mt-4 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
             {icon}
           </div>
-
-          <h3 className="mb-3 text-xl font-semibold text-[#3B3024] dark:text-white group-hover:text-zinc-200 transition-colors duration-300 ">
-            {title}
-          </h3>
-
-          <p className="mt-4 text-lg leading-relaxed text-[#756b60] dark:text-zinc-300 group-hover:text-zinc-300 transition-colors duration-300">
+          <CardTitle className="text-xl font-bold">{title}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
             {description}
           </p>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
     </motion.div>
   );
 }
@@ -98,78 +53,86 @@ function FeatureCard({ icon, title, description, delay = 0 }: FeatureCardProps) 
 export default function About() {
   const features = [
     {
-      icon: <Puzzle className="text-primary h-6 w-6" />,
-      title: "Practice Real Cognitive Games",
+      icon: <Target className="h-6 w-6" />,
+      title: "Precision Training",
       description:
-        "Get access to practice versions of Cognitive Ability games. Prepare with the same style of challenges you’ll face in actual assessments.",
+        "Practice modules designed to mirror the exact logic and mechanics of actual cognitive assessments.",
     },
     {
-      icon: <Brain className="text-primary h-6 w-6" />,
-      title: "Sharpen Your Problem-Solving",
+      icon: <Brain className="h-6 w-6" />,
+      title: "Cognitive Enhancement",
       description:
-        "Boost your logical reasoning, pattern recognition, and critical thinking with interactive puzzles designed to mimic real exam challenges.",
+        "Sharpen logical reasoning, pattern recognition, and critical thinking with scientifically designed puzzles.",
     },
     {
-      icon: <Zap className="text-primary h-6 w-6" />,
-      title: "Learn Faster, Perform Better",
+      icon: <Zap className="h-6 w-6" />,
+      title: "Speed Improvement",
       description:
-        "Track your progress, identify weak areas, and build speed with repeated practice so you walk into your placement confident and ready.",
+        "Build reaction time and accuracy through timed challenges that simulate real exam pressure.",
     },
+    {
+      icon: <Puzzle className="h-6 w-6" />,
+      title: "Diverse Challenges",
+      description: "Master varied game types including Deductive, Inductive, Grid, and Switch challenges."
+    },
+    {
+      icon: <TrendingUp className="h-6 w-6" />,
+      title: "Track Progress",
+      description: "Monitor your improvement over time with detailed performance analytics and history."
+    },
+    {
+      icon: <Users className="h-6 w-6" />,
+      title: "Peer Comparison",
+      description: "See where you stand among other candidates and strive for the top of the leaderboard."
+    }
   ];
 
-  const animatedWords = ["practice", "prepare", "improve"];
-
   return (
-    <section className="relative overflow-hidden py-10 lg:py-24 ">
-      <div className="relative z-10 container mx-auto">
-        <motion.div
-          className="mb-16 text-center md:mb-20"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          <motion.h2
-            className="mx-auto mb-6 max-w-4xl text-center text-4xl leading-tight tracking-tighter md:text-5xl lg:text-6xl font-extrabold text-[#3B3024] dark:text-white"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+    <section className="py-24 bg-muted/30 relative overflow-hidden">
+      <Container>
+        <div className="mb-16 text-center max-w-3xl mx-auto relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
           >
-            <span>Get Ready to </span>
-            <span className="relative text-primary">
-              <AnimatedTextCycle words={animatedWords} interval={2500} />
-            </span>
-            <span> with Games</span>
-          </motion.h2>
+              <motion.h2
+                className="text-3xl md:text-4xl font-bold mb-4 tracking-tight"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+              >
+               Why Practice With Us?
+              </motion.h2>
+          </motion.div>
 
           <motion.p
-            className="mx-auto max-w-3xl text-center text-lg leading-relaxed text-[#756b60] dark:text-zinc-300"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
+            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1, duration: 0.5 }}
           >
-            Practice makes placements easy. Our platform is built for students
-            preparing for Cognitive Ability Games so you can practice,
-            learn, and ace your tests stress-free.
+            Our platform provides the most accurate and engaging preparation experience for your upcoming cognitive assessments.
           </motion.p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="grid grid-cols-1 gap-8 p-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-12"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
           {features.map((feature, index) => (
             <FeatureCard
               key={index}
               icon={feature.icon}
               title={feature.title}
               description={feature.description}
-              delay={index * 0.2}
+              delay={0.1 + index * 0.1}
             />
           ))}
-        </motion.div>
-      </div>
+        </div>
+      </Container>
+
+      {/* Background decoration */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] -z-10 pointer-events-none" />
     </section>
   );
 }
