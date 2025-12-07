@@ -4,7 +4,7 @@ import Container from "../common/Container";
 import { motion } from "framer-motion";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import { Gamepad2, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 export default function Hero() {

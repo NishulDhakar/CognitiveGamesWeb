@@ -9,8 +9,8 @@ export default async function DashboardLayout({
 
   return (
     <UserProvider user={null}>
-     <Header />
-      <main className="flex-1 p-6">{children}</main>=
+      <Header />
+      <main className="flex-1 p-6">{children}</main>
     </UserProvider>
   );
 }

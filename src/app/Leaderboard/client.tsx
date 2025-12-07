@@ -88,9 +88,7 @@ export default function LeaderboardClient({ data, gameId }: LeaderboardClientPro
 
             <div className="container max-w-5xl py-12 mx-auto px-4 relative z-10">
                 <div className="flex items-center mb-12">
-                    <div className="flex items-center mb-12">
-                        <BackToDashboard />
-                    </div>
+                    <BackToDashboard />
                 </div>
 
                 <div className="text-center mb-12 space-y-6">
@@ -99,9 +97,9 @@ export default function LeaderboardClient({ data, gameId }: LeaderboardClientPro
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
                     >
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-6">
-          Leaderboard 
-          </h1>
+                        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-6">
+                            Leaderboard
+                        </h1>
                     </motion.div>
                     <motion.p
                         initial={{ opacity: 0 }}

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { gamesData } from "@/data/BlogData";
-import { ArrowLeft, Clock, Brain, Gamepad2, ChevronDown, ChevronUp } from "lucide-react";
+import { ArrowLeft, Clock, Brain, Gamepad2, ChevronDown } from "lucide-react";
 import BackToDashboard from "@/components/common/BackToDashboard";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card } from "@/components/ui/card";
@@ -37,7 +37,7 @@ export default function BlogPage() {
           className="text-center mb-12 mt-12"
         >
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-10">
-            Capgemini Game Based Aptitude 
+            Capgemini Game Based Aptitude
           </h1>
 
           <div className="max-w-3xl mx-auto p-6 rounded-2xl bg-card/40 backdrop-blur-md border border-border/50 shadow-sm text-left">
@@ -72,6 +72,16 @@ export default function BlogPage() {
               <Card className="overflow-hidden border-border/50 bg-card/40 backdrop-blur-sm hover:border-primary/20 transition-all duration-300">
                 <div
                   onClick={() => setOpenGame(openGame === game.id ? null : game.id)}
+                  role="button"
+                  tabIndex={0}
+                  aria-expanded={openGame === game.id}
+                  aria-controls={`game-details-${game.id}`}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setOpenGame(openGame === game.id ? null : game.id);
+                    }
+                  }}
                   className="p-4 sm:p-6 cursor-pointer flex items-center justify-between gap-4 group"
                 >
                   <div className="flex items-center gap-4">
@@ -91,6 +101,7 @@ export default function BlogPage() {
                   </div>
                 </div>
 
+
                 <AnimatePresence>
                   {openGame === game.id && (
                     <motion.div
@@ -99,7 +110,7 @@ export default function BlogPage() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <div className="px-6 pb-6 pt-0 border-t border-border/30">
+                      <div id={`game-details-${game.id}`} className="px-6 pb-6 pt-0 border-t border-border/30">
                         <div className="pt-4 grid sm:grid-cols-2 gap-6">
                           <div>
                             <h4 className="font-semibold text-sm mb-2 text-primary">About the Game</h4>
@@ -128,10 +139,11 @@ export default function BlogPage() {
                   )}
                 </AnimatePresence>
               </Card>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-    </div>
+            </motion.div >
+          ))
+          }
+        </motion.div >
+      </div >
+    </div >
   );
 }

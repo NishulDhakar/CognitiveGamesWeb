@@ -52,8 +52,7 @@ export default function Navbar() {
   return (
     <header
       className={cn(
-        "fixed top-4 inset-x-0 z-50 mx-auto max-w-7xl px-4 transition-all duration-300 ease-in-out",
-        scrolled ? "top-4" : "top-4"
+        "fixed top-4 inset-x-0 z-50 mx-auto max-w-7xl px-4 transition-all duration-300 ease-in-out"
       )}
     >
       <div
@@ -141,7 +140,7 @@ export default function Navbar() {
                   <Avatar className="h-full w-full">
                     <AvatarImage src={userWithAvatar?.avatar} alt={user.email} />
                     <AvatarFallback className="bg-primary/10 text-primary">
-                      {user.email?.[0].toUpperCase()}
+                      {user.email?.[0]?.toUpperCase() ?? "U"}
                     </AvatarFallback>
                   </Avatar>
                 </Button>

@@ -46,7 +46,7 @@ const ExpandableChat: React.FC<ExpandableChatProps> = ({
   ...props
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const chatRef = useRef<HTMLDivElement>(null);
+
 
   const toggleChat = () => setIsOpen(!isOpen);
 
@@ -56,7 +56,6 @@ const ExpandableChat: React.FC<ExpandableChatProps> = ({
       {...props}
     >
       <div
-        ref={chatRef}
         className={cn(
           "flex flex-col bg-background border sm:rounded-lg shadow-md overflow-hidden transition-all duration-250 ease-out sm:absolute sm:w-[90vw] sm:h-[80vh] fixed inset-0 w-full h-full sm:inset-auto",
           chatConfig.chatPositions[position],
@@ -71,6 +70,7 @@ const ExpandableChat: React.FC<ExpandableChatProps> = ({
           size="icon"
           className="absolute top-2 right-2 sm:hidden"
           onClick={toggleChat}
+          aria-label="Close chat"
         >
           <X className="h-4 w-4" />
         </Button>
@@ -133,6 +133,8 @@ const ExpandableChatToggle: React.FC<ExpandableChatToggleProps> = ({
       "w-14 h-14 rounded-full shadow-md flex items-center justify-center hover:shadow-lg hover:shadow-black/30 transition-all duration-300",
       className,
     )}
+    aria-label={isOpen ? "Close chat" : "Open chat"}
+    aria-expanded={isOpen}
     {...props}
   >
     {isOpen ? (
