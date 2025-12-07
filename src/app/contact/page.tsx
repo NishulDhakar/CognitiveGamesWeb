@@ -9,7 +9,7 @@ export const dynamic = "force-static";
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-background relative">
+    <div className="min-h-screen relative">
       <div className="container mx-auto max-w-5xl px-4 py-8">
         <div className="mb-12">
           <BackToDashboard />
