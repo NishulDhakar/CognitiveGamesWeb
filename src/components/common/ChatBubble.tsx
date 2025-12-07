@@ -291,7 +291,7 @@ const ChatBubble: React.FC = () => {
                         {message.text ? (
                           <ReactMarkdown
                             components={{
-                              a: (props) => (
+                              a: (props: any) => (
                                 <a
                                   {...props}
                                   target="_blank"
@@ -300,22 +300,22 @@ const ChatBubble: React.FC = () => {
                                 />
                               ),
                               // Custom paragraph component to remove default margins
-                              p: (props) => (
+                              p: (props: any) => (
                                 <p {...props} className="m-0 leading-relaxed" />
                               ),
                               // Custom list components
-                              ul: (props) => (
+                              ul: (props: any) => (
                                 <ul {...props} className="m-0 pl-4" />
                               ),
-                              ol: (props) => (
+                              ol: (props: any) => (
                                 <ol {...props} className="m-0 pl-4" />
                               ),
-                              li: (props) => <li {...props} className="m-0" />,
+                              li: (props: any) => <li {...props} className="m-0" />,
                               // Custom strong/bold component
-                              strong: (props) => (
+                              strong: (props: any) => (
                                 <strong {...props} className="font-semibold" />
                               ),
-                            }}
+                            } as any}
                           >
                             {message.text}
                           </ReactMarkdown>

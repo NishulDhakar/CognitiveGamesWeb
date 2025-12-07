@@ -1,6 +1,6 @@
 'use client';
 
-import { LeaderboardEntry } from "@/actions/leaderboard";
+import type { LeaderboardEntry } from "@/actions/leaderboard";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -113,40 +113,40 @@ export default function LeaderboardClient({ data, gameId }: LeaderboardClientPro
 
                 <Tabs defaultValue={gameId} onValueChange={handleTabChange} className="w-full space-y-8">
                     <div className="flex justify-center">
-                        <TabsList className="bg-background/80 backdrop-blur-xl border border-border/50 p-1 rounded-full h-auto gap-2 shadow-lg">
+                        <TabsList className="bg-background/80 backdrop-blur-xl border border-border/50 p-1 rounded-full h-auto gap-0 md:gap-4 shadow-lg flex-wrap justify-center sm:flex-nowrap">
                             <TabsTrigger
                                 value="overall"
-                                className="rounded-full px-6 py-3 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300"
+                                className="rounded-full px-4 py-2 text-sm sm:px-6 sm:py-3 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300 flex-1 sm:flex-none min-w-[20px] md:min-w-[100px]"
                             >
-                                <div className="flex items-center gap-2">
-                                    <Trophy className="h-4 w-4" />
+                                <div className="flex items-center justify-center gap-2">
+                                    <Trophy className="h-3 w-3 sm:h-4 sm:w-4" />
                                     <span>Overall</span>
                                 </div>
                             </TabsTrigger>
                             <TabsTrigger
                                 value="grid-challenge"
-                                className="rounded-full px-6 py-3 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300"
+                                className="rounded-full px-4 py-2 text-sm sm:px-6 sm:py-3 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300 flex-1 sm:flex-none min-w-[20px] md:min-w-[100px]"
                             >
-                                <div className="flex items-center gap-2">
-                                    <LayoutGrid className="h-4 w-4" />
+                                <div className="flex items-center justify-center gap-2">
+                                    <LayoutGrid className="h-3 w-3 sm:h-4 sm:w-4" />
                                     <span>Grid</span>
                                 </div>
                             </TabsTrigger>
                             <TabsTrigger
                                 value="digit-challenge"
-                                className="rounded-full px-6 py-3 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300"
+                                className="rounded-full px-4 py-2 text-sm sm:px-6 sm:py-3 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300 flex-1 sm:flex-none min-w-[    100px]"
                             >
-                                <div className="flex items-center gap-2">
-                                    <Binary className="h-4 w-4" />
+                                <div className="flex items-center justify-center gap-2">
+                                    <Binary className="h-3 w-3 sm:h-4 sm:w-4" />
                                     <span>Digit</span>
                                 </div>
                             </TabsTrigger>
                             <TabsTrigger
                                 value="switch-challenge"
-                                className="rounded-full px-6 py-3 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300"
+                                className="rounded-full px-4 py-2 text-sm sm:px-6 sm:py-3 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300 flex-1 sm:flex-none min-w-[100px]"
                             >
-                                <div className="flex items-center gap-2">
-                                    <ArrowRightLeft className="h-4 w-4" />
+                                <div className="flex items-center justify-center gap-2">
+                                    <ArrowRightLeft className="h-3 w-3 sm:h-4 sm:w-4" />
                                     <span>Switch</span>
                                 </div>
                             </TabsTrigger>
@@ -196,14 +196,14 @@ export default function LeaderboardClient({ data, gameId }: LeaderboardClientPro
                                                             index === 2 ? 'bg-gradient-to-r from-amber-600/10 to-transparent' : ''
                                                         }`}
                                                 >
-                                                    <div className="flex items-center gap-4 sm:gap-8 min-w-0">
-                                                        <div className="w-12 flex justify-center transform group-hover:scale-110 transition-transform">
+                                                    <div className="flex items-center gap-3 sm:gap-8 flex-1 min-w-0">
+                                                        <div className="w-8 sm:w-12 flex justify-center transform group-hover:scale-110 transition-transform shrink-0">
                                                             {getRankIcon(entry.rank)}
                                                         </div>
 
-                                                        <div className="flex items-center gap-4 min-w-0">
-                                                            <div className="relative">
-                                                                <Avatar className={`h-12 w-12 sm:h-14 sm:w-14 border-2 ${index === 0 ? 'border-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0.3)]' :
+                                                        <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
+                                                            <div className="relative shrink-0">
+                                                                <Avatar className={`h-10 w-10 sm:h-14 sm:w-14 border-2 ${index === 0 ? 'border-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0.3)]' :
                                                                     index === 1 ? 'border-gray-400' :
                                                                         index === 2 ? 'border-amber-700' : 'border-border'
                                                                     }`}>
@@ -211,7 +211,7 @@ export default function LeaderboardClient({ data, gameId }: LeaderboardClientPro
                                                                     <AvatarFallback className="font-bold bg-muted">{entry.name?.slice(0, 2).toUpperCase() || 'U'}</AvatarFallback>
                                                                 </Avatar>
                                                                 {index < 3 && (
-                                                                    <div className={`absolute -bottom-1 -right-1 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold text-white shadow-sm ${index === 0 ? 'bg-yellow-500' :
+                                                                    <div className={`absolute -bottom-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center text-[10px] font-bold text-white shadow-sm ${index === 0 ? 'bg-yellow-500' :
                                                                         index === 1 ? 'bg-gray-400' :
                                                                             'bg-amber-700'
                                                                         }`}>
@@ -220,20 +220,20 @@ export default function LeaderboardClient({ data, gameId }: LeaderboardClientPro
                                                                 )}
                                                             </div>
 
-                                                            <div className="flex flex-col min-w-0">
-                                                                <span className={`font-bold text-lg sm:text-xl truncate ${index === 0 ? 'text-primary' : 'text-foreground'
+                                                            <div className="flex flex-col min-w-0 pr-2">
+                                                                <span className={`font-bold text-base sm:text-xl truncate ${index === 0 ? 'text-primary' : 'text-foreground'
                                                                     }`}>
                                                                     {entry.name || 'Anonymous User'}
                                                                 </span>
-                                                                <span className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">
+                                                                <span className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider font-semibold">
                                                                     {index < 3 ? 'Champion' : 'Contender'}
                                                                 </span>
                                                             </div>
                                                         </div>
                                                     </div>
 
-                                                    <div className="pl-4">
-                                                        <Badge variant="outline" className={`text-lg px-4 py-1.5 font-mono font-bold tracking-tight border-2 ${index === 0 ? 'border-yellow-500/30 text-yellow-600 bg-yellow-500/5' :
+                                                    <div className="pl-2 sm:pl-4 shrink-0">
+                                                        <Badge variant="outline" className={`text-sm sm:text-lg px-2 sm:px-4 py-1 sm:py-1.5 font-mono font-bold tracking-tight border-2 ${index === 0 ? 'border-yellow-500/30 text-yellow-600 bg-yellow-500/5' :
                                                             'border-border bg-background/50'
                                                             }`}>
                                                             {entry.score.toLocaleString()}

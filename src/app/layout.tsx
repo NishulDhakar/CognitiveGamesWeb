@@ -1,7 +1,10 @@
-import type { Metadata } from "next";
-import { Analytics } from "@vercel/analytics/next";
-import ReactLenis from "lenis/react";
+import type { Metadata, Viewport } from "next";
+import dynamic from "next/dynamic";
 import "./globals.css";
+
+// Lazy load heavy components
+const ReactLenis = dynamic(() => import("lenis/react"));
+const Analytics = dynamic(() => import("@vercel/analytics/next").then(mod => mod.Analytics));
 
 // ✅ OFFICIAL SITE CANONICAL URL
 const SITE_URL = "https://games.nishul.dev";
@@ -131,33 +134,40 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-      <html lang="en" suppressHydrationWarning>
-        <head>
-          {/* ✅ STRUCTURED DATA */}
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-          />
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-          />
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }}
-          />
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* ✅ STRUCTURED DATA */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }}
+        />
 
-          {/* ✅ PERFORMANCE */}
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        </head>
+        {/* ✅ PERFORMANCE */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+      </head>
 
-        <body className="font-hanken-grotesk antialiased bg-neutral text-gray-900">
-          <ReactLenis root>
-            <main>{children}</main>
-            <Analytics />
-          </ReactLenis>
-        </body>
-      </html>
+      <body className="bg-white relative">
+        {/* The Gradient Approximation Element */}
+        <div className="absolute top-0 left-0 w-full h-[600px] opacity-40 mix-blend-multiply pointer-events-none">
+          {/* Pink/Red Blob */}
+          <div className="absolute top-0 left-0 w-1/2 h-full bg-[#FF6B6B]/50 rounded-full blur-3xl" style={{ filter: 'blur(100px)', transform: 'translate(-20%, -20%)' }}></div>
+          {/* Blue/Cyan Blob */}
+          <div className="absolute top-0 right-0 w-1/2 h-full bg-[#4F46E5]/50 rounded-full blur-3xl" style={{ filter: 'blur(100px)', transform: 'translate(20%, -20%)' }}></div>
+        </div>
+        <ReactLenis root>
+          <main>{children}</main>
+          <Analytics />
+        </ReactLenis>
+      </body>
+    </html>
   );
 }

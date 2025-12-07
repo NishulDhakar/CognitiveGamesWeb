@@ -3,8 +3,7 @@
 import { navbarConfig } from "@/data/Header";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
-import GitHubStars from "../Landing/GithubStar";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import { useUser } from "@/context/UserContext";
 import { Button } from "../ui/button";
@@ -20,17 +19,15 @@ import {
 import { signOut } from "@/actions/auth-actions";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { GitHubStarsButton } from "../ui/shadcn-io/github-stars-button";
 
-export default function Navbar() {
-  interface UserWithAvatar {
-    avatar?: string;
-  }
+function Navbar() {
+
 
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const user = useUser();
-  const userWithAvatar =
-    user && "avatar" in user ? (user as UserWithAvatar) : null;
+
 
   const pathname = usePathname();
   const altText = pathname === "/" ? "Blync" : "Dashboard";
@@ -44,10 +41,10 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleSignOut = async () => {
+  const handleSignOut = useCallback(async () => {
     await signOut();
     window.location.reload();
-  };
+  }, []);
 
   return (
     <header
@@ -65,7 +62,7 @@ export default function Navbar() {
       >
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="relative w-8 h-8 transition-transform group-hover:scale-110 duration-300">
+          <div className="relative w-16 h-16 transition-transform group-hover:scale-110 duration-300">
             <Image
               src={navbarConfig.logo.src}
               alt={altText}
@@ -74,7 +71,7 @@ export default function Navbar() {
               priority
             />
           </div>
-          <span className="font-bold text-lg hidden md:block tracking-tight">
+          <span className="font-bold text-lg tracking-tight">
             {altText}
           </span>
         </Link>
@@ -114,19 +111,17 @@ export default function Navbar() {
 
         {/* Right side (Sign In / Avatar / Stars) */}
         <div className="flex items-center gap-3">
-          <div className="hidden sm:block">
-            <GitHubStars />
-          </div>
+
 
           {!user ? (
             <Button
               asChild
               variant="default"
-              size="sm"
-              className="rounded-full px-6 font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-300"
+              size="lg"
+              className="font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-300"
             >
               <Link href="/register">
-                <LogIn className="w-4 h-4 mr-2" />
+                <LogIn className="w-6 h-6 mr-2" />
                 <span>Sign In</span>
               </Link>
             </Button>
@@ -135,10 +130,10 @@ export default function Navbar() {
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
-                  className="relative h-9 w-9 rounded-full overflow-hidden border border-border/50 hover:border-primary/50 transition-colors"
+                  className="relative h-10 w-10 rounded-full overflow-hidden border border-border/50 hover:border-primary/50 transition-colors"
                 >
-                  <Avatar className="h-full w-full">
-                    <AvatarImage src={userWithAvatar?.avatar} alt={user.email} />
+                  <Avatar className="h-10 w-10 sm:h-16 sm:w-16 border-2 border-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0.3)]">
+                    <AvatarImage src={user.image || undefined} alt={user.email} />
                     <AvatarFallback className="bg-primary/10 text-primary">
                       {user.email?.[0]?.toUpperCase() ?? "U"}
                     </AvatarFallback>
@@ -178,6 +173,14 @@ export default function Navbar() {
           >
             {mobileOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
+
+          <div className="flex gap-4">
+            {/* Standard display with full numbers */}
+            <GitHubStarsButton
+              username="NishulDhakar"
+              repo="CognitiveGamesWeb"
+            ></GitHubStarsButton></div>
+
         </div>
       </div>
 
@@ -211,7 +214,6 @@ export default function Navbar() {
                 );
               })}
               <div className="pt-2 sm:hidden flex justify-center w-full">
-                <GitHubStars />
               </div>
             </nav>
           </motion.div>
@@ -220,3 +222,5 @@ export default function Navbar() {
     </header>
   );
 }
+
+export default React.memo(Navbar);

@@ -36,7 +36,7 @@ export default function BlogPage() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12 mt-12"
         >
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-10">
+          <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground mb-8 md:mb-10 px-2">
             Capgemini Game Based Aptitude
           </h1>
 
@@ -82,21 +82,24 @@ export default function BlogPage() {
                       setOpenGame(openGame === game.id ? null : game.id);
                     }
                   }}
-                  className="p-4 sm:p-6 cursor-pointer flex items-center justify-between gap-4 group"
+                  className="p-4 sm:p-6 cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-4 group"
                 >
-                  <div className="flex items-center gap-4">
-                    <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300">
-                      <Brain className="w-6 h-6" />
+                  <div className="flex items-start sm:items-center gap-4 w-full">
+                    <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300 shrink-0">
+                      <Brain className="w-5 h-5 sm:w-6 sm:h-6" />
                     </div>
-                    <div>
-                      <h3 className="font-bold text-lg group-hover:text-primary transition-colors">{game.name}</h3>
-                      <div className="flex items-center gap-2 text-xs text-muted-foreground mt-1">
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-bold text-base sm:text-lg group-hover:text-primary transition-colors truncate sm:whitespace-normal">{game.name}</h3>
+                      <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground mt-1">
                         <Badge variant="secondary" className="text-[10px] h-5">{game.typeOfQuestions}</Badge>
-                        <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {game.duration}</span>
+                        <span className="flex items-center gap-1 whitespace-nowrap"><Clock className="w-3 h-3" /> {game.duration}</span>
                       </div>
                     </div>
+                    <div className={`sm:hidden p-2 rounded-full border border-border/50 transition-transform duration-300 ${openGame === game.id ? 'rotate-180 bg-accent' : 'bg-background'}`}>
+                      <ChevronDown className="w-4 h-4 text-muted-foreground" />
+                    </div>
                   </div>
-                  <div className={`p-2 rounded-full border border-border/50 transition-transform duration-300 ${openGame === game.id ? 'rotate-180 bg-accent' : 'bg-background'}`}>
+                  <div className={`hidden sm:block p-2 rounded-full border border-border/50 transition-transform duration-300 ${openGame === game.id ? 'rotate-180 bg-accent' : 'bg-background'}`}>
                     <ChevronDown className="w-4 h-4 text-muted-foreground" />
                   </div>
                 </div>
@@ -110,7 +113,7 @@ export default function BlogPage() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <div id={`game-details-${game.id}`} className="px-6 pb-6 pt-0 border-t border-border/30">
+                      <div id={`game-details-${game.id}`} className="px-4 sm:px-6 pb-6 pt-0 border-t border-border/30">
                         <div className="pt-4 grid sm:grid-cols-2 gap-6">
                           <div>
                             <h4 className="font-semibold text-sm mb-2 text-primary">About the Game</h4>

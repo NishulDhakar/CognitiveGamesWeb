@@ -3,7 +3,7 @@
 import { signInWithGoogle } from "@/actions/google-auth-action";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { JSX, SVGProps } from "react";
+import type { JSX, SVGProps } from "react";
 
 // Google Icon
 const GoogleIcon = (props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) => (

@@ -14,7 +14,10 @@ export async function getLeaderboard(gameId?: string): Promise<LeaderboardEntry[
     try {
         if (gameId) {
             // Game-specific leaderboard
-            // Get max score per user for this game
+            // OPTIMIZATION: Ensure database has composite index on (gameId, score DESC)
+            // Prisma schema recommendation: @@index([gameId, score(sort: Desc)])
+
+            // Get max score per user for this game (only fetch needed fields)
             const scores = await (prisma as any).gameScore.groupBy({
                 by: ['userId'],
                 where: {
@@ -31,7 +34,7 @@ export async function getLeaderboard(gameId?: string): Promise<LeaderboardEntry[
                 take: 50, // Top 50
             });
 
-            // Fetch user details
+            // Fetch user details (only needed fields for better performance)
             const userIds = scores.map((s: any) => s.userId);
             const users = await prisma.user.findMany({
                 where: {
@@ -62,6 +65,9 @@ export async function getLeaderboard(gameId?: string): Promise<LeaderboardEntry[
             return result;
         } else {
             // Overall Leaderboard (Sum of best scores per game)
+            // OPTIMIZATION: Ensure database has composite index on (userId, gameId)
+            // Prisma schema recommendation: @@index([userId, gameId])
+
             // 1. Get best score for every user on every game
             const allBestScores = await (prisma as any).gameScore.groupBy({
                 by: ['userId', 'gameId'],

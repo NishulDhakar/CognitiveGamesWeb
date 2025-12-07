@@ -6,37 +6,64 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
+import { IoArrowRedoOutline } from "react-icons/io5";
 
 export default function Hero() {
   return (
     <section className="relative overflow-hidden py-24 md:py-32">
       <Container>
-        <div className="relative z-10 flex flex-col items-center justify-center text-center max-w-4xl mx-auto">
+             
+         
+        <div className="relative z-10 mt-20 flex flex-col items-center justify-center text-center max-w-4xl mx-auto">
 
-          <motion.div
+          <motion.a
+            href="https://www.nishul.dev/projects"
+            target="_blank"
+            rel="noopener noreferrer"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
+            className="mb-6 flex items-center gap-3 rounded-full border border-primary/20 
+  bg-white/60 backdrop-blur px-5 py-2 text-sm font-medium text-foreground
+  hover:bg-white/80 hover:scale-[1.03] transition-all"
           >
-            <Badge variant="outline" className="mb-6 px-4 py-1 text-sm border-primary/20 bg-primary/5 text-primary rounded-full">
-              Level Up Your Mind
-            </Badge>
-          </motion.div>
+            {/* ✅ IMAGE PLACEHOLDER */}
+            <div>
+              <Image
+                src="/og-logo.png"
+                alt="Nishul's Projects"
+                width={40}
+                height={40}
+                priority
+                quality={90}
+              />
+            </div>
+
+            <span>See The Things I've Built</span>
+            <IoArrowRedoOutline className="w-6 h-4 ml-2" />
+          </motion.a>
+
 
           <motion.h1
-            className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground mb-6 leading-tight"
+            className="text-4xl md:text-6xl lg:text-7xl text-center font-bold tracking-tight text-foreground mb-6 leading-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Master Your <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-600">
-              Cognitive Potential
+            <span className="text-transparent bg-clip-text bg-[#FF3F8F]">
+              Play.
+            </span>
+            <span className="text-transparent pl-8 bg-clip-text bg-neutral-900">
+              Train.
+            </span>
+            <span className="text-transparent pl-8 bg-clip-text bg-[#0586C8]">
+              Prepare.
             </span>
           </motion.h1>
 
           <motion.p
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
+            className="text-lg md:text-sm lg:text-md font-bold text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}

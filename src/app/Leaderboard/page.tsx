@@ -1,6 +1,6 @@
 import { getLeaderboard } from "@/actions/leaderboard";
 import LeaderboardClient from "./client";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Leaderboard | Cognitive Games",

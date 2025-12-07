@@ -10,6 +10,10 @@ export const auth = betterAuth({
       enabled: true,
       autoSignIn: false
    },
+   session: {
+      expiresIn: 60 * 60 * 24 * 30, // 30 days
+      updateAge: 60 * 60 * 24, // 1 day
+   },
    socialProviders: {
       google: {
          clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -17,7 +21,7 @@ export const auth = betterAuth({
       },
    },
    rateLimit: {
-      window: 60, 
+      window: 60,
       max: 10,
    },
 })

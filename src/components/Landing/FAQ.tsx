@@ -44,7 +44,7 @@ const faqData = [
 
 export default function FAQ() {
   return (
-    <section className="py-20 lg:py-32 bg-background">
+    <section className="py-20 lg:py-32 bg-background/40">
       <div className="container mx-auto max-w-4xl px-4">
         <motion.div
           className="mb-12 text-center"
