@@ -45,10 +45,10 @@ function TestimonialCard({
           </p>
         </CardContent>
         <CardHeader className="flex flex-row items-center gap-4 pt-0 pb-6">
-          <Avatar>
+          {/* <Avatar>
             <AvatarImage src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${name}`} />
             <AvatarFallback>{name[0]}</AvatarFallback>
-          </Avatar>
+          </Avatar> */}
           <div>
             <h4 className="font-semibold text-sm">{name}</h4>
             <p className="text-xs text-muted-foreground">{role}</p>
