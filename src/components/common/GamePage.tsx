@@ -17,7 +17,7 @@ const GamePage: React.FC<GamePageProps> = ({
   extraHeaderContent,
 }) => {
   return (
-<div className="mt-8 w-full max-w-2xl mx-auto flex flex-col items-center justify-center bg-gradient-to-br">
+<div className="mt-28 w-full max-w-2xl mx-auto flex flex-col items-center justify-center bg-gradient-to-br">
   {/* Responsive Header */}
 
   <div className="w-full max-w-2xl flex flex-col md:flex-row md:justify-between md:items-center gap-4 px-4 md:px-8 mb-8">
