@@ -1,5 +1,5 @@
 'use client';
- 
+
 import * as React from 'react';
 import { Star } from 'lucide-react';
 import {
@@ -11,14 +11,14 @@ import {
   type HTMLMotionProps,
   type SpringOptions,
   type UseInViewOptions,
-} from 'motion/react';
- 
+} from 'framer-motion';
+
 import { cn } from '@/lib/utils';
 import { SlidingNumber } from '../sliding-number';
 
- 
+
 type FormatNumberResult = { number: string[]; unit: string };
- 
+
 function formatNumber(num: number, formatted: boolean): FormatNumberResult {
   if (formatted) {
     if (num < 1000) {
@@ -37,7 +37,7 @@ function formatNumber(num: number, formatted: boolean): FormatNumberResult {
     return { number: num.toLocaleString('en-US').split(','), unit: '' };
   }
 }
- 
+
 type GitHubStarsButtonProps = HTMLMotionProps<'a'> & {
   username: string;
   repo: string;
@@ -47,7 +47,7 @@ type GitHubStarsButtonProps = HTMLMotionProps<'a'> & {
   inViewMargin?: UseInViewOptions['margin'];
   inViewOnce?: boolean;
 };
- 
+
 function GitHubStarsButton({
   ref,
   username,
@@ -69,12 +69,12 @@ function GitHubStarsButton({
   const [isCompleted, setIsCompleted] = React.useState(false);
   const [displayParticles, setDisplayParticles] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(true);
- 
+
   const repoUrl = React.useMemo(
     () => `https://github.com/${username}/${repo}`,
     [username, repo],
   );
- 
+
   React.useEffect(() => {
     fetch(`https://api.github.com/repos/${username}/${repo}`)
       .then((response) => response.json())
@@ -86,21 +86,21 @@ function GitHubStarsButton({
       .catch(console.error)
       .finally(() => setIsLoading(false));
   }, [username, repo]);
- 
+
   const handleDisplayParticles = React.useCallback(() => {
     setDisplayParticles(true);
     setTimeout(() => setDisplayParticles(false), 1500);
   }, []);
- 
+
   const localRef = React.useRef<HTMLAnchorElement>(null);
   React.useImperativeHandle(ref as any, () => localRef.current as HTMLAnchorElement);
- 
+
   const inViewResult = useInView(localRef, {
     once: inViewOnce,
     margin: inViewMargin,
   });
   const isComponentInView = !inView || inViewResult;
- 
+
   React.useEffect(() => {
     const unsubscribe = springVal.on('change', (latest: number) => {
       const newValue = Math.round(latest);
@@ -116,15 +116,15 @@ function GitHubStarsButton({
     });
     return () => unsubscribe();
   }, [springVal, stars, handleDisplayParticles]);
- 
+
   React.useEffect(() => {
     if (stars > 0 && isComponentInView) motionVal.set(stars);
   }, [motionVal, stars, isComponentInView]);
- 
+
   const fillPercentage = Math.min(100, (motionNumberRef.current / stars) * 100);
   const formattedResult = formatNumber(motionNumberRef.current, formatted);
   const ghostFormattedNumber = formatNumber(stars, formatted);
- 
+
   const renderNumberSegments = (
     segments: string[],
     unit: string,
@@ -143,11 +143,11 @@ function GitHubStarsButton({
           ))}
         </React.Fragment>
       ))}
- 
+
       {formatted && unit && <span className="leading-[1]">{unit}</span>}
     </span>
   );
- 
+
   const handleClick = React.useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
       e.preventDefault();
@@ -156,9 +156,9 @@ function GitHubStarsButton({
     },
     [handleDisplayParticles, repoUrl],
   );
- 
+
   if (isLoading) return null;
- 
+
   return (
     <motion.a
       ref={localRef}
@@ -248,5 +248,5 @@ function GitHubStarsButton({
     </motion.a>
   );
 }
- 
+
 export { GitHubStarsButton, type GitHubStarsButtonProps };
