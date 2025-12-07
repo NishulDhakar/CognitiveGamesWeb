@@ -3,6 +3,7 @@
 import React from "react";
 import { SwitchPuzzle } from "@/app/play/Switchchallenge/gameLogic";
 import ResultCard from "../common/Result";
+import { useRouter } from "next/navigation";
 
 interface Props {
   puzzle: SwitchPuzzle | null;
@@ -29,6 +30,8 @@ const SwitchChallengeUI: React.FC<Props> = ({
   resetGame,
   wrong,
 }) => {
+  const router = useRouter();
+
   if (!puzzle) return null;
 
   const options: string[] = puzzle.options;
@@ -36,23 +39,22 @@ const SwitchChallengeUI: React.FC<Props> = ({
   return (
     <div className=" px-4 py-8">
       {gameStatus === "results" ? (
-    <ResultCard
-        correct={correct} 
-        wrong={wrong} 
-        resetGame={resetGame} 
-      />
+        <ResultCard
+          correct={correct}
+          wrong={wrong}
+          resetGame={resetGame}
+          onCheckRank={() => router.push("/Leaderboard")}
+        />
       ) : (
         <div className="w-full max-w-2xl bg-white rounded-3xl shadow-xl p-6 md:p-10 border border-gray-200 relative">
           {/* Feedback Overlay */}
           {isAnswered && (
             <div
-              className={`absolute inset-0 flex flex-col items-center justify-center bg-white/90 backdrop-blur-sm rounded-3xl transition-all duration-500 z-10 pointer-events-none ${
-                isCorrect ? 'border-4 border-emerald-300' : 'border-4 border-rose-300'
-              }`}
+              className={`absolute inset-0 flex flex-col items-center justify-center bg-white/90 backdrop-blur-sm rounded-3xl transition-all duration-500 z-10 pointer-events-none ${isCorrect ? 'border-4 border-emerald-300' : 'border-4 border-rose-300'
+                }`}
             >
-              <div className={`mb-4 w-20 h-20 rounded-full flex items-center justify-center ${
-                isCorrect ? 'bg-emerald-100' : 'bg-rose-100'
-              }`}>
+              <div className={`mb-4 w-20 h-20 rounded-full flex items-center justify-center ${isCorrect ? 'bg-emerald-100' : 'bg-rose-100'
+                }`}>
                 <span className={`text-4xl ${isCorrect ? 'text-emerald-600' : 'text-rose-600'}`}>
                   {isCorrect ? '✓' : '✗'}
                 </span>
@@ -95,13 +97,12 @@ const SwitchChallengeUI: React.FC<Props> = ({
                   key={op}
                   onClick={() => handleSelect(op)}
                   disabled={isAnswered}
-                  className={`h-12 md:h-14 rounded-2xl text-lg md:text-xl font-bold shadow-lg border-2 transition-all duration-200 transform ${
-                    showResult
-                      ? isCorrect
-                        ? "bg-emerald-100 border-emerald-300 text-emerald-700 shadow-xl"
-                        : "bg-rose-100 border-rose-300 text-rose-700 shadow-xl"
-                      : "bg-gradient-to-br from-white to-slate-50 border-slate-300 text-slate-700 hover:shadow-xl hover:scale-105"
-                  } ${isAnswered ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+                  className={`h-12 md:h-14 rounded-2xl text-lg md:text-xl font-bold shadow-lg border-2 transition-all duration-200 transform ${showResult
+                    ? isCorrect
+                      ? "bg-emerald-100 border-emerald-300 text-emerald-700 shadow-xl"
+                      : "bg-rose-100 border-rose-300 text-rose-700 shadow-xl"
+                    : "bg-gradient-to-br from-white to-slate-50 border-slate-300 text-slate-700 hover:shadow-xl hover:scale-105"
+                    } ${isAnswered ? 'cursor-not-allowed' : 'cursor-pointer'}`}
                 >
                   {op}
                 </button>
@@ -113,14 +114,12 @@ const SwitchChallengeUI: React.FC<Props> = ({
           <div className="text-center">
             <div className="inline-flex items-center space-x-2 bg-slate-100 px-6 py-2 rounded-2xl border-2 border-slate-300 shadow-md">
               <div
-                className={`w-3 h-3 rounded-full ${
-                  timeLeft <= 5 ? 'bg-red-500 animate-pulse' : 'bg-green-500'
-                }`}
+                className={`w-3 h-3 rounded-full ${timeLeft <= 5 ? 'bg-red-500 animate-pulse' : 'bg-green-500'
+                  }`}
               ></div>
               <span
-                className={`font-mono text-base font-semibold ${
-                  timeLeft <= 5 ? 'text-red-600' : 'text-slate-700'
-                }`}
+                className={`font-mono text-base font-semibold ${timeLeft <= 5 ? 'text-red-600' : 'text-slate-700'
+                  }`}
               >
                 {timeLeft}s
               </span>

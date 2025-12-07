@@ -4,6 +4,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { DigitProblem } from "@/app/play/Digitchallenge/gameLogic";
 import ResultCard from "../common/Result";
+import { useRouter } from "next/navigation";
 
 interface Props {
   problem: DigitProblem | null;
@@ -35,13 +36,15 @@ export default function DigitChallengeUI({
   handleSubmit,
   resetGame,
 }: Props) {
+  const router = useRouter();
+
   if (!problem) return null;
 
   // Results screen
   if (gameStatus === "results") {
     return (
       <div className="flex items-center justify-center min-h-[70vh]">
-        <ResultCard correct={correctCount} wrong={wrongCount} resetGame={resetGame} />
+        <ResultCard correct={correctCount} wrong={wrongCount} resetGame={resetGame} onCheckRank={() => router.push("/Leaderboard")} />
       </div>
     );
   }
@@ -49,7 +52,7 @@ export default function DigitChallengeUI({
   const used = new Set(userDigits);
 
   return (
-    <div className="px-4 py-8 flex flex-col-3 items-center">
+    <div className="px-12 py-8 flex flex-col-3 items-center">
       <div className="w-full max-w-2xl bg-white rounded-3xl shadow-xl p-6 md:p-10 border border-gray-200 relative">
         {isAnswered && (
           <div
@@ -141,7 +144,7 @@ export default function DigitChallengeUI({
         <Button
           onClick={handleSubmit}
           disabled={isAnswered || userDigits.length !== problem.blanks}
-          className="w-full bg-[#FF3F8F] h-12 text-lg rounded-2xl shadow-md"
+          className="w-full bg-neutral-800 h-12 text-lg rounded-2xl shadow-md"
         >
           Submit
         </Button>

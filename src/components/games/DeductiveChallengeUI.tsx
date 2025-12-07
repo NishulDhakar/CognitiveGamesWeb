@@ -1,6 +1,9 @@
+'use client';
+
 import React from "react";
 import { Puzzle, Symbol as GameSymbol } from "@/types/game";
 import ResultCard from "../common/Result";
+import { useRouter } from "next/navigation";
 
 interface DeductiveChallengeUIProps {
   puzzle: Puzzle | null;
@@ -28,20 +31,23 @@ const DeductiveChallengeUI: React.FC<DeductiveChallengeUIProps> = ({
   wrong,
   resetGame,
 }) => {
+  const router = useRouter();
+
   // Helper to check if a cell is the target
   const isTargetCell = (r: number, c: number) => puzzle && puzzle.targetCell.row === r && puzzle.targetCell.col === c;
   // Helper to check if a cell is an empty distractor
-  const isDistractorCell = (r: number, c: number) => puzzle && puzzle.emptyCells.some((cell: {row: number, col: number}) => cell.row === r && cell.col === c) && !isTargetCell(r, c);
+  const isDistractorCell = (r: number, c: number) => puzzle && puzzle.emptyCells.some((cell: { row: number, col: number }) => cell.row === r && cell.col === c) && !isTargetCell(r, c);
 
   return (
     <>
       {gameStatus === "results" ? (
 
-      <ResultCard 
-        correct={correct} 
-        wrong={wrong} 
-        resetGame={resetGame} 
-      />
+        <ResultCard
+          correct={correct}
+          wrong={wrong}
+          resetGame={resetGame}
+          onCheckRank={() => router.push("/Leaderboard")}
+        />
 
       ) : (
         <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl 	p-4 md:p-8 relative border border-white/50">
@@ -52,13 +58,11 @@ const DeductiveChallengeUI: React.FC<DeductiveChallengeUIProps> = ({
           </div>
           {/* Enhanced feedback overlay */}
           {isAnswered && (
-            <div className={`absolute inset-0 flex flex-col items-center justify-center bg-white/90 backdrop-blur-sm rounded-3xl transition-all duration-500 ${
-              isCorrect ? 'border-4 border-emerald-300' : 'border-4 border-rose-300'
-            }`}
-                 style={{zIndex: 10, pointerEvents: 'none'}}>
-              <div className={`mb-4 w-20 h-20 rounded-full flex items-center justify-center ${
-                isCorrect ? 'bg-emerald-100' : 'bg-rose-100'
-              }`}>
+            <div className={`absolute inset-0 flex flex-col items-center justify-center bg-white/90 backdrop-blur-sm rounded-3xl transition-all duration-500 ${isCorrect ? 'border-4 border-emerald-300' : 'border-4 border-rose-300'
+              }`}
+              style={{ zIndex: 10, pointerEvents: 'none' }}>
+              <div className={`mb-4 w-20 h-20 rounded-full flex items-center justify-center ${isCorrect ? 'bg-emerald-100' : 'bg-rose-100'
+                }`}>
                 <span className={`text-4xl ${isCorrect ? 'text-emerald-600' : 'text-rose-600'}`}>
                   {isCorrect ? '✓' : '✗'}
                 </span>
@@ -74,8 +78,8 @@ const DeductiveChallengeUI: React.FC<DeductiveChallengeUIProps> = ({
           {/* Enhanced Grid */}
           {puzzle && (
             <div className="mb-10 flex justify-center">
-              <div className="grid gap-6 md:gap-3 p-6 bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl border-2 border-slate-200 shadow-inner" 
-                   style={{ gridTemplateColumns: `repeat(${puzzle.grid.length}, minmax(0, 1fr))` }}>
+              <div className="grid gap-6 md:gap-3 p-6 bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl border-2 border-slate-200 shadow-inner"
+                style={{ gridTemplateColumns: `repeat(${puzzle.grid.length}, minmax(0, 1fr))` }}>
                 {puzzle.grid.map((row, rIdx) =>
                   row.map((cell, cIdx) => {
                     if (isTargetCell(rIdx, cIdx)) {
@@ -119,13 +123,12 @@ const DeductiveChallengeUI: React.FC<DeductiveChallengeUIProps> = ({
                     key={`${option}-${idx}`}
                     onClick={() => handleSelect(option)}
                     disabled={isAnswered}
-                    className={`h-12 md:h-16 text-lg md:text-2xl rounded-2xl font-bold shadow-lg border-2 transition-all duration-200 transform ${
-                      selected === option && isAnswered
-                        ? isCorrect
-                          ? "bg-gradient-to-r from-emerald-200 to-emerald-300 border-emerald-400 text-emerald-800 shadow-xl"
-                          : "bg-gradient-to-r from-rose-200 to-rose-300 border-rose-400 text-rose-800 shadow-xl"
-                        : "bg-gradient-to-br from-white to-slate-50 border-slate-300 text-slate-700 hover:from-blue-50 hover:to-blue-100 hover:border-blue-300 hover:shadow-xl hover:scale-105 active:scale-95"
-                    } ${isAnswered ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+                    className={`h-12 md:h-16 text-lg md:text-2xl rounded-2xl font-bold shadow-lg border-2 transition-all duration-200 transform ${selected === option && isAnswered
+                      ? isCorrect
+                        ? "bg-gradient-to-r from-emerald-200 to-emerald-300 border-emerald-400 text-emerald-800 shadow-xl"
+                        : "bg-gradient-to-r from-rose-200 to-rose-300 border-rose-400 text-rose-800 shadow-xl"
+                      : "bg-gradient-to-br from-white to-slate-50 border-slate-300 text-slate-700 hover:from-blue-50 hover:to-blue-100 hover:border-blue-300 hover:shadow-xl hover:scale-105 active:scale-95"
+                      } ${isAnswered ? 'cursor-not-allowed' : 'cursor-pointer'}`}
                   >
                     {option}
                   </button>

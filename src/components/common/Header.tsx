@@ -132,7 +132,7 @@ function Navbar() {
                   variant="ghost"
                   className="relative h-10 w-10 rounded-full overflow-hidden border border-border/50 hover:border-primary/50 transition-colors"
                 >
-                  <Avatar className="h-10 w-10 sm:h-16 sm:w-16 border-2 border-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0.3)]">
+                  <Avatar className="h-8 w-8 sm:h-10 sm:w-10 border-2 border-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0.3)]">
                     <AvatarImage src={user.image || undefined} alt={user.email} />
                     <AvatarFallback className="bg-primary/10 text-primary">
                       {user.email?.[0]?.toUpperCase() ?? "U"}
@@ -174,7 +174,7 @@ function Navbar() {
             {mobileOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
 
-          <div className="flex gap-4">
+          <div className="flex gap-4 hidden md:block">
             {/* Standard display with full numbers */}
             <GitHubStarsButton
               username="NishulDhakar"
