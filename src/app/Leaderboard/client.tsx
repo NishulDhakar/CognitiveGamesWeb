@@ -129,7 +129,7 @@ export default function LeaderboardClient({ data, gameId }: LeaderboardClientPro
                             >
                                 <div className="flex items-center justify-center gap-2">
                                     <LayoutGrid className="h-3 w-3 sm:h-4 sm:w-4" />
-                                    <span>Grid</span>
+                                    <span>Switch</span>
                                 </div>
                             </TabsTrigger>
                             <TabsTrigger
@@ -147,7 +147,7 @@ export default function LeaderboardClient({ data, gameId }: LeaderboardClientPro
                             >
                                 <div className="flex items-center justify-center gap-2">
                                     <ArrowRightLeft className="h-3 w-3 sm:h-4 sm:w-4" />
-                                    <span>Switch</span>
+                                    <span>Deductive</span>
                                 </div>
                             </TabsTrigger>
                         </TabsList>
@@ -166,9 +166,9 @@ export default function LeaderboardClient({ data, gameId }: LeaderboardClientPro
                                     <CardTitle className="text-2xl flex items-center gap-3">
                                         <div className="p-2 rounded-lg bg-primary/10">
                                             {gameId === 'overall' && <Trophy className="h-6 w-6 text-primary" />}
-                                            {gameId === 'grid-challenge' && <LayoutGrid className="h-6 w-6 text-primary" />}
+                                            {gameId === 'switch-challenge' && <LayoutGrid className="h-6 w-6 text-primary" />}
                                             {gameId === 'digit-challenge' && <Binary className="h-6 w-6 text-primary" />}
-                                            {gameId === 'switch-challenge' && <ArrowRightLeft className="h-6 w-6 text-primary" />}
+                                            {gameId === 'deductive-challenge' && <ArrowRightLeft className="h-6 w-6 text-primary" />}
                                         </div>
                                         <span>Top Performers</span>
                                     </CardTitle>

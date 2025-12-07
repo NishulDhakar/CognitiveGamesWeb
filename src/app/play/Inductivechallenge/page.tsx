@@ -119,7 +119,7 @@
 
 export default function Page() {
   return (
-    <div className="flex flex-col items-center justify-center mt-20 px-4 text-center font-game">
+    <div className="flex flex-col items-center justify-center mt-60 px-4 text-center font-game">
       
       <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 ">
         More Games Coming Soon! 
