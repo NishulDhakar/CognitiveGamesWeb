@@ -6,17 +6,23 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion, AnimatePresence } from "framer-motion";
-import { Crown, Medal, Trophy, ArrowLeft, Gamepad2, LayoutGrid, Binary, ArrowRightLeft } from "lucide-react";
+import { Crown, Medal, Trophy, ArrowLeft, Gamepad2, LayoutGrid, Binary, ArrowRightLeft, ChevronDown } from "lucide-react";
 import { useRouter } from "next/navigation";
 import BackToDashboard from "@/components/common/BackToDashboard";
+import { useState } from "react";
 
 interface LeaderboardClientProps {
     data: LeaderboardEntry[];
     gameId: string;
+    currentUserId?: string;
 }
 
-export default function LeaderboardClient({ data, gameId }: LeaderboardClientProps) {
+export default function LeaderboardClient({ data, gameId, currentUserId }: LeaderboardClientProps) {
     const router = useRouter();
+    const [isExplanationOpen, setIsExplanationOpen] = useState(false);
+
+    // Find current user's rank
+    const userRank = currentUserId ? data.find(entry => entry.userId === currentUserId) : null;
 
     const handleTabChange = (value: string) => {
         if (value === 'overall') {
@@ -111,6 +117,106 @@ export default function LeaderboardClient({ data, gameId }: LeaderboardClientPro
                     </motion.p>
                 </div>
 
+                {/* User's Current Rank Display */}
+                {userRank && (
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.4, duration: 0.5 }}
+                        className="mb-8"
+                    >
+                        <Card className="border-2 border-primary/30 shadow-xl bg-gradient-to-r from-primary/10 via-primary/5 to-transparent backdrop-blur-xl">
+                            <CardContent className="p-6">
+                                <div className="flex items-center justify-between flex-wrap gap-4">
+                                    <div className="flex items-center gap-4">
+                                        <div className="p-3 rounded-full bg-primary/20">
+                                            <Trophy className="h-6 w-6 text-primary" />
+                                        </div>
+                                        <div>
+                                            <p className="text-sm text-muted-foreground font-medium">Your Current Rank</p>
+                                            <p className="text-3xl font-bold text-primary">#{userRank.rank}</p>
+                                        </div>
+                                    </div>
+                                    <div className="text-right">
+                                        <p className="text-sm text-muted-foreground font-medium">Your Score</p>
+                                        <p className="text-3xl font-bold">{userRank.score.toLocaleString()}<span className="text-sm ml-1 text-muted-foreground">pts</span></p>
+                                    </div>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </motion.div>
+                )}
+
+                {/* How Rankings Work Explanation - Collapsible */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5, duration: 0.5 }}
+                    className="mb-8"
+                >
+                    <Card className="border border-border/50 shadow-lg bg-card/30 backdrop-blur-sm overflow-hidden">
+                        <CardHeader
+                            className="pb-4 cursor-pointer hover:bg-accent/5 transition-colors"
+                            onClick={() => setIsExplanationOpen(!isExplanationOpen)}
+                        >
+                            <CardTitle className="text-lg flex items-center justify-between gap-2">
+                                <div className="flex mt-6 items-center gap-2">
+                                    <div className="p-1.5 rounded-lg bg-blue-500/10">
+                                        <Trophy className="h-4 w-4 text-blue-500" />
+                                    </div>
+                                    How Rankings Work
+                                </div>
+                                <motion.div
+                                    animate={{ rotate: isExplanationOpen ? 180 : 0 }}
+                                    transition={{ duration: 0.3 }}
+                                >
+                                    <ChevronDown className="h-5 w-5 mt-6 text-muted-foreground" />
+                                </motion.div>
+                            </CardTitle>
+                        </CardHeader>
+                        <AnimatePresence initial={false}>
+                            {isExplanationOpen && (
+                                <motion.div
+                                    initial={{ height: 0, opacity: 0 }}
+                                    animate={{ height: "auto", opacity: 1 }}
+                                    exit={{ height: 0, opacity: 0 }}
+                                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                                >
+                                    <CardContent className="space-y-3 text-sm pt-0">
+                                        {gameId === 'overall' ? (
+                                            <>
+                                                <p className="text-muted-foreground leading-relaxed">
+                                                    <span className="font-semibold text-foreground">Overall Ranking</span> is calculated by adding your <span className="font-medium text-foreground">best score from each game</span>. Only your highest score per game counts toward your total.
+                                                </p>
+                                                <div className="bg-muted/30 rounded-lg p-3 space-y-1.5">
+                                                    <p className="text-xs text-muted-foreground font-medium">Example:</p>
+                                                    <ul className="text-xs space-y-1 text-muted-foreground">
+                                                        <li>• Switch Challenge: Best score = <span className="font-mono text-foreground">85</span> pts</li>
+                                                        <li>• Digit Challenge: Best score = <span className="font-mono text-foreground">72</span> pts</li>
+                                                        <li>• Deductive Challenge: Best score = <span className="font-mono text-foreground">63</span> pts</li>
+                                                        <li className="pt-1 border-t border-border/50 font-semibold text-foreground mb-2 mt-4">→ Total Score = <span className="font-mono">220</span> pts</li>
+                                                    </ul>
+                                                </div>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <p className="text-muted-foreground leading-relaxed">
+                                                    <span className="font-semibold text-foreground">Game-Specific Ranking</span> shows your <span className="font-medium text-foreground">highest score</span> for this particular game. If you play multiple times, only your best performance counts.
+                                                </p>
+                                                <div className="bg-muted/30 rounded-lg p-3">
+                                                    <p className="text-xs text-muted-foreground">
+                                                        💡 <span className="font-medium">Tip:</span> Each correct answer earns you points. Complete more levels and answer accurately to climb the ranks!
+                                                    </p>
+                                                </div>
+                                            </>
+                                        )}
+                                    </CardContent>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </Card>
+                </motion.div>
+
                 <Tabs defaultValue={gameId} onValueChange={handleTabChange} className="w-full space-y-8">
                     <div className="flex justify-center">
                         <TabsList className="bg-background/80 backdrop-blur-xl border border-border/50 p-1 rounded-full h-auto gap-0 md:gap-4 shadow-lg flex-wrap justify-center sm:flex-nowrap">
@@ -187,61 +293,65 @@ export default function LeaderboardClient({ data, gameId }: LeaderboardClientPro
                                             animate="visible"
                                             className="divide-y divide-border/10"
                                         >
-                                            {data.map((entry, index) => (
-                                                <motion.div
-                                                    key={entry.userId}
-                                                    variants={itemVariants}
-                                                    className={`group flex items-center justify-between p-4 sm:p-6 hover:bg-accent/5 transition-all duration-300 ${index === 0 ? 'bg-gradient-to-r from-yellow-500/10 to-transparent' :
-                                                        index === 1 ? 'bg-gradient-to-r from-gray-400/10 to-transparent' :
-                                                            index === 2 ? 'bg-gradient-to-r from-amber-600/10 to-transparent' : ''
-                                                        }`}
-                                                >
-                                                    <div className="flex items-center gap-3 sm:gap-8 flex-1 min-w-0">
-                                                        <div className="w-8 sm:w-12 flex justify-center transform group-hover:scale-110 transition-transform shrink-0">
-                                                            {getRankIcon(entry.rank)}
-                                                        </div>
+                                            {data.map((entry, index) => {
+                                                const isCurrentUser = currentUserId && entry.userId === currentUserId;
+                                                return (
+                                                    <motion.div
+                                                        key={entry.userId}
+                                                        variants={itemVariants}
+                                                        className={`group flex items-center justify-between p-4 sm:p-6 hover:bg-accent/5 transition-all duration-300 ${isCurrentUser ? 'bg-gradient-to-r from-primary/15 via-primary/5 to-transparent border-l-4 border-primary' :
+                                                            index === 0 ? 'bg-gradient-to-r from-yellow-500/10 to-transparent' :
+                                                                index === 1 ? 'bg-gradient-to-r from-gray-400/10 to-transparent' :
+                                                                    index === 2 ? 'bg-gradient-to-r from-amber-600/10 to-transparent' : ''
+                                                            }`}
+                                                    >
+                                                        <div className="flex items-center gap-3 sm:gap-8 flex-1 min-w-0">
+                                                            <div className="w-8 sm:w-12 flex justify-center transform group-hover:scale-110 transition-transform shrink-0">
+                                                                {getRankIcon(entry.rank)}
+                                                            </div>
 
-                                                        <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
-                                                            <div className="relative shrink-0">
-                                                                <Avatar className={`h-10 w-10 sm:h-14 sm:w-14 border-2 ${index === 0 ? 'border-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0.3)]' :
-                                                                    index === 1 ? 'border-gray-400' :
-                                                                        index === 2 ? 'border-amber-700' : 'border-border'
-                                                                    }`}>
-                                                                    <AvatarImage src={entry.image || undefined} alt={entry.name || 'User'} className="object-cover" />
-                                                                    <AvatarFallback className="font-bold bg-muted">{entry.name?.slice(0, 2).toUpperCase() || 'U'}</AvatarFallback>
-                                                                </Avatar>
-                                                                {index < 3 && (
-                                                                    <div className={`absolute -bottom-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center text-[10px] font-bold text-white shadow-sm ${index === 0 ? 'bg-yellow-500' :
-                                                                        index === 1 ? 'bg-gray-400' :
-                                                                            'bg-amber-700'
+                                                            <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
+                                                                <div className="relative shrink-0">
+                                                                    <Avatar className={`h-10 w-10 sm:h-14 sm:w-14 border-2 ${index === 0 ? 'border-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0.3)]' :
+                                                                        index === 1 ? 'border-gray-400' :
+                                                                            index === 2 ? 'border-amber-700' : 'border-border'
                                                                         }`}>
-                                                                        {index + 1}
-                                                                    </div>
-                                                                )}
-                                                            </div>
+                                                                        <AvatarImage src={entry.image || undefined} alt={entry.name || 'User'} className="object-cover" />
+                                                                        <AvatarFallback className="font-bold bg-muted">{entry.name?.slice(0, 2).toUpperCase() || 'U'}</AvatarFallback>
+                                                                    </Avatar>
+                                                                    {index < 3 && (
+                                                                        <div className={`absolute -bottom-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center text-[10px] font-bold text-white shadow-sm ${index === 0 ? 'bg-yellow-500' :
+                                                                            index === 1 ? 'bg-gray-400' :
+                                                                                'bg-amber-700'
+                                                                            }`}>
+                                                                            {index + 1}
+                                                                        </div>
+                                                                    )}
+                                                                </div>
 
-                                                            <div className="flex flex-col min-w-0 pr-2">
-                                                                <span className={`font-bold text-base sm:text-xl truncate ${index === 0 ? 'text-primary' : 'text-foreground'
-                                                                    }`}>
-                                                                    {entry.name || 'Anonymous User'}
-                                                                </span>
-                                                                <span className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider font-semibold">
-                                                                    {index < 3 ? 'Champion' : 'Contender'}
-                                                                </span>
+                                                                <div className="flex flex-col min-w-0 pr-2">
+                                                                    <span className={`font-bold text-base sm:text-xl truncate ${index === 0 ? 'text-primary' : 'text-foreground'
+                                                                        }`}>
+                                                                        {entry.name || 'Anonymous User'}
+                                                                    </span>
+                                                                    <span className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider font-semibold">
+                                                                        {index < 3 ? 'Champion' : 'Contender'}
+                                                                    </span>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
 
-                                                    <div className="pl-2 sm:pl-4 shrink-0">
-                                                        <Badge variant="outline" className={`text-sm sm:text-lg px-2 sm:px-4 py-1 sm:py-1.5 font-mono font-bold tracking-tight border-2 ${index === 0 ? 'border-yellow-500/30 text-yellow-600 bg-yellow-500/5' :
-                                                            'border-border bg-background/50'
-                                                            }`}>
-                                                            {entry.score.toLocaleString()}
-                                                            <span className="text-[10px] ml-1 opacity-60 font-sans uppercase">pts</span>
-                                                        </Badge>
-                                                    </div>
-                                                </motion.div>
-                                            ))}
+                                                        <div className="pl-2 sm:pl-4 shrink-0">
+                                                            <Badge variant="outline" className={`text-sm sm:text-lg px-2 sm:px-4 py-1 sm:py-1.5 font-mono font-bold tracking-tight border-2 ${index === 0 ? 'border-yellow-500/30 text-yellow-600 bg-yellow-500/5' :
+                                                                'border-border bg-background/50'
+                                                                }`}>
+                                                                {entry.score.toLocaleString()}
+                                                                <span className="text-[10px] ml-1 opacity-60 font-sans uppercase">pts</span>
+                                                            </Badge>
+                                                        </div>
+                                                    </motion.div>
+                                                );
+                                            })}
                                         </motion.div>
                                     )}
                                 </CardContent>

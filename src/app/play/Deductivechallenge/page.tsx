@@ -4,6 +4,7 @@ import { generatePuzzle, checkAnswer, Puzzle, Symbol as GameSymbol } from "./gam
 import Container from "@/components/common/Container";
 import GamePage from "@/components/common/GamePage";
 import DeductiveChallengeUI from "@/components/games/DeductiveChallengeUI";
+import { saveScore } from "@/actions/saveScore";
 
 const TIME_PER_QUESTION = 20;
 const SESSION_TIME = 180;
@@ -19,6 +20,14 @@ export default function DeductiveChallenge() {
   const [timeLeft, setTimeLeft] = useState<number>(TIME_PER_QUESTION);
   const [sessionTime, setSessionTime] = useState<number>(SESSION_TIME);
   const [gameStatus, setGameStatus] = useState<'playing' | 'results'>("playing");
+  const [isScoreSaved, setIsScoreSaved] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (gameStatus === "results" && !isScoreSaved) {
+      saveScore("deductive-challenge", correct);
+      setIsScoreSaved(true);
+    }
+  }, [gameStatus, correct, isScoreSaved]);
 
   useEffect(() => {
     const newPuzzle = generatePuzzle(level);
@@ -76,6 +85,7 @@ export default function DeductiveChallenge() {
     setWrong(0);
     setSessionTime(SESSION_TIME);
     setGameStatus("playing");
+    setIsScoreSaved(false);
   };
 
   const formatTime = (t: number) => `${String(Math.floor(t / 60)).padStart(2, "0")}:${String(t % 60).padStart(2, "0")}`;

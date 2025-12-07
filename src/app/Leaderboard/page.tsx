@@ -1,6 +1,8 @@
 import { getLeaderboard } from "@/actions/leaderboard";
 import LeaderboardClient from "./client";
 import type { Metadata } from "next";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 export const metadata: Metadata = {
   title: "Leaderboard | Cognitive Games",
@@ -15,10 +17,16 @@ export default async function LeaderboardPage(
   const searchParams = await props.searchParams;
   const game = typeof searchParams.game === 'string' ? searchParams.game : 'overall';
 
+  // Get current user
+  const session = await auth.api.getSession({
+    headers: await headers()
+  });
+  const currentUserId = session?.user?.id;
+
   // Fetch data
   try {
     const data = await getLeaderboard(game === 'overall' ? undefined : game);
-    return <LeaderboardClient data={data} gameId={game} />;
+    return <LeaderboardClient data={data} gameId={game} currentUserId={currentUserId} />;
   } catch (error) {
     console.error('Failed to fetch leaderboard data:', error);
     return (
