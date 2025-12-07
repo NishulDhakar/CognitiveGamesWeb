@@ -119,8 +119,8 @@ export default function DigitChallengeUI({
                 onClick={() => handleDigitClick(n)}
                 disabled={disabled}
                 className={`h-14 text-lg rounded-2xl font-semibold shadow-md ${disabled
-                    ? "opacity-40 cursor-not-allowed"
-                    : "hover:scale-105 transition-transform"
+                  ? "opacity-40 cursor-not-allowed"
+                  : "hover:scale-105 transition-transform"
                   }`}
               >
                 {n}
@@ -141,7 +141,7 @@ export default function DigitChallengeUI({
         <Button
           onClick={handleSubmit}
           disabled={isAnswered || userDigits.length !== problem.blanks}
-          className="w-full bg-[#A35C2D] h-12 text-lg rounded-2xl shadow-md"
+          className="w-full bg-[#FF3F8F] h-12 text-lg rounded-2xl shadow-md"
         >
           Submit
         </Button>

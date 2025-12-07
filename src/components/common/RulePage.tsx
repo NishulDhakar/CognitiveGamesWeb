@@ -33,8 +33,8 @@ export default function RulePage({ data }: { data: RuleData }) {
 
           <div className="p-4 sm:p-8">
             <div className="flex items-center mb-4 sm:mb-6">
-              <BookOpen className="text-[#C08457] mr-2 sm:mr-3" size={20} />
-              <h2 className="text-xl sm:text-2xl font-semibold text-[#3B3024]">
+              <BookOpen className="text-neutral-900 mr-2 sm:mr-3" size={20} />
+              <h2 className="text-xl sm:text-2xl font-semibold text-neutral-900">
                 How to Play
               </h2>
             </div>
@@ -44,8 +44,8 @@ export default function RulePage({ data }: { data: RuleData }) {
                 <div
                   key={index}
                   className={`group p-3 sm:p-4 rounded-lg border transition-all duration-200 cursor-pointer ${hoveredStep === index
-                      ? "border-[#C08457] bg-[#f5f0e3]"
-                      : "border-[#D6CDBE] hover:border-[#C08457] hover:bg-[#f5f0e3]"
+                    ? "border-[#C08457] bg-[#f5f0e3]"
+                    : "border-[#D6CDBE] hover:border-[#D6CDBE] hover:bg-[#D6CDBE]"
                     }`}
                   onMouseEnter={() => setHoveredStep(index)}
                   onMouseLeave={() => setHoveredStep(null)}
@@ -53,19 +53,19 @@ export default function RulePage({ data }: { data: RuleData }) {
                   <div className="flex items-start gap-3">
                     <div
                       className={`flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-xs sm:text-sm font-semibold transition-colors duration-200 ${hoveredStep === index
-                          ? "bg-[#8B5E3C] text-white"
-                          : "bg-[#D6CDBE] text-[#3B3024]"
+                        ? "bg-neutral-900 text-white"
+                        : "bg-[#D6CDBE] text-neutral-900"
                         }`}
                     >
                       {index + 1}
                     </div>
-                    <p className="text-[#3B3024] flex-1 text-sm sm:text-base leading-relaxed">
+                    <p className="text-neutral-900 flex-1 text-sm sm:text-base leading-relaxed">
                       {step}
                     </p>
                     <ChevronRight
                       className={`transition-transform duration-200 ${hoveredStep === index
-                          ? "translate-x-1 text-[#C08457]"
-                          : "text-[#B0AFA5]"
+                        ? "translate-x-1 text-neutral-900"
+                        : "text-neutral-900"
                         }`}
                       size={16}
                     />
@@ -79,7 +79,7 @@ export default function RulePage({ data }: { data: RuleData }) {
               {data.Solution && (
                 <button
                   onClick={() => setShowSolution(!showSolution)}
-                  className="inline-flex items-center px-5 sm:px-6 py-2.5 sm:py-3 bg-[#A35C2D] text-white rounded-lg font-semibold shadow-md hover:bg-[#8C471B] hover:shadow-lg transition-all duration-200 transform hover:scale-105 text-sm sm:text-base"
+                  className="inline-flex items-center px-5 sm:px-6 py-2.5 sm:py-3 bg-neutral-900 text-white rounded-lg font-semibold shadow-md hover:bg-neutral-800 hover:shadow-lg transition-all duration-200 transform hover:scale-105 text-sm sm:text-base"
                 >
                   {showSolution ? (
                     <>
@@ -96,7 +96,7 @@ export default function RulePage({ data }: { data: RuleData }) {
               <a
                 href={data.playLink}
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-5 sm:px-6 py-2.5 sm:py-3 bg-[#A35C2D] text-white rounded-lg font-semibold shadow-md hover:bg-[#8C471B] hover:shadow-lg transition-all duration-200 transform hover:scale-105 text-sm sm:text-base"
+                className="inline-flex items-center px-5 sm:px-6 py-2.5 sm:py-3  text-white rounded-lg font-semibold shadow-md bg-neutral-900 hover:bg-neutral-800 hover:shadow-lg transition-all duration-200 transform hover:scale-105 text-sm sm:text-base"
               >
                 <Play className="mr-2" size={18} />
                 Play Now
@@ -106,7 +106,7 @@ export default function RulePage({ data }: { data: RuleData }) {
             {/* Solution Content */}
             {showSolution && data.Solution && (
               <div className="mt-6 transition-all duration-500">
-                <div className="p-5 rounded-xl border border-[#D6CDBE] bg-[#fdfcf9] shadow-inner">
+                <div className="p-5 rounded-xl border border-[#D6CDBE] bg-neutral-900 shadow-inner">
                   <h3 className="text-lg font-bold text-[#3B3024] mb-3">
                     Solution
                   </h3>

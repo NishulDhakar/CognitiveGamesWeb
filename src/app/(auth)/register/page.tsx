@@ -32,7 +32,7 @@ export default function RegisterPage() {
 
         <Button
           variant="outline"
-          className="w-full flex items-center justify-center gap-2 px-4 py-3 text-black font-semibold border-2 border-black bg-white shadow-[4px_4px_0px_0px_#000] hover:translate-x-1 hover:translate-y-1 hover:text-white hover:bg-[#A35C2D] hover:shadow-[2px_2px_0px_0px_#000] dark:border-white/20 dark:bg-zinc-900 dark:text-white dark:shadow-[4px_4px_0px_0px_#757373] dark:hover:shadow-[2px_2px_0px_0px_#757373]"
+          className="w-full flex items-center justify-center gap-2 px-4 py-3 text-black font-semibold border-2 border-black bg-white shadow-[4px_4px_0px_0px_#000] hover:translate-x-1 hover:translate-y-1 hover:text-white hover:bg-[#FF3F8F] hover:shadow-[2px_2px_0px_0px_#000] dark:border-white/20 dark:bg-zinc-900 dark:text-white dark:shadow-[4px_4px_0px_0px_#757373] dark:hover:shadow-[2px_2px_0px_0px_#757373]"
           onClick={signInWithGoogle}
         >
           <GoogleIcon className="w-5 h-5" aria-hidden={true} />
