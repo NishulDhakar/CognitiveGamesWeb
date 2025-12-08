@@ -78,3 +78,25 @@ model Verification {
 
   @@map("verification")
 }
+
+model Poll {
+  id        String       @id @default(uuid())
+  question  String
+  isActive  Boolean      @default(true)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  options   PollOption[]
+
+  @@map("poll")
+}
+
+model PollOption {
+  id        String   @id @default(uuid())
+  label     String
+  votes     Int      @default(0)
+  isInput   Boolean  @default(false)
+  pollId    String
+  poll      Poll     @relation(fields: [pollId], references: [id], onDelete: Cascade)
+
+  @@map("poll_option")
+}

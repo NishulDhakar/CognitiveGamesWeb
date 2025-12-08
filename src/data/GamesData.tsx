@@ -4,6 +4,7 @@ export interface GameCardData {
   image: string;
   rulesLink: string;
   description: string;
+  isAvailable?: boolean;
 }
 
 export const gameCards: GameCardData[] = [
@@ -13,15 +14,17 @@ export const gameCards: GameCardData[] = [
     image: "/games/Swithchallenge.jpeg",
     rulesLink: "/rules/Swith-challenge",
     description:
-      "A fast-paced game where you match color names with their actual displayed colors, testing speed and focus under tricky visual cues."
+      "A fast-paced game where you match color names with their actual displayed colors, testing speed and focus under tricky visual cues.",
+    isAvailable: true
   },
-      {
+  {
     id: 3,
     name: "Digit Challenge",
     image: "/games/digitChallenge.jpeg",
     rulesLink: "/rules/digit-challenge",
     description:
-      "A mathematical Operation needs to be solved, by using a few available digits only once. One digit will come only once."
+      "A mathematical Operation needs to be solved, by using a few available digits only once. One digit will come only once.",
+    isAvailable: true
   },
   {
     id: 2,
@@ -29,7 +32,8 @@ export const gameCards: GameCardData[] = [
     image: "/games/DeductiveChallenge.jpeg",
     rulesLink: "/rules/deductive-challenge",
     description:
-      "Mental or logical puzzle that tests deductive reasoning ability, your skill in drawing specific conclusions based on general rules or facts."
+      "Mental or logical puzzle that tests deductive reasoning ability, your skill in drawing specific conclusions based on general rules or facts.",
+    isAvailable: true
   },
 
   {
@@ -38,7 +42,8 @@ export const gameCards: GameCardData[] = [
     image: "/games/InductiveChallenge.jpeg",
     rulesLink: "/rules/Inductive-Challenge",
     description:
-      "A visual puzzle where you find the next figure in a sequence by spotting hidden patterns — sharpens logical and abstract thinking."
+      "A visual puzzle where you find the next figure in a sequence by spotting hidden patterns — sharpens logical and abstract thinking.",
+    isAvailable: false
   },
   {
     id: 5,
@@ -46,7 +51,8 @@ export const gameCards: GameCardData[] = [
     image: "/games/GridChallenge.jpeg",
     rulesLink: "/rules/Grid-Challenge",
     description:
-      "A logic-based game where you sort rows of letters and check if columns stay in order — testing pattern recognition and analytical speed. (Game is not added yet)"
+      "A logic-based game where you sort rows of letters and check if columns stay in order — testing pattern recognition and analytical speed. (Game is not added yet)",
+    isAvailable: false
   },
   {
     id: 6,
@@ -54,6 +60,7 @@ export const gameCards: GameCardData[] = [
     image: "/games/MotionChallenge.jpeg",
     rulesLink: "/rules/Motion-Challenge",
     description:
-      "A fast-paced memory game where objects move, and you must track their final positions — testing focus, recall, and spatial skills. (Game is not added yet)"
+      "A fast-paced memory game where objects move, and you must track their final positions — testing focus, recall, and spatial skills. (Game is not added yet)",
+    isAvailable: false
   }
 ];
