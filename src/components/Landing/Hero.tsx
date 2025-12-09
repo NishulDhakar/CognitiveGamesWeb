@@ -17,7 +17,7 @@ export default function Hero() {
 
         <div className="relative z-10 mt-10 flex flex-col items-center justify-center text-center max-w-4xl mx-auto">
 
-          <motion.a
+          {/* <motion.a
             href="https://www.linkedin.com/in/nishuldhakar"
             target="_blank"
             rel="noopener noreferrer"
@@ -27,7 +27,10 @@ export default function Hero() {
             className="mb-8 flex items-center gap-3 rounded-full 
                backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-foreground
               hover:bg-secondary/50 hover:scale-[1.02] transition-all cursor-pointer"
-          >
+          > */}
+          <div className="mb-8 flex items-center gap-3 rounded-full 
+               backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-foreground
+              hover:bg-secondary/50 hover:scale-[1.02] transition-all cursor-pointer">
             <div className="relative w-10 h-10 overflow-hidden rounded-full border border-primary/20">
               <Image
                 src="/image2.png"
@@ -40,7 +43,8 @@ export default function Hero() {
             </div>
 
             <span className="pr-1 font-bold font-game">By Nishul</span>
-          </motion.a>
+            </div>  
+          {/* </motion.a> */}
 
 
           <motion.h1
@@ -95,7 +99,7 @@ export default function Hero() {
             className="mt-16 pt-8 border-t border-border/50 grid grid-cols-2 md:grid-cols-3 gap-8 w-full max-w-2xl items-center justify-center text-center"
           >
             <div>
-              <h4 className="text-2xl font-bold text-foreground">6+</h4>
+              <h4 className="text-2xl font-bold text-foreground">3+</h4>
               <p className="text-sm text-muted-foreground">Cognitive Games</p>
             </div>
             <div>

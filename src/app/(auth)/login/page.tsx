@@ -3,7 +3,24 @@
 import { signInWithGoogle } from "@/actions/google-auth-action";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import type { JSX, SVGProps } from "react";
+import { type JSX, type SVGProps, useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { signInFormSchema } from "@/lib/auth-schema";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { Loader2 } from "lucide-react";
 
 // Google Icon
 const GoogleIcon = (
@@ -15,6 +32,43 @@ const GoogleIcon = (
 );
 
 export default function LoginPage() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
+  const form = useForm<z.infer<typeof signInFormSchema>>({
+    resolver: zodResolver(signInFormSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  async function onSubmit(values: z.infer<typeof signInFormSchema>) {
+    setLoading(true);
+    const { email, password } = values;
+    await authClient.signIn.email(
+      {
+        email,
+        password,
+      },
+      {
+        onRequest: () => {
+          setLoading(true);
+        },
+        onSuccess: () => {
+          toast.success("Logged in successfully");
+          router.push("/");
+          router.refresh();
+          setLoading(false);
+        },
+        onError: (ctx) => {
+          toast.error(ctx.error.message);
+          setLoading(false);
+        },
+      }
+    );
+  }
+
   return (
     <div className="flex items-center justify-center min-h-screen">
       <div className="flex flex-1 flex-col justify-center px-4 py-10 lg:px-6">
@@ -32,8 +86,56 @@ export default function LoginPage() {
             </Link>
           </p>
 
-          {/* Google Login Button */}
-          <div className="mt-8">
+          <div className="mt-8 space-y-4">
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input placeholder="john@example.com" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Password</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="password"
+                          placeholder="********"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button type="submit" className="w-full" disabled={loading}>
+                  {loading ? <Loader2 className="animate-spin" /> : "Sign In"}
+                </Button>
+              </form>
+            </Form>
+
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t" />
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-background px-2 text-muted-foreground">
+                  Or continue with
+                </span>
+              </div>
+            </div>
+
             <Button
               variant="outline"
               className="w-full flex items-center justify-center gap-2"

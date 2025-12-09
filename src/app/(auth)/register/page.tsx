@@ -3,7 +3,24 @@
 import { signInWithGoogle } from "@/actions/google-auth-action";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import type { JSX, SVGProps } from "react";
+import { type JSX, type SVGProps, useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { formSchema } from "@/lib/auth-schema";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { Loader2 } from "lucide-react";
 
 // Google Icon
 const GoogleIcon = (props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) => (
@@ -13,31 +30,132 @@ const GoogleIcon = (props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) =>
 );
 
 export default function RegisterPage() {
-  return (
-    <div className="flex items-center justify-center min-h-screen  dark:from-zinc-900 dark:to-zinc-800">
-      <div className="flex flex-col items-center justify-center px-6 py-12 rounded-2xl dark:bg-zinc-900 w-full max-w-md">
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
-        <h1 className="text-3xl font-bold text-foreground mb-8 text-center">
-          Welcome !
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+    },
+  });
+
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setLoading(true);
+    const { name, email, password } = values;
+    await authClient.signUp.email(
+      {
+        email,
+        password,
+        name,
+      },
+      {
+        onRequest: () => {
+          setLoading(true);
+        },
+        onSuccess: () => {
+          toast.success("Account created successfully");
+          router.push("/");
+          setLoading(false);
+        },
+        onError: (ctx) => {
+          toast.error(ctx.error.message);
+          setLoading(false);
+        },
+      }
+    );
+  }
+
+  return (
+    <div className="flex items-center justify-center min-h-screen dark:from-zinc-900 dark:to-zinc-800">
+      <div className="flex flex-col items-center justify-center px-6 py-12 rounded-2xl dark:bg-zinc-900 w-full max-w-md">
+        <h1 className="text-3xl font-bold text-foreground mb-2 text-center">
+          Create an account
         </h1>
-        {/* <p className="text-sm text-muted-foreground mb-8 text-center">
-          Don’t have an account?{" "}
+        <p className="text-sm text-muted-foreground mb-8 text-center">
+          Already have an account?{" "}
           <Link
             href="/login"
             className="font-medium text-primary hover:text-primary/90"
           >
             Login
           </Link>
-        </p> */}
+        </p>
 
-        <Button
-          variant="outline"
-          className="w-full flex items-center justify-center gap-2 px-4 py-3 text-black font-semibold border-2 border-black bg-white shadow-[4px_4px_0px_0px_#000] hover:translate-x-1 hover:translate-y-1 hover:text-white hover:bg-[#FF3F8F] hover:shadow-[2px_2px_0px_0px_#000] dark:border-white/20 dark:bg-zinc-900 dark:text-white dark:shadow-[4px_4px_0px_0px_#757373] dark:hover:shadow-[2px_2px_0px_0px_#757373]"
-          onClick={signInWithGoogle}
-        >
-          <GoogleIcon className="w-5 h-5" aria-hidden={true} />
-          Continue with Google
-        </Button>
+        <div className="w-full space-y-4">
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Name</FormLabel>
+                    <FormControl>
+                      <Input placeholder="John Doe" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input placeholder="john@example.com" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder="********"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button type="submit" className="w-full" disabled={loading}>
+                {loading ? <Loader2 className="animate-spin" /> : "Sign Up"}
+              </Button>
+            </form>
+          </Form>
+
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <span className="w-full border-t" />
+            </div>
+            <div className="relative flex justify-center text-xs uppercase">
+              <span className="bg-background px-2 text-muted-foreground">
+                Or continue with
+              </span>
+            </div>
+          </div>
+
+          <Button
+            variant="outline"
+            className="w-full flex items-center justify-center gap-2"
+            onClick={signInWithGoogle}
+          >
+            <GoogleIcon className="w-5 h-5" aria-hidden={true} />
+            Continue with Google
+          </Button>
+        </div>
 
         <p className="mt-6 text-xs text-muted-foreground text-center">
           By continuing, you agree to our{" "}
