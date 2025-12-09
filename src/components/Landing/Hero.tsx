@@ -7,41 +7,39 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
-import { IoArrowRedoOutline } from "react-icons/io5";
+
 
 export default function Hero() {
   return (
     <section className="relative overflow-hidden py-24 md:py-32">
       <Container>
-             
-         
-        <div className="relative z-10 mt-20 flex flex-col items-center justify-center text-center max-w-4xl mx-auto">
+
+
+        <div className="relative z-10 mt-10 flex flex-col items-center justify-center text-center max-w-4xl mx-auto">
 
           <motion.a
-            href="https://www.nishul.dev/projects"
+            href="https://www.linkedin.com/in/nishuldhakar"
             target="_blank"
             rel="noopener noreferrer"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="mb-6 flex items-center gap-3 rounded-full border border-primary/20 
-  bg-white/60 backdrop-blur px-5 py-2 text-sm font-medium text-foreground
-  hover:bg-white/80 hover:scale-[1.03] transition-all"
+            className="mb-8 flex items-center gap-3 rounded-full 
+               backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-foreground
+              hover:bg-secondary/50 hover:scale-[1.02] transition-all cursor-pointer"
           >
-            {/* ✅ IMAGE PLACEHOLDER */}
-            <div>
+            <div className="relative w-10 h-10 overflow-hidden rounded-full border border-primary/20">
               <Image
-                src="/og-logo.png"
-                alt="Nishul's Projects"
-                width={40}
-                height={40}
+                src="/image2.png"
+                alt="Nishul"
+                fill
+                className="object-cover"
                 priority
                 quality={90}
               />
             </div>
 
-            <span>See The Things I've Built</span>
-            <IoArrowRedoOutline className="w-6 h-4 ml-2" />
+            <span className="pr-1 font-bold font-game">By Nishul</span>
           </motion.a>
 
 
