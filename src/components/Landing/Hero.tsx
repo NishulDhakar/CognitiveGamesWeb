@@ -17,8 +17,8 @@ export default function Hero() {
 
         <div className="relative z-10 mt-10 flex flex-col items-center justify-center text-center max-w-4xl mx-auto">
 
-          {/* <motion.a
-            href="https://www.linkedin.com/in/nishuldhakar"
+          <motion.a
+            href="https://www.nishul.dev/"
             target="_blank"
             rel="noopener noreferrer"
             initial={{ opacity: 0, y: 20 }}
@@ -27,7 +27,7 @@ export default function Hero() {
             className="mb-8 flex items-center gap-3 rounded-full 
                backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-foreground
               hover:bg-secondary/50 hover:scale-[1.02] transition-all cursor-pointer"
-          > */}
+          >
           <div className="mb-8 flex items-center gap-3 rounded-full 
                backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-foreground
               hover:bg-secondary/50 hover:scale-[1.02] transition-all cursor-pointer">
@@ -44,7 +44,7 @@ export default function Hero() {
 
             <span className="pr-1 font-bold font-game">By Nishul</span>
             </div>  
-          {/* </motion.a> */}
+          </motion.a>
 
 
           <motion.h1
