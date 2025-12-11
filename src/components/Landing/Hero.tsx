@@ -17,7 +17,7 @@ export default function Hero() {
 
         <div className="relative z-10 mt-10 flex flex-col items-center justify-center text-center max-w-4xl mx-auto">
 
-          <motion.a
+          {/* <motion.a
             href="https://www.nishul.dev/"
             target="_blank"
             rel="noopener noreferrer"
@@ -27,10 +27,10 @@ export default function Hero() {
             className="mb-8 flex items-center gap-3 rounded-full 
                backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-foreground
               hover:bg-secondary/50 hover:scale-[1.02] transition-all cursor-pointer"
-          >
-          <div className="mb-8 flex items-center gap-3 rounded-full 
+          > */}
+          <div className="mb-20 flex items-center gap-3 rounded-full 
                backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-foreground
-              hover:bg-secondary/50 hover:scale-[1.02] transition-all cursor-pointer">
+              hover:bg-secondary/50 hover:scale-[1] transition-all cursor-pointer">
             <div className="relative w-10 h-10 overflow-hidden rounded-full border border-primary/20">
               <Image
                 src="/image2.png"
@@ -44,7 +44,7 @@ export default function Hero() {
 
             <span className="pr-1 font-bold font-game">By Nishul</span>
             </div>  
-          </motion.a>
+          {/* </motion.a> */}
 
 
           <motion.h1
@@ -85,8 +85,8 @@ export default function Hero() {
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="h-12 px-8 text-base">
-              <Link href="/capgemini-cognitive-ability-games">
-                Learn Methodology
+              <Link href="/iq-tests">
+                Take IQ Test <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </Button>
           </motion.div>

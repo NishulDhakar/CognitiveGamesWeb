@@ -14,7 +14,7 @@ export async function saveScore(gameId: string, score: number) {
             return { success: false, error: "Unauthorized" };
         }
 
-        await (prisma as any).gameScore.create({
+        await prisma.gameScore.create({
             data: {
                 userId: session.user.id,
                 gameId,

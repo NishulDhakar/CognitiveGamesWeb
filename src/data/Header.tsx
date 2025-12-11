@@ -10,22 +10,25 @@ export const navbarConfig = {
     height: 70,
   },
   navItems: [
-    {
-      label: 'Blog',
-      href: '/capgemini-cognitive-ability-games',
-    },
+    // {
+    //   label: 'Blog',
+    //   href: '/capgemini-cognitive-ability-games',
+    // },
     {
       label: 'Games',
       href: '/capgemini-games',
     },
-
-       {
+    {
       label: 'Leaderboard',
       href: '/Leaderboard',
     },
-         {
-      label: 'Contact',
-      href: '/contact',
-    },
+    // {
+    //   label: 'IQ Tests',
+    //   href: '/iq-tests',
+    // },
+    //      {
+    //   label: 'Contact',
+    //   href: '/contact',
+    // },
   ] as NavItem[],
 };
