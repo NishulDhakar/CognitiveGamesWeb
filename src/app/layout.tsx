@@ -38,6 +38,13 @@ export const metadata: Metadata = {
     "placement aptitude games",
     "campus placement 2025 preparation",
     "cognitive assessment practice online",
+    "capgemini-game-based-aptitude-test-questions",
+    "capgemini coding questions",
+    "capgemini game based aptitude test",
+    "capgemini game based aptitude test 2025",
+    "capgemini technical assessment questions",
+    "Capgemini Exceller Game Based Aptitude Test",
+    "capgemini game based aptitude"
   ],
 
   alternates: {
