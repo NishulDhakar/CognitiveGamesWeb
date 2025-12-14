@@ -12,7 +12,7 @@ export const gameCards: GameCardData[] = [
     id: 1,
     name: "Swich Challenge",
     image: "/switch.png",
-    rulesLink: "/play/switch-challenge",
+    rulesLink: "/play/Switchchallenge",
     description:
       "A fast-paced game where you match color names with their actual displayed colors, testing speed and focus under tricky visual cues.",
     isAvailable: true
