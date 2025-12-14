@@ -29,7 +29,7 @@ export default function Music() {
   return (
     <button
       onClick={toggleMusic}
-      className=" bg-white/20 backdrop-blur-sm p-2 rounded-full hover:bg-white/40 transition">
+      className=" bg-white/10 backdrop-blur-sm p-2 rounded-full hover:bg-white/40 transition">
       {isPlaying ? <Volume2 size={24} /> : <VolumeX size={24} />}
     </button>
   );

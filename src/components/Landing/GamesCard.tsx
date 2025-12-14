@@ -10,81 +10,102 @@ import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function GamesCard() {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <div>
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 pt-4 pb-16 px-4" ref={ref}>
+    <div className="relative">
+      <div
+        ref={ref}
+        className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 px-4 pt-6 pb-20"
+      >
         {gameCards.map((game, index) => {
-          const isAvailable = game.isAvailable !== false; // Default to true if undefined
+          const isAvailable = game.isAvailable !== false;
 
           return (
             <motion.div
               key={game.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.6, delay: index * 0.12 }}
               className="group h-full"
             >
-              <div className={cn("block h-full relative", !isAvailable && "cursor-not-allowed")}>
+              <div
+                className={cn(
+                  "relative h-full",
+                  !isAvailable && "cursor-not-allowed"
+                )}
+              >
+                {/* Coming Soon Overlay */}
                 {!isAvailable && (
-                  <div className="absolute inset-0 z-20 flex items-center justify-center bg-background/10 backdrop-blur-[2px] rounded-2xl">
-                    <div className="bg-background/80 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 shadow-lg">
-                      <span className="text-sm font-medium text-muted-foreground">Coming Soon</span>
-                    </div>
+                  <div className="absolute inset-0 z-20 flex items-center justify-center rounded-3xl bg-white/40 backdrop-blur-sm">
+                    <span className="px-5 py-2 text-sm font-semibold rounded-full bg-white/80 text-emerald-800 shadow">
+                      Coming Soon
+                    </span>
                   </div>
                 )}
 
                 <Link
                   href={isAvailable ? game.rulesLink : "#"}
-                  className={cn("block h-full", !isAvailable && "pointer-events-none select-none")}
                   aria-disabled={!isAvailable}
+                  className={cn(
+                    "block h-full",
+                    !isAvailable && "pointer-events-none select-none"
+                  )}
                 >
-                  <Card className={cn(
-                    "relative h-full overflow-hidden rounded-2xl bg-card border-border shadow-sm transition-all duration-300 flex flex-col",
-                    isAvailable ? "hover:shadow-xl hover:border-primary/20" : "opacity-80 grayscale-[0.5]"
-                  )}>
+                  <Card
+                    className={cn(
+                      "relative h-full overflow-hidden rounded-3xl flex flex-col",
+                      "bg-white/70 backdrop-blur-md",
+                      "border border-white/40",
+                      "shadow-[0_20px_40px_rgba(0,0,0,0.12)]",
+                      "transition-all duration-500 ease-out",
+                      isAvailable
+                        ? "hover:-translate-y-2 hover:shadow-[0_30px_60px_rgba(34,197,94,0.25)]"
+                        : "opacity-75 grayscale"
+                    )}
+                  >
                     {/* Image Section */}
-                    <div className="relative h-56 w-full overflow-hidden bg-muted">
+                    <div className="relative h-52 w-full overflow-hidden rounded-t-3xl bg-gradient-to-br from-green-100 via-sky-100 to-blue-100">
                       <Image
                         src={game.image}
                         alt={game.name}
                         fill
+                        priority={index < 3}
                         className={cn(
-                          "object-cover transition-transform duration-500",
-                          isAvailable && "group-hover:scale-105"
+                          "object-cover transition-transform duration-700",
+                          isAvailable && "group-hover:scale-110"
                         )}
                       />
-                      {/* Subtle Gradient Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60" />
+
+                      {/* Soft sunlight overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-white/60 via-transparent to-transparent" />
                     </div>
 
-                    {/* Content Section */}
-                    <div className="flex flex-col flex-1 p-5 relative">
-                      <div className="flex justify-between items-start mb-2">
-                        <h3 className={cn(
-                          "text-xl font-bold text-foreground transition-colors duration-200",
-                          isAvailable && "group-hover:text-primary"
-                        )}>
-                          {game.name}
-                        </h3>
-                      </div>
+                    {/* Content */}
+                    <div className="flex flex-col flex-1 p-6">
+                      <h3 className="text-lg font-semibold text-emerald-900 mb-2">
+                        {game.name}
+                      </h3>
 
-                      <p className="text-muted-foreground text-sm leading-relaxed mb-6 line-clamp-2">
+                      <p className="text-sm text-emerald-800/70 leading-relaxed line-clamp-2 mb-6">
                         {game.description}
                       </p>
 
-                      <div className="mt-auto pt-4 border-t border-border/50 flex items-center justify-between text-sm font-medium">
-                        <span className="text-muted-foreground group-hover:text-foreground transition-colors">
+                      {/* Footer */}
+                      <div className="mt-auto flex items-center justify-between">
+                        <span className="text-sm font-medium text-emerald-700">
                           {isAvailable ? "Play Now" : "Coming Soon"}
                         </span>
-                        <div className={cn(
-                          "p-2 rounded-full transition-colors duration-300",
-                          isAvailable
-                            ? "bg-secondary text-secondary-foreground group-hover:bg-primary group-hover:text-primary-foreground"
-                            : "bg-muted text-muted-foreground"
-                        )}>
+
+                        <div
+                          className={cn(
+                            "p-2.5 rounded-full transition-all duration-300",
+                            isAvailable
+                              ? "bg-emerald-500 text-white group-hover:scale-110"
+                              : "bg-gray-300 text-gray-600"
+                          )}
+                        >
                           <ArrowRight className="w-4 h-4" />
                         </div>
                       </div>

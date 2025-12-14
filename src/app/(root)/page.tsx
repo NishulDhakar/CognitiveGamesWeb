@@ -9,8 +9,8 @@ import Poll from "@/components/Landing/Poll";
 export default function Home() {
   return (
     <div>
+      <Hero />
       <Container>
-        <Hero />
         <About />
         <Testimonial />
         <Poll />

@@ -162,7 +162,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
       </head>
 
-      <body className="bg-white relative">
+      <body className="bg-white/50 relative">
         {/* The Gradient Approximation Element */}
         <div className="absolute top-0 left-0 w-full h-[600px] opacity-40 mix-blend-multiply pointer-events-none">
           {/* Pink/Red Blob */}

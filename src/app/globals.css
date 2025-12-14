@@ -206,3 +206,16 @@ body {
   filter: blur(3px);
 }
 
+@keyframes skyShift {
+  0% { filter: hue-rotate(0deg); }
+  50% { filter: hue-rotate(6deg); }
+  100% { filter: hue-rotate(0deg); }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

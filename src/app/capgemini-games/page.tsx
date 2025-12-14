@@ -6,12 +6,22 @@ import { motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import BackToDashboard from '@/components/common/BackToDashboard'
+import Image from 'next/image'
 
 const page = () => {
   const router = useRouter();
 
   return (
     <div className="min-h-screen relative overflow-hidden">
+                <div className="fixed inset-0 ">
+            <Image
+              src="/store.jpg"
+              alt="Background"
+              fill
+              priority
+              className="object-cover"
+            />
+          </div>
       {/* Decorative Background Elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
         <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px]" />
@@ -42,7 +52,7 @@ const page = () => {
             <span className="absolute -bottom-4 -left-6 animate-pulse delay-300 opacity-60">
               <Zap className="h-6 w-6 text-blue-500" />
             </span> */}
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
           Games 
           </h1>
           </motion.div>
@@ -51,7 +61,7 @@ const page = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="text-xl text-muted-foreground max-w-2xl mx-auto font-light leading-relaxed"
+            className="text-xl text-muted-foreground max-w-2xl mx-auto font-light text-white leading-relaxed"
           >
             Challenge your mind with our suite of specialized cognitive games designed to test and improve your mental agility.
           </motion.p>

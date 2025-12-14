@@ -56,8 +56,8 @@ function Navbar() {
         className={cn(
           "flex items-center justify-between px-6 h-16 rounded-full border transition-all duration-300",
           scrolled || mobileOpen
-            ? "bg-background/70 backdrop-blur-xl border-border/40 shadow-sm"
-            : "bg-background/40 backdrop-blur-md border-transparent"
+            ? "bg-background/10 backdrop-blur-xl border-border/40 shadow-sm"
+            : "bg-background/00 border-transparent"
         )}
       >
         {/* Logo */}
@@ -87,8 +87,8 @@ function Navbar() {
                 className={cn(
                   "text-sm font-medium transition-colors duration-300 relative py-1",
                   isActive
-                    ? "text-primary"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "text-primary/10"
+                    : "text-foreground/50 hover:text-foreground"
                 )}
               >
                 {item.label}

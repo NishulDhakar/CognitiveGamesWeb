@@ -11,10 +11,16 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden py-24 md:py-32">
-      <Container>
-
-
+    <section className="relative h-[calc(105vh-6rem)] overflow-hidden py-24 md:py-32">
+         <Image
+                src="/bg.jpg"
+                alt="Nishul"
+                fill
+                className="object-cover"
+                priority
+                quality={90}
+              />
+    
         <div className="relative z-10 mt-10 flex flex-col items-center justify-center text-center max-w-4xl mx-auto">
 
           {/* <motion.a
@@ -81,14 +87,14 @@ export default function Hero() {
           >
             <Button asChild size="lg" className="h-12 px-8 text-base">
               <Link href="/capgemini-games">
-                Start Training <ArrowRight className="ml-2 w-4 h-4" />
+                Start Playing <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="h-12 px-8 text-base">
+            {/* <Button asChild variant="outline" size="lg" className="h-12 px-8 text-base">
               <Link href="/iq-tests">
                 Take IQ Test <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
-            </Button>
+            </Button> */}
           </motion.div>
 
           {/* Stats / Trust Indicators (Optional placeholder for professional look) */}
@@ -96,7 +102,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 1 }}
-            className="mt-16 pt-8 border-t border-border/50 grid grid-cols-2 md:grid-cols-3 gap-8 w-full max-w-2xl items-center justify-center text-center"
+            className="mt-16 pt-8 border-t border-[#111]/40 grid grid-cols-2 md:grid-cols-3 gap-8 w-full max-w-2xl items-center justify-center text-center"
           >
             <div>
               <h4 className="text-2xl font-bold text-foreground">3+</h4>
@@ -113,7 +119,7 @@ export default function Hero() {
           </motion.div>
 
         </div>
-      </Container>
+
 
       {/* Subtle Background */}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />

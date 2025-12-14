@@ -88,7 +88,7 @@ export default function About() {
   ];
 
   return (
-    <section className="py-24 bg-muted/30 relative overflow-hidden">
+    <section className="py-24 relative overflow-hidden">
       <Container>
         <div className="mb-16 text-center max-w-3xl mx-auto relative z-10">
           <motion.div

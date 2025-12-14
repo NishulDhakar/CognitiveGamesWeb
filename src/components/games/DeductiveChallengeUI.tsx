@@ -39,116 +39,138 @@ const DeductiveChallengeUI: React.FC<DeductiveChallengeUIProps> = ({
   const isDistractorCell = (r: number, c: number) => puzzle && puzzle.emptyCells.some((cell: { row: number, col: number }) => cell.row === r && cell.col === c) && !isTargetCell(r, c);
 
   return (
-    <>
-      {gameStatus === "results" ? (
+  <>
+    {gameStatus === "results" ? (
+      <ResultCard
+        correct={correct}
+        wrong={wrong}
+        resetGame={resetGame}
+        onCheckRank={() => router.push("/Leaderboard")}
+      />
+    ) : (
+      <div className="relative max-w-xl mx-auto
+        rounded-3xl bg-white/75 backdrop-blur-xl
+        border border-white/40
+        shadow-[0_20px_60px_rgba(0,0,0,0.12)]
+        p-6 md:p-8">
 
-        <ResultCard
-          correct={correct}
-          wrong={wrong}
-          resetGame={resetGame}
-          onCheckRank={() => router.push("/Leaderboard")}
-        />
-
-      ) : (
-        <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl 	p-4 md:p-8 relative border border-white/50">
-          {/* Enhanced instruction */}
-          <div className="text-center mb-8">
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">Find the Missing Symbol</h3>
-            <p className="text-gray-600">Choose the correct answer from the options below</p>
+        {/* Feedback */}
+        {isAnswered && (
+          <div className={`absolute inset-0 z-10 flex flex-col items-center justify-center
+            rounded-3xl backdrop-blur-sm
+            ${isCorrect ? "bg-emerald-50/80" : "bg-rose-50/80"}`}>
+            <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-3
+              ${isCorrect ? "bg-emerald-100" : "bg-rose-100"}`}>
+              <span className={`text-3xl font-bold
+                ${isCorrect ? "text-emerald-600" : "text-rose-600"}`}>
+                {isCorrect ? "✓" : "✗"}
+              </span>
+            </div>
+            <h3 className="text-xl font-bold">
+              {isCorrect ? "Correct" : "Wrong"}
+            </h3>
+            <p className="text-sm text-muted-foreground mt-1">
+              {isCorrect ? "Good deduction!" : "Try the next one"}
+            </p>
           </div>
-          {/* Enhanced feedback overlay */}
-          {isAnswered && (
-            <div className={`absolute inset-0 flex flex-col items-center justify-center bg-white/90 backdrop-blur-sm rounded-3xl transition-all duration-500 ${isCorrect ? 'border-4 border-emerald-300' : 'border-4 border-rose-300'
-              }`}
-              style={{ zIndex: 10, pointerEvents: 'none' }}>
-              <div className={`mb-4 w-20 h-20 rounded-full flex items-center justify-center ${isCorrect ? 'bg-emerald-100' : 'bg-rose-100'
-                }`}>
-                <span className={`text-4xl ${isCorrect ? 'text-emerald-600' : 'text-rose-600'}`}>
-                  {isCorrect ? '✓' : '✗'}
-                </span>
-              </div>
-              <span className={`text-2xl font-bold ${isCorrect ? 'text-emerald-700' : 'text-rose-700'}`}>
-                {isCorrect ? 'Correct!' : 'Wrong!'}
-              </span>
-              <div className="mt-2 text-gray-600">
-                {isCorrect ? 'Well done!' : 'Better luck next time!'}
-              </div>
+        )}
+
+        {/* Instructions */}
+        <div className="text-center mb-6">
+          <h3 className="text-lg font-semibold">Find the Missing Symbol</h3>
+          <p className="text-sm text-muted-foreground">
+            Analyze the pattern and choose the correct option
+          </p>
+        </div>
+
+        {/* Puzzle Grid */}
+        {puzzle && (
+          <div className="flex justify-center mb-8">
+            <div
+              className="grid gap-3 p-4 rounded-2xl bg-slate-50 border border-slate-200"
+              style={{ gridTemplateColumns: `repeat(${puzzle.grid.length}, 1fr)` }}
+            >
+              {puzzle.grid.map((row, rIdx) =>
+                row.map((cell, cIdx) => {
+                  if (isTargetCell(rIdx, cIdx)) {
+                    return (
+                      <div
+                        key={`${rIdx}-${cIdx}`}
+                        className="w-12 h-12 md:w-14 md:h-14
+                          flex items-center justify-center
+                          rounded-xl border-2 border-primary
+                          bg-primary/10 text-primary
+                          text-2xl font-bold">
+                        ?
+                      </div>
+                    );
+                  }
+                  if (isDistractorCell(rIdx, cIdx)) {
+                    return (
+                      <div
+                        key={`${rIdx}-${cIdx}`}
+                        className="w-12 h-12 md:w-14 md:h-14
+                          rounded-xl bg-slate-200/60"
+                      />
+                    );
+                  }
+                  return (
+                    <div
+                      key={`${rIdx}-${cIdx}`}
+                      className="w-12 h-12 md:w-14 md:h-14
+                        flex items-center justify-center
+                        rounded-xl bg-white border border-slate-200
+                        text-xl font-semibold">
+                      {cell}
+                    </div>
+                  );
+                })
+              )}
             </div>
-          )}
-          {/* Enhanced Grid */}
-          {puzzle && (
-            <div className="mb-10 flex justify-center">
-              <div className="grid gap-6 md:gap-3 p-6 bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl border-2 border-slate-200 shadow-inner"
-                style={{ gridTemplateColumns: `repeat(${puzzle.grid.length}, minmax(0, 1fr))` }}>
-                {puzzle.grid.map((row, rIdx) =>
-                  row.map((cell, cIdx) => {
-                    if (isTargetCell(rIdx, cIdx)) {
-                      return (
-                        <div
-                          key={`${rIdx}-${cIdx}`}
-                          className="	w-10 h-10 md:w-14 md:h-14 flex items-center justify-center text-xl md:text-3xl rounded-xl font-bold shadow-lg border-3 border-blue-400 bg-gradient-to-br from-blue-100 to-blue-200 text-blue-500 animate-pulse"
-                        >
-                          ?
-                        </div>
-                      );
-                    } else if (isDistractorCell(rIdx, cIdx)) {
-                      return (
-                        <div
-                          key={`${rIdx}-${cIdx}`}
-                          className="	w-10 h-10 md:w-14 md:h-14 flex items-center justify-center text-xl md:text-3xl rounded-xl font-bold shadow-md border-2 border-slate-300 bg-gradient-to-br from-slate-200 to-slate-300 opacity-60"
-                        >
-                        </div>
-                      );
-                    } else {
-                      return (
-                        <div
-                          key={`${rIdx}-${cIdx}`}
-                          className="	w-10 h-10 md:w-14 md:h-14 flex items-center justify-center text-xl md:text-3xl rounded-xl font-bold shadow-lg border-2 border-slate-300 bg-gradient-to-br from-white to-slate-50 text-slate-700 hover:shadow-xl transition-all duration-200"
-                        >
-                          {cell}
-                        </div>
-                      );
-                    }
-                  })
-                )}
-              </div>
-            </div>
-          )}
-          {/* Enhanced Options */}
-          {puzzle && (
-            <div className="mb-8">
-              <div className="grid grid-cols-2 gap-4">
-                {puzzle.options.map((option, idx) => (
-                  <button
-                    key={`${option}-${idx}`}
-                    onClick={() => handleSelect(option)}
-                    disabled={isAnswered}
-                    className={`h-12 md:h-16 text-lg md:text-2xl rounded-2xl font-bold shadow-lg border-2 transition-all duration-200 transform ${selected === option && isAnswered
+          </div>
+        )}
+
+        {/* Options */}
+        {puzzle && (
+          <div className="grid grid-cols-2 gap-4 mb-8">
+            {puzzle.options.map((option, idx) => {
+              const isSelected = selected === option;
+              return (
+                <button
+                  key={`${option}-${idx}`}
+                  onClick={() => handleSelect(option)}
+                  disabled={isAnswered}
+                  className={`h-14 md:h-16 rounded-xl text-xl font-bold
+                    transition-all
+                    ${isAnswered && isSelected
                       ? isCorrect
-                        ? "bg-gradient-to-r from-emerald-200 to-emerald-300 border-emerald-400 text-emerald-800 shadow-xl"
-                        : "bg-gradient-to-r from-rose-200 to-rose-300 border-rose-400 text-rose-800 shadow-xl"
-                      : "bg-gradient-to-br from-white to-slate-50 border-slate-300 text-slate-700 hover:from-blue-50 hover:to-blue-100 hover:border-blue-300 hover:shadow-xl hover:scale-105 active:scale-95"
-                      } ${isAnswered ? 'cursor-not-allowed' : 'cursor-pointer'}`}
-                  >
-                    {option}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-          {/* Enhanced Timer */}
-          <div className="text-center">
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-slate-100 to-slate-200 px-6 py-3 rounded-2xl border-2 border-slate-300 shadow-lg">
-              <div className={`w-3 h-3 rounded-full ${timeLeft <= 5 ? 'bg-red-500 animate-pulse' : 'bg-green-500'}`}></div>
-              <span className={`font-mono text-lg font-semibold ${timeLeft <= 5 ? 'text-red-600' : 'text-slate-700'}`}>
-                {timeLeft}s
-              </span>
-            </div>
+                        ? "bg-emerald-500 text-white"
+                        : "bg-rose-500 text-white"
+                      : "bg-white border border-slate-300 hover:border-primary hover:bg-primary/5"}
+                    ${isAnswered ? "cursor-not-allowed" : ""}`}
+                >
+                  {option}
+                </button>
+              );
+            })}
+          </div>
+        )}
+
+        {/* Timer */}
+        <div className="flex justify-center">
+          <div className={`px-5 py-2 rounded-full text-sm font-mono font-semibold
+            border
+            ${timeLeft <= 5
+              ? "border-red-400 text-red-600 animate-pulse"
+              : "border-slate-300 text-slate-700"}`}>
+            ⏱ {timeLeft}s
           </div>
         </div>
-      )}
-    </>
-  );
+      </div>
+    )}
+  </>
+);
+
 };
 
 export default DeductiveChallengeUI;

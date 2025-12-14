@@ -10,6 +10,7 @@ import { Crown, Medal, Trophy, ArrowLeft, Gamepad2, LayoutGrid, Binary, ArrowRig
 import { useRouter } from "next/navigation";
 import BackToDashboard from "@/components/common/BackToDashboard";
 import { useState } from "react";
+import Image from "next/image";
 
 interface LeaderboardClientProps {
     data: LeaderboardEntry[];
@@ -86,6 +87,20 @@ export default function LeaderboardClient({ data, gameId, currentUserId }: Leade
 
     return (
         <div className="min-h-screen relative overflow-hidden">
+               {/* Fixed Background */}
+<div className="fixed inset-0 ">
+  <Image
+    src="/leaderboard.jpg"
+    alt="Background"
+    fill
+    priority
+    className="object-cover"
+  />
+</div>
+
+{/* Optional dark overlay for readability */}
+<div className="fixed inset-0 -z-10 bg-black/40 backdrop-blur-[1px]" />
+
             {/* Decorative Background Elements */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
                 <div className="absolute top-[10%] left-[5%] w-72 h-72 bg-primary/5 rounded-full blur-[100px]" />

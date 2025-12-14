@@ -7,6 +7,7 @@ import GamePage from "@/components/common/GamePage";
 import { generateDigitProblem, checkAnswer, DigitProblem } from "./gameLogic";
 import DigitChallengeUI from "@/components/games/DigitGameUI";
 import { saveScore } from "@/actions/saveScore";
+import Image from "next/image";
 
 const TIME_PER_QUESTION = 30; // seconds
 const SESSION_TIME = 180; // total session seconds
@@ -137,7 +138,20 @@ export default function DigitChallengePage() {
     `${String(Math.floor(t / 60)).padStart(2, "0")}:${String(t % 60).padStart(2, "0")}`;
 
   return (
-    <Container>
+    <div>
+           <div className="fixed inset-0 ">
+  <Image
+    src="/game.jpg"
+    alt="Background"
+    fill
+    priority
+    className="object-cover"
+  />
+</div>
+
+{/* Optional overlay */}
+<div className="fixed inset-0 -z-0 bg-black/20" />
+                        <Container>
       <GamePage title="Digit Challenge" level={level} timer={formatTime(sessionTime)}>
 
 
@@ -159,5 +173,7 @@ export default function DigitChallengePage() {
 
       </GamePage>
     </Container>
+    </div>
+
   );
 }

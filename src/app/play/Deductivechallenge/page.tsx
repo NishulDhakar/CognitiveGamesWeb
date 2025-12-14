@@ -5,6 +5,7 @@ import Container from "@/components/common/Container";
 import GamePage from "@/components/common/GamePage";
 import DeductiveChallengeUI from "@/components/games/DeductiveChallengeUI";
 import { saveScore } from "@/actions/saveScore";
+import Image from "next/image";
 
 const TIME_PER_QUESTION = 20;
 const SESSION_TIME = 180;
@@ -91,6 +92,19 @@ export default function DeductiveChallenge() {
   const formatTime = (t: number) => `${String(Math.floor(t / 60)).padStart(2, "0")}:${String(t % 60).padStart(2, "0")}`;
 
   return (
+       <div>
+               <div className="fixed inset-0 ">
+      <Image
+        src="/game.jpg"
+        alt="Background"
+        fill
+        priority
+        className="object-cover"
+      />
+    </div>
+    
+    {/* Optional overlay */}
+    <div className="fixed inset-0 -z-0 bg-black/20" />
     <Container>
       <GamePage title="Deductive Challenge" level={level} timer={formatTime(sessionTime)}>
         <DeductiveChallengeUI
@@ -108,5 +122,6 @@ export default function DeductiveChallenge() {
         />
       </GamePage>
     </Container>
+    </div>
   );
 }

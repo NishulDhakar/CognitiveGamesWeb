@@ -11,8 +11,8 @@ export const gameCards: GameCardData[] = [
   {
     id: 1,
     name: "Swich Challenge",
-    image: "/games/Swithchallenge.jpeg",
-    rulesLink: "/rules/Swith-challenge",
+    image: "/switch.png",
+    rulesLink: "/play/switch-challenge",
     description:
       "A fast-paced game where you match color names with their actual displayed colors, testing speed and focus under tricky visual cues.",
     isAvailable: true
@@ -20,8 +20,8 @@ export const gameCards: GameCardData[] = [
   {
     id: 3,
     name: "Digit Challenge",
-    image: "/games/digitChallenge.jpeg",
-    rulesLink: "/rules/digit-challenge",
+    image: "/digit.png",
+    rulesLink: "/play/Digitchallenge",
     description:
       "A mathematical Operation needs to be solved, by using a few available digits only once. One digit will come only once.",
     isAvailable: true
@@ -29,8 +29,8 @@ export const gameCards: GameCardData[] = [
   {
     id: 2,
     name: "Deductive Challenge",
-    image: "/games/DeductiveChallenge.jpeg",
-    rulesLink: "/rules/deductive-challenge",
+    image: "/deductive.png",
+    rulesLink: "/play/Deductivechallenge",
     description:
       "Mental or logical puzzle that tests deductive reasoning ability, your skill in drawing specific conclusions based on general rules or facts.",
     isAvailable: true
