@@ -11,7 +11,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative h-[calc(105vh-6rem)] overflow-hidden py-24 md:py-32">
+    <section className="relative h-[calc(105vh-6rem)] overflow-hidden py-24 md:py-24">
          <Image
                 src="/bg.jpg"
                 alt="Nishul"
@@ -34,7 +34,7 @@ export default function Hero() {
                backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-foreground
               hover:bg-secondary/50 hover:scale-[1.02] transition-all cursor-pointer"
           > */}
-          <div className="mb-20 flex items-center gap-3 rounded-full 
+          <div className="mb-6 flex items-center gap-3 rounded-full 
                backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-foreground
               hover:bg-secondary/50 hover:scale-[1] transition-all cursor-pointer">
             <div className="relative w-10 h-10 overflow-hidden rounded-full border border-primary/20">
@@ -52,6 +52,31 @@ export default function Hero() {
             </div>  
           {/* </motion.a> */}
 
+<motion.a
+  href="https://peerlist.io/nishuldhakar/project/cognitive-games-web"
+  target="_blank"
+  rel="noreferrer"
+  initial={{ opacity: 0, y: 10 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5, delay: 0.15 }}
+  className="
+    mb-12 inline-flex items-center justify-center
+    rounded-2xl
+    backdrop-blur-xl
+    bg-black/40
+    border border-white/10
+
+    hover:bg-black/55 hover:scale-[1]
+    transition-all duration-300
+    
+  "
+>
+  <img
+    src="https://peerlist.io/api/v1/projects/embed/PRJHP6LRJQR7OJLB63KDA6ELL86RQQ?showUpvote=true&theme=dark"
+    alt="Cognitive Games Web on Peerlist"
+    className="h-[72px] w-auto rounded-lg"
+  />
+</motion.a>
 
           <motion.h1
             className="text-4xl md:text-6xl lg:text-7xl text-center font-bold tracking-tight text-foreground mb-6 leading-tight"
