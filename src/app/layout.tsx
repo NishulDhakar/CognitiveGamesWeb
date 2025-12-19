@@ -1,13 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import dynamic from "next/dynamic";
 import "./globals.css";
+import Script from "next/script";
 
 // Lazy load heavy components
 const ReactLenis = dynamic(() => import("lenis/react"));
-const Analytics = dynamic(() => import("@vercel/analytics/next").then(mod => mod.Analytics));
 
 // ✅ OFFICIAL SITE CANONICAL URL
-const SITE_URL = "https://games.nishul.dev";
+const SITE_URL = "https://www.cognitivegames.me";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -143,6 +143,22 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+            {/* ✅ Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-BJ15H8V1B1"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-BJ15H8V1B1', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
+
         {/* ✅ STRUCTURED DATA */}
         <script
           type="application/ld+json"
@@ -172,7 +188,6 @@ export default function RootLayout({
         </div>
         <ReactLenis root>
           <main>{children}</main>
-          <Analytics />
         </ReactLenis>
       </body>
     </html>
