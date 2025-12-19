@@ -34,7 +34,7 @@ export default function Hero() {
                backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-foreground
               hover:bg-secondary/50 hover:scale-[1.02] transition-all cursor-pointer"
           > */}
-          <div className="mb-6 flex items-center gap-3 rounded-full 
+          {/* <div className="mb-6 flex items-center gap-3 rounded-full 
                backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-foreground
               hover:bg-secondary/10 hover:scale-[1] transition-all cursor-pointer">
             <div className="relative w-10 h-10 overflow-hidden rounded-full border border-primary/20">
@@ -49,37 +49,13 @@ export default function Hero() {
             </div>
 
             <span className="pr-1 font-bold font-game">By Nishul</span>
-            </div>  
+            </div>   */}
           {/* </motion.a> */}
 
-<motion.a
-  href="https://peerlist.io/nishuldhakar/project/cognitive-games-web"
-  target="_blank"
-  rel="noreferrer"
-  initial={{ opacity: 0, y: 10 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.5, delay: 0.15 }}
-  className="
-    mb-12 inline-flex items-center justify-center
-    rounded-2xl
-    backdrop-blur-xl
-    bg-black/40
-    border border-white/10
 
-    hover:bg-black/55 hover:scale-[1]
-    transition-all duration-300
-    
-  "
->
-  <img
-    src="https://peerlist.io/api/v1/projects/embed/PRJHP6LRJQR7OJLB63KDA6ELL86RQQ?showUpvote=true&theme=dark"
-    alt="Cognitive Games Web on Peerlist"
-    className="h-[72px] w-auto rounded-lg"
-  />
-</motion.a>
 
           <motion.h1
-            className="text-4xl md:text-6xl lg:text-7xl text-center font-bold tracking-tight text-foreground mb-6 leading-tight"
+            className="text-4xl md:text-6xl mt-6 lg:text-7xl text-center font-bold tracking-tight text-foreground mb-6 leading-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -110,7 +86,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-                       <Button asChild variant="outline" size="lg" className="h-12 px-8 text-base">
+            <Button asChild variant="outline" size="lg" className="h-12 px-8 text-base">
               <Link href="/memorygames">
                 Memory game <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
@@ -123,6 +99,32 @@ export default function Hero() {
 
           </motion.div>
 
+          <motion.a
+  href="https://peerlist.io/nishuldhakar/project/cognitive-games-web"
+  target="_blank"
+  rel="noreferrer"
+  initial={{ opacity: 0, y: 10 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5, delay: 0.15 }}
+  className="
+    mt-12 inline-flex items-center justify-center
+    rounded-2xl
+    backdrop-blur-xl
+    bg-black/40
+    border border-white/10
+
+    hover:bg-black/55 hover:scale-[1]
+    transition-all duration-300
+    
+  "
+>
+  <img
+    src="https://peerlist.io/api/v1/projects/embed/PRJHP6LRJQR7OJLB63KDA6ELL86RQQ?showUpvote=true&theme=dark"
+    alt="Cognitive Games Web on Peerlist"
+    className="h-[72px] w-auto rounded-lg"
+  />
+</motion.a>
+
           {/* Stats / Trust Indicators (Optional placeholder for professional look) */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -131,11 +133,11 @@ export default function Hero() {
             className="mt-16 pt-8 border-t border-[#111]/40 grid grid-cols-2 md:grid-cols-3 gap-8 w-full max-w-2xl items-center justify-center text-center"
           >
             <div>
-              <h4 className="text-2xl font-bold text-foreground">3+</h4>
+              <h4 className="text-2xl font-bold text-foreground">4+</h4>
               <p className="text-sm text-muted-foreground">Cognitive Games</p>
             </div>
             <div>
-              <h4 className="text-2xl font-bold text-foreground">5k+</h4>
+              <h4 className="text-2xl font-bold text-foreground">3k+</h4>
               <p className="text-sm text-muted-foreground">Active Users</p>
             </div>
             <div className="col-span-2 md:col-span-1">
@@ -143,10 +145,7 @@ export default function Hero() {
               <p className="text-sm text-muted-foreground">Improvement Rate</p>
             </div>
           </motion.div>
-
         </div>
-
-
       {/* Subtle Background */}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-primary/5 rounded-full blur-[100px] -z-10 pointer-events-none" />
