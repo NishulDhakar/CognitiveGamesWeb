@@ -86,14 +86,14 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <Button asChild variant="outline" size="lg" className="h-12 px-8 text-base">
+            <Button asChild size="lg" className="h-12 px-8 text-base">
               <Link href="/memorygames">
                 Memory game <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </Button>
-            <Button asChild size="lg" className="h-12 px-8 text-base">
+            <Button asChild variant="outline" size="lg" className="h-12 px-8 text-base">
               <Link href="/capgemini-games">
-                Start Playing <ArrowRight className="ml-2 w-4 h-4" />
+                Capgemini Games <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </Button>
 
@@ -137,7 +137,7 @@ export default function Hero() {
               <p className="text-sm text-muted-foreground">Cognitive Games</p>
             </div>
             <div>
-              <h4 className="text-2xl font-bold text-foreground">3k+</h4>
+              <h4 className="text-2xl font-bold text-foreground">3.5k+</h4>
               <p className="text-sm text-muted-foreground">Active Users</p>
             </div>
             <div className="col-span-2 md:col-span-1">
