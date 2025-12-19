@@ -143,6 +143,15 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+
+         {/* Google AdSense */}
+  <Script
+    async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5398084204289432"
+    crossOrigin="anonymous"
+    strategy="afterInteractive"
+  />
+  
             {/* ✅ Google Analytics */}
       <Script
   src="https://www.googletagmanager.com/gtag/js?id=G-2WMDWXGJK7"
