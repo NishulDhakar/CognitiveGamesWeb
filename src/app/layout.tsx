@@ -144,20 +144,22 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
             {/* ✅ Google Analytics */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-BJ15H8V1B1"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-BJ15H8V1B1', {
-              page_path: window.location.pathname,
-            });
-          `}
-        </Script>
+      <Script
+  src="https://www.googletagmanager.com/gtag/js?id=G-2WMDWXGJK7"
+  strategy="afterInteractive"
+/>
+
+<Script id="google-analytics" strategy="afterInteractive">
+  {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2WMDWXGJK7', {
+      page_path: window.location.pathname,
+    });
+  `}
+</Script>
+
 
         {/* ✅ STRUCTURED DATA */}
         <script
