@@ -151,16 +151,16 @@ export default function RootLayout({
     crossOrigin="anonymous"
     strategy="afterInteractive"
   />
-  
+
             {/* ✅ Google Analytics */}
-      <Script
-  src="https://www.googletagmanager.com/gtag/js?id=G-2WMDWXGJK7"
-  strategy="afterInteractive"
+<meta
+  name="google-adsense-account"
+  content="ca-pub-5398084204289432"
 />
 
 <Script id="google-analytics" strategy="afterInteractive">
   {`
-    window.dataLayer = window.dataLayer || [];
+    window.dataLayer = window.dataLayer || [];    
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-2WMDWXGJK7', {
