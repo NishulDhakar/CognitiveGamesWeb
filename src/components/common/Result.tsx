@@ -6,6 +6,7 @@ interface ResultCardProps {
   wrong: number;
   resetGame: () => void;
   onCheckRank?: () => void; // ✅ optional rank handler
+  score?: number;
 }
 
 const ResultCard: React.FC<ResultCardProps> = ({
@@ -13,6 +14,7 @@ const ResultCard: React.FC<ResultCardProps> = ({
   wrong,
   resetGame,
   onCheckRank,
+  score,
 }) => {
   const total = correct + wrong;
   const accuracy = total > 0 ? Math.round((correct / total) * 100) : 0;
@@ -58,6 +60,18 @@ const ResultCard: React.FC<ResultCardProps> = ({
               </div>
               <div className="text-gray-500">wrong</div>
             </div>
+
+            {score !== undefined && (
+              <>
+                <div className="w-px h-8 bg-gray-200"></div>
+                <div className="text-center">
+                  <div className="text-2xl font-semibold text-violet-500 mb-1">
+                    {score}
+                  </div>
+                  <div className="text-gray-500">score</div>
+                </div>
+              </>
+            )}
 
             <div className="w-px h-8 bg-gray-200"></div>
 

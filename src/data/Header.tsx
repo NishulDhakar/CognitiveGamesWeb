@@ -15,7 +15,11 @@ export const navbarConfig = {
     //   href: '/capgemini-cognitive-ability-games',
     // },
     {
-      label: 'Games',
+      label: 'Memory game',
+      href: '/memorygames',
+    },
+    {
+      label: 'Capgemini games',
       href: '/capgemini-games',
     },
     {
@@ -26,9 +30,9 @@ export const navbarConfig = {
     //   label: 'IQ Tests',
     //   href: '/iq-tests',
     // },
-    //      {
-    //   label: 'Contact',
-    //   href: '/contact',
-    // },
+         {
+      label: 'Contact',
+      href: '/contact',
+    },
   ] as NavItem[],
 };

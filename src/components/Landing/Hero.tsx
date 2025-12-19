@@ -36,7 +36,7 @@ export default function Hero() {
           > */}
           <div className="mb-6 flex items-center gap-3 rounded-full 
                backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-foreground
-              hover:bg-secondary/50 hover:scale-[1] transition-all cursor-pointer">
+              hover:bg-secondary/10 hover:scale-[1] transition-all cursor-pointer">
             <div className="relative w-10 h-10 overflow-hidden rounded-full border border-primary/20">
               <Image
                 src="/image2.png"
@@ -110,16 +110,17 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
+                       <Button asChild variant="outline" size="lg" className="h-12 px-8 text-base">
+              <Link href="/memorygames">
+                Memory game <ArrowRight className="ml-2 w-4 h-4" />
+              </Link>
+            </Button>
             <Button asChild size="lg" className="h-12 px-8 text-base">
               <Link href="/capgemini-games">
                 Start Playing <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </Button>
-            {/* <Button asChild variant="outline" size="lg" className="h-12 px-8 text-base">
-              <Link href="/iq-tests">
-                Take IQ Test <ArrowRight className="ml-2 w-4 h-4" />
-              </Link>
-            </Button> */}
+
           </motion.div>
 
           {/* Stats / Trust Indicators (Optional placeholder for professional look) */}

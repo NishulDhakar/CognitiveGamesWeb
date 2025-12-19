@@ -1,6 +1,6 @@
 "use client"
 
-import GamesCard from '@/components/Landing/GamesCard'
+import GamesCard from '@/components/games/GamesCard'
 import { Gamepad2 } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
@@ -13,15 +13,15 @@ const page = () => {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-                <div className="fixed inset-0 ">
-            <Image
-              src="/store.jpg"
-              alt="Background"
-              fill
-              priority
-              className="object-cover"
-            />
-          </div>
+      <div className="fixed inset-0 ">
+        <Image
+          src="/store.jpg"
+          alt="Background"
+          fill
+          priority
+          className="object-cover"
+        />
+      </div>
       {/* Decorative Background Elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
         <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px]" />
@@ -52,9 +52,9 @@ const page = () => {
             <span className="absolute -bottom-4 -left-6 animate-pulse delay-300 opacity-60">
               <Zap className="h-6 w-6 text-blue-500" />
             </span> */}
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
-          Games 
-          </h1>
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
+              Games
+            </h1>
           </motion.div>
 
           <motion.p
