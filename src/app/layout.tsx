@@ -12,6 +12,11 @@ const SITE_URL = "https://www.cognitivegames.me";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
 
+    other: {
+    "google-adsense-account": "ca-pub-5398084204289432",
+  },
+
+
   title: {
     default:
       "Capgemini & Cognizant Game-Based Aptitude Practice | Blync Placement Games",
@@ -144,7 +149,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
 
-         {/* Google AdSense */}
+  {/* ✅ Google AdSense */}
   <Script
     async
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5398084204289432"
@@ -152,23 +157,30 @@ export default function RootLayout({
     strategy="afterInteractive"
   />
 
-            {/* ✅ Google Analytics */}
-<meta
-  name="google-adsense-account"
-  content="ca-pub-5398084204289432"
-/>
+  {/* ✅ Google Analytics loader */}
+  <Script
+    src="https://www.googletagmanager.com/gtag/js?id=G-2WMDWXGJK7"
+    strategy="afterInteractive"
+  />
 
-<Script id="google-analytics" strategy="afterInteractive">
-  {`
-    window.dataLayer = window.dataLayer || [];    
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-2WMDWXGJK7', {
-      page_path: window.location.pathname,
-    });
-  `}
-</Script>
+  {/* ✅ Google Analytics config */}
+  <Script id="google-analytics" strategy="afterInteractive">
+    {`
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-2WMDWXGJK7', {
+        page_path: window.location.pathname,
+      });
+    `}
+  </Script>
 
+  {/* ✅ Umami Analytics */}
+  <Script
+    src="https://cloud.umami.is/script.js"
+    data-website-id="c97607d1-dd2e-479f-b785-a935c0dd5e79"
+    strategy="afterInteractive"
+  />
 
         {/* ✅ STRUCTURED DATA */}
         <script
