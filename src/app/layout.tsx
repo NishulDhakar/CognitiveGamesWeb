@@ -171,8 +171,7 @@ export default function RootLayout({
       gtag('js', new Date());
       gtag('config', 'G-2WMDWXGJK7', {
         page_path: window.location.pathname,
-      });
-    `}
+      });`}
   </Script>
 
   {/* ✅ Umami Analytics */}
