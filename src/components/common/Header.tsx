@@ -56,22 +56,22 @@ function Navbar() {
         className={cn(
           "w-full md:max-w-7xl flex items-center justify-between px-6 h-16 rounded-full border transition-all duration-300",
           scrolled || mobileOpen
-            ? "bg-background/10 backdrop-blur-xl border-border/40 shadow-sm"
-            : "bg-background/00 border-transparent"
+            ? "bg-background/80 backdrop-blur-xl border-border/50 shadow-lg shadow-black/5"
+            : "bg-background/20 backdrop-blur-md border-border/20"
         )}
       >
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="relative w-12 h-12 md:w-16 md:h-16 transition-transform group-hover:scale-110 duration-300">
+          <div className="relative w-12 h-12 md:w-14 md:h-14 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
             <Image
               src={navbarConfig.logo.src}
               alt={altText}
               fill
-              className="object-contain"
+              className="object-contain drop-shadow-lg"
               priority
             />
           </div>
-          <span className="font-bold text-lg tracking-tight">
+          <span className="font-bold text-lg md:text-xl tracking-tight bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
             {altText}
           </span>
         </Link>
@@ -85,10 +85,10 @@ function Navbar() {
                 key={item.label}
                 href={item.href}
                 className={cn(
-                  "text-sm font-medium transition-colors duration-300 relative py-1",
+                  "text-sm font-medium transition-all duration-300 relative py-1 px-3 rounded-lg",
                   isActive
-                    ? "text-primary/10"
-                    : "text-foreground/50 hover:text-foreground"
+                    ? "text-primary bg-primary/10"
+                    : "text-foreground/60 hover:text-foreground hover:bg-accent/50"
                 )}
               >
                 {item.label}
@@ -117,7 +117,7 @@ function Navbar() {
             <Button
               asChild
               variant="default"
-              className="font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-300 h-9 px-4 md:h-11 md:px-8 md:text-base"
+              className="font-semibold shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 hover:scale-105 transition-all duration-300 h-9 px-4 md:h-11 md:px-8 md:text-base"
             >
               <Link href="/register">
                 <LogIn className="w-4 h-4 md:w-5 md:h-5 mr-2" />
@@ -191,7 +191,7 @@ function Navbar() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-20 inset-x-0 mx-4 p-4 rounded-2xl bg-background/80 backdrop-blur-xl border border-border/40 shadow-xl md:hidden z-40 overflow-hidden"
+            className="absolute top-20 inset-x-0 mx-4 p-4 rounded-2xl bg-background/90 backdrop-blur-xl border border-border/50 shadow-2xl md:hidden z-40 overflow-hidden"
           >
             <nav className="flex flex-col gap-2">
               {navbarConfig.navItems.map((item) => {

@@ -11,7 +11,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[90vh] md:h-[calc(105vh-6rem)] overflow-hidden py-16 md:py-24 flex items-center justify-center">
+    <section className="relative min-h-[90vh] md:h-[calc(105vh-6rem)] overflow-hidden py-16 md:py-24">
       <Image
         src="/bg.jpg"
         alt="Nishul"
@@ -21,7 +21,7 @@ export default function Hero() {
         quality={90}
       />
 
-      <div className="relative z-10 mt-10 flex flex-col items-center justify-center text-center max-w-4xl mx-auto">
+      <div className="relative z-10 mt-20 flex flex-col items-center justify-center text-center max-w-4xl mx-auto">
 
         {/* <motion.a
             href="https://www.nishul.dev/"
@@ -34,8 +34,8 @@ export default function Hero() {
                backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-foreground
               hover:bg-secondary/50 hover:scale-[1.02] transition-all cursor-pointer"
           > */}
-        {/* <div className="mb-6 flex items-center gap-3 rounded-full 
-               backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-foreground
+        <div className="mb-6 flex items-center gap-3 rounded-full 
+                px-4 py-1.5 text-sm font-medium text-foreground
               hover:bg-secondary/10 hover:scale-[1] transition-all cursor-pointer">
             <div className="relative w-10 h-10 overflow-hidden rounded-full border border-primary/20">
               <Image
@@ -49,7 +49,7 @@ export default function Hero() {
             </div>
 
             <span className="pr-1 font-bold font-game">By Nishul</span>
-            </div>   */}
+            </div>  
         {/* </motion.a> */}
 
 
@@ -99,7 +99,7 @@ export default function Hero() {
 
         </motion.div>
 
-        <motion.a
+        {/* <motion.a
           href="https://peerlist.io/nishuldhakar/project/cognitive-games-web"
           target="_blank"
           rel="noreferrer"
@@ -123,7 +123,7 @@ export default function Hero() {
             alt="Cognitive Games Web on Peerlist"
             className="h-[72px] w-auto rounded-lg"
           />
-        </motion.a>
+        </motion.a> */}
 
         {/* Stats / Trust Indicators (Optional placeholder for professional look) */}
         <motion.div

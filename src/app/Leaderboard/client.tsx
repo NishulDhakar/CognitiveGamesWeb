@@ -170,7 +170,7 @@ export default function LeaderboardClient({ data, gameId, currentUserId }: Leade
                     transition={{ delay: 0.5, duration: 0.5 }}
                     className="mb-8"
                 >
-                    <Card className="border border-border/50 shadow-lg bg-card/30 backdrop-blur-sm overflow-hidden">
+                    <Card className="border border-border/50 shadow-lg bg-card/80 backdrop-blur-sm overflow-hidden">
                         <CardHeader
                             className="pb-4 cursor-pointer hover:bg-accent/5 transition-colors"
                             onClick={() => setIsExplanationOpen(!isExplanationOpen)}
@@ -204,7 +204,7 @@ export default function LeaderboardClient({ data, gameId, currentUserId }: Leade
                                                 <p className="text-muted-foreground leading-relaxed">
                                                     <span className="font-semibold text-foreground">Overall Ranking</span> is calculated by adding your <span className="font-medium text-foreground">best score from each game</span>. Only your highest score per game counts toward your total.
                                                 </p>
-                                                <div className="bg-muted/30 mb-8 rounded-lg p-3 space-y-1.5">
+                                                <div className="bg-muted/90 mb-8 rounded-lg p-3 space-y-1.5">
                                                     <p className="text-xs text-muted-foreground font-medium">Example:</p>
                                                     <ul className="text-xs space-y-1 text-muted-foreground">
                                                         <li>• Switch Challenge: Best score = <span className="font-mono text-foreground">85</span> pts</li>
@@ -283,7 +283,7 @@ export default function LeaderboardClient({ data, gameId, currentUserId }: Leade
                             exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 0.3 }}
                         >
-                            <Card className="border-0 shadow-2xl bg-card/30 backdrop-blur-xl overflow-hidden ring-1 ring-white/10">
+                            <Card className="border-0 shadow-2xl bg-card/80 backdrop-blur-xl overflow-hidden ring-1 ring-white/10">
                                 <CardHeader className="border-b border-border/10 bg-muted/5 p-6">
                                     <CardTitle className="text-2xl flex items-center gap-3">
                                         <div className="p-2 rounded-lg bg-primary/10">
