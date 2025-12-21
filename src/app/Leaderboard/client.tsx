@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Crown, Medal, Trophy, ArrowLeft, Gamepad2, LayoutGrid, Binary, ArrowRightLeft, ChevronDown } from "lucide-react";
 import { useRouter } from "next/navigation";
 import BackToDashboard from "@/components/common/BackToDashboard";
+import Container from "@/components/common/Container";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -87,19 +88,19 @@ export default function LeaderboardClient({ data, gameId, currentUserId }: Leade
 
     return (
         <div className="min-h-screen relative overflow-hidden">
-               {/* Fixed Background */}
-<div className="fixed inset-0 ">
-  <Image
-    src="/leaderboard.jpg"
-    alt="Background"
-    fill
-    priority
-    className="object-cover"
-  />
-</div>
+            {/* Fixed Background */}
+            <div className="fixed inset-0 ">
+                <Image
+                    src="/leaderboard.jpg"
+                    alt="Background"
+                    fill
+                    priority
+                    className="object-cover"
+                />
+            </div>
 
-{/* Optional dark overlay for readability */}
-<div className="fixed inset-0 -z-10 bg-black/40 backdrop-blur-[1px]" />
+            {/* Optional dark overlay for readability */}
+            <div className="fixed inset-0 -z-10 bg-black/40 backdrop-blur-[1px]" />
 
             {/* Decorative Background Elements */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
@@ -107,7 +108,7 @@ export default function LeaderboardClient({ data, gameId, currentUserId }: Leade
                 <div className="absolute bottom-[20%] right-[10%] w-96 h-96 bg-blue-500/5 rounded-full blur-[120px]" />
             </div>
 
-            <div className="container max-w-5xl py-12 mx-auto px-4 relative z-10">
+            <Container className="max-w-5xl py-12 relative z-10">
                 <div className="flex items-center mb-12">
                     <BackToDashboard />
                 </div>
@@ -255,7 +256,7 @@ export default function LeaderboardClient({ data, gameId, currentUserId }: Leade
                             </TabsTrigger>
                             <TabsTrigger
                                 value="digit-challenge"
-                                className="rounded-full px-4 py-2 text-sm sm:px-6 sm:py-3 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300 flex-1 sm:flex-none min-w-[    100px]"
+                                className="rounded-full px-4 py-2 text-sm sm:px-6 sm:py-3 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300 flex-1 sm:flex-none min-w-[100px]"
                             >
                                 <div className="flex items-center justify-center gap-2">
                                     <Binary className="h-3 w-3 sm:h-4 sm:w-4" />
@@ -374,7 +375,7 @@ export default function LeaderboardClient({ data, gameId, currentUserId }: Leade
                         </motion.div>
                     </AnimatePresence>
                 </Tabs>
-            </div>
+            </Container>
         </div>
     );
 }

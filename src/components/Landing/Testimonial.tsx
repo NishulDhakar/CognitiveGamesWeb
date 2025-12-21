@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Container from "../common/Container";
 
 interface TestimonialCardProps {
   name: string;
@@ -107,7 +108,7 @@ const testimonials = [
 export default function Testimonial() {
   return (
     <section className="py-20">
-      <div className="container mx-auto px-4">
+      <Container>
         <div className="mb-16 text-center max-w-3xl mx-auto">
           <motion.h2
             className="text-3xl md:text-4xl font-bold mb-4 tracking-tight"
@@ -140,7 +141,7 @@ export default function Testimonial() {
             />
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

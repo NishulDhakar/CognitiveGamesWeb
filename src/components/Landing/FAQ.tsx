@@ -8,6 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import Container from "../common/Container";
 
 const faqData = [
   {
@@ -45,7 +46,7 @@ const faqData = [
 export default function FAQ() {
   return (
     <section className="py-20 lg:py-32 bg-background/40">
-      <div className="container mx-auto max-w-4xl px-4">
+      <Container className="max-w-4xl">
         <motion.div
           className="mb-12 text-center"
           initial={{ opacity: 0, y: 20 }}
@@ -79,7 +80,7 @@ export default function FAQ() {
             ))}
           </Accordion>
         </motion.div>
-      </div>
+      </Container>
     </section>
   );
 }

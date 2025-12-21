@@ -49,12 +49,12 @@ function Navbar() {
   return (
     <header
       className={cn(
-        "fixed top-4 inset-x-0 z-50 mx-auto max-w-7xl px-4 transition-all duration-300 ease-in-out"
+        "fixed top-4 inset-x-0 z-50 flex justify-center px-4 transition-all duration-300 ease-in-out"
       )}
     >
       <div
         className={cn(
-          "flex items-center justify-between px-6 h-16 rounded-full border transition-all duration-300",
+          "w-full md:max-w-7xl flex items-center justify-between px-6 h-16 rounded-full border transition-all duration-300",
           scrolled || mobileOpen
             ? "bg-background/10 backdrop-blur-xl border-border/40 shadow-sm"
             : "bg-background/00 border-transparent"
@@ -62,7 +62,7 @@ function Navbar() {
       >
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="relative w-16 h-16 transition-transform group-hover:scale-110 duration-300">
+          <div className="relative w-12 h-12 md:w-16 md:h-16 transition-transform group-hover:scale-110 duration-300">
             <Image
               src={navbarConfig.logo.src}
               alt={altText}
@@ -117,12 +117,11 @@ function Navbar() {
             <Button
               asChild
               variant="default"
-              size="lg"
-              className="font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-300"
+              className="font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-300 h-9 px-4 md:h-11 md:px-8 md:text-base"
             >
               <Link href="/register">
-                <LogIn className="w-6 h-6 mr-2" />
-                <span>Sign In</span>
+                <LogIn className="w-4 h-4 md:w-5 md:h-5 mr-2" />
+                <span className="text-sm md:text-base">Sign In</span>
               </Link>
             </Button>
           ) : (

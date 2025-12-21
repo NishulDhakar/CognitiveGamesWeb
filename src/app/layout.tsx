@@ -12,7 +12,7 @@ const SITE_URL = "https://www.cognitivegames.me";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
 
-    other: {
+  other: {
     "google-adsense-account": "ca-pub-5398084204289432",
   },
 
@@ -149,37 +149,37 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
 
-  {/* ✅ Google AdSense */}
-  <Script
-    async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5398084204289432"
-    crossOrigin="anonymous"
-    strategy="afterInteractive"
-  />
+        {/* ✅ Google AdSense */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5398084204289432"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
 
-  {/* ✅ Google Analytics loader */}
-  <Script
-    src="https://www.googletagmanager.com/gtag/js?id=G-2WMDWXGJK7"
-    strategy="afterInteractive"
-  />
+        {/* ✅ Google Analytics loader */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-2WMDWXGJK7"
+          strategy="afterInteractive"
+        />
 
-  {/* ✅ Google Analytics config */}
-  <Script id="google-analytics" strategy="afterInteractive">
-    {`
+        {/* ✅ Google Analytics config */}
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-2WMDWXGJK7', {
         page_path: window.location.pathname,
       });`}
-  </Script>
+        </Script>
 
-  {/* ✅ Umami Analytics */}
-  <Script
-    src="https://cloud.umami.is/script.js"
-    data-website-id="c97607d1-dd2e-479f-b785-a935c0dd5e79"
-    strategy="afterInteractive"
-  />
+        {/* ✅ Umami Analytics */}
+        <Script
+          src="https://cloud.umami.is/script.js"
+          data-website-id="c97607d1-dd2e-479f-b785-a935c0dd5e79"
+          strategy="afterInteractive"
+        />
 
         {/* ✅ STRUCTURED DATA */}
         <script
@@ -202,7 +202,7 @@ export default function RootLayout({
 
       <body className="bg-white/50 relative">
         {/* The Gradient Approximation Element */}
-        <div className="absolute top-0 left-0 w-full h-[600px] opacity-40 mix-blend-multiply pointer-events-none">
+        <div className="absolute top-0 left-0 w-full h-[600px] opacity-40 mix-blend-multiply pointer-events-none overflow-hidden">
           {/* Pink/Red Blob */}
           <div className="absolute top-0 left-0 w-1/2 h-full bg-[#FF6B6B]/50 rounded-full blur-3xl" style={{ filter: 'blur(100px)', transform: 'translate(-20%, -20%)' }}></div>
           {/* Blue/Cyan Blob */}
