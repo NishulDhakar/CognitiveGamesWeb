@@ -150,18 +150,8 @@ export default function RootLayout({
       <head>
 
         {/* ✅ Google AdSense */}
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5398084204289432"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
-
-        {/* ✅ Google Analytics loader */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-2WMDWXGJK7"
-          strategy="afterInteractive"
-        />
+       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5398084204289432"
+     crossOrigin="anonymous"></script>
 
         {/* ✅ Google Analytics config */}
         <Script id="google-analytics" strategy="afterInteractive">
