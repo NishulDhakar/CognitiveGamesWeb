@@ -11,14 +11,14 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[90vh] md:h-[calc(105vh-6rem)] overflow-hidden py-16 md:py-24">
+    <section className="relative min-h-[100vh] md:h-[calc(105vh-6rem)] overflow-hidden py-16 md:py-24">
       <Image
         src="/bg.jpg"
         alt="Nishul"
         fill
         className="object-cover"
         priority
-        quality={90}
+        quality={180}
       />
 
       <div className="relative z-10 mt-20 flex flex-col items-center justify-center text-center max-w-4xl mx-auto">
@@ -137,7 +137,7 @@ export default function Hero() {
             <p className="text-xs md:text-sm text-muted-foreground">Cognitive Games</p>
           </div>
           <div>
-            <h4 className="text-xl md:text-2xl font-bold text-foreground">3.5k+</h4>
+            <h4 className="text-xl md:text-2xl font-bold text-foreground">5k+</h4>
             <p className="text-xs md:text-sm text-muted-foreground">Active Users</p>
           </div>
           <div className="col-span-2 md:col-span-1">

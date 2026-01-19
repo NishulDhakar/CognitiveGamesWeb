@@ -18,6 +18,7 @@ export default async function DashboardLayout({
   }
 
   const user = session?.user;
+  
   return (
     <UserProvider user={user}>
               <Header />
