@@ -34,7 +34,7 @@ export default function Hero() {
                backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-foreground
               hover:bg-secondary/50 hover:scale-[1.02] transition-all cursor-pointer"
           > */}
-        <div className="mb-6 flex items-center gap-3 rounded-full 
+        {/* <div className="mb-6 flex items-center gap-3 rounded-full 
                 px-4 py-1.5 text-sm font-medium text-foreground
               hover:bg-secondary/10 hover:scale-[1] transition-all cursor-pointer">
             <div className="relative w-10 h-10 overflow-hidden rounded-full border border-primary/20">
@@ -49,7 +49,7 @@ export default function Hero() {
             </div>
 
             <span className="pr-1 font-bold font-game">By Nishul</span>
-            </div>  
+            </div>   */}
         {/* </motion.a> */}
 
 
