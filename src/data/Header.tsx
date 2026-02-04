@@ -30,9 +30,9 @@ export const navbarConfig = {
     //   label: 'IQ Tests',
     //   href: '/iq-tests',
     // },
-         {
-      label: 'Contact',
-      href: '/contact',
-    },
+    //      {
+    //   label: 'Contact',
+    //   href: '/contact',
+    // },
   ] as NavItem[],
 };
