@@ -1,43 +1,61 @@
-# 🧠 Cognitive Games
+# Cognitive Games
 
-> Practice game-based hiring rounds used by companies like **Capgemini** and **Cognizant**.
-> 
-![1753907492838](https://github.com/user-attachments/assets/5a837129-9a4d-40c1-bd3d-6e16c6fde03d)
+A web platform for practicing cognitive ability tests used in placement assessments by companies like Capgemini and Cognizant.
 
-## 🚀 Overview
+## Features
 
-Cognitive Games is a web platform designed to help students and job-seekers prepare for game-based assessments during placement drives.
+- **Interactive Cognitive Games** – Practice memory, pattern recognition, and logical reasoning challenges
+- **Placement-Focused** – Games modeled after real assessment patterns used by top companies
+- **Progress Tracking** – Monitor improvement with leaderboards and performance analytics
+- **Educational Resources** – Comprehensive guides and strategies for test preparation
 
-It may look like a simple puzzle site — but under the hood, it challenges your brain using:
+## Tech Stack
 
-- Backtracking  
-- 2D Matrix Logic  
-- Hashing  
-- Greedy Approach  
+- **Next.js 16** – React framework with server-side rendering
+- **TypeScript** – Type-safe development
+- **Tailwind CSS** – Utility-first styling
+- **Framer Motion** – Smooth animations
+- **Better Auth** – Authentication system
+- **Prisma** – Database ORM
 
-## ✅ Features
-
-- 2 logic-based games (more coming soon)  
-- Real placement-style puzzles  
-- Responsive & fast UI
-
-## 🛠️ Tech Stack
-
-- **Next.js** 
-- **TypeScript**
-- **Tailwind CSS**
-
-
-## 🧪 Try it out
-
-- Live demo: [https://games.nishul.dev](https://games.nishul.dev)
-
-
-## 📦 Setup (for Developers)
+## Getting Started
 
 ```bash
-git clone https://github.com/Nishulpatel/CognitiveGamesWeb.git
+# Clone repository
+git clone https://github.com/NishulDhakar/CognitiveGamesWeb.git
 cd CognitiveGamesWeb
-npm install
-npm run dev
 
+# Install dependencies
+npm install
+
+# Set up environment variables
+# Create .env file with required variables (database, auth providers)
+
+# Run development server
+npm run dev
+```
+
+Visit [http://localhost:3000](http://localhost:3000) to view the application.
+
+## Live Demo
+
+[https://games.nishul.dev](https://games.nishul.dev)
+
+## Project Structure
+
+```
+src/
+├── app/              # Next.js app directory
+├── components/       # React components
+├── lib/              # Utilities and configurations
+├── context/          # React context providers
+└── data/             # Static data and constants
+```
+
+## License
+
+MIT
+
+---
+
+Built by [Nishul Dhakar](https://www.nishul.dev)
