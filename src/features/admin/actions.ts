@@ -1,0 +1,54 @@
+"use server";
+
+import nodemailer from "nodemailer";
+import prisma from "@/lib/prisma";
+
+/**
+ * Send a broadcast email to all registered users.
+ * Admin-only action.
+ */
+export async function sendBroadcast({
+    subject,
+    message,
+}: {
+    subject: string;
+    message: string;
+}) {
+    try {
+        const transporter = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+                user: process.env.NODEMAILER_USER,
+                pass: process.env.NODEMAILER_PASS,
+            },
+        });
+
+        const users = await prisma.user.findMany({
+            select: { email: true },
+            where: {
+                email: { not: undefined },
+            },
+        });
+
+        const emails = users.map((u) => u.email).filter(Boolean);
+
+        if (emails.length === 0) {
+            return { success: false, error: "No users found to send email to." };
+        }
+
+        const mailOptions = {
+            from: process.env.NODEMAILER_USER,
+            bcc: emails,
+            subject: subject,
+            text: message,
+            html: `<p>${message.replace(/\n/g, "<br>")}</p>`,
+        };
+
+        await transporter.sendMail(mailOptions as any);
+
+        return { success: true, count: emails.length };
+    } catch (error) {
+        console.error("Error sending broadcast:", error);
+        return { success: false, error: String(error) };
+    }
+}

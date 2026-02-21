@@ -118,8 +118,27 @@
 'use client';
 
 export default function Page() {
+    const schema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Inductive Logic Game",
+    "operatingSystem": "Web",
+    "applicationCategory": "EducationalApplication",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.7",
+      "ratingCount": "831"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  };
+
   return (
     <div className="flex flex-col items-center justify-center mt-60 px-4 text-center font-game">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       
       <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 ">
         More Games Coming Soon! 

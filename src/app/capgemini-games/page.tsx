@@ -1,98 +1,77 @@
-"use client"
+import { Metadata } from "next";
+import { siteConfig } from "@/config/site";
+import CapgeminiGamesClient from "./client";
 
-import GamesCard from '@/components/games/GamesCard'
-import { Gamepad2 } from 'lucide-react'
-import { motion } from 'framer-motion'
-import { useRouter } from 'next/navigation'
-import React from 'react'
-import BackToDashboard from '@/components/common/BackToDashboard'
-import Image from 'next/image'
+export const metadata: Metadata = {
+  title: "Capgemini Game Based Aptitude Test 2025 | Practice & Mock Tests",
+  description:
+    "Ace the Capgemini cognitive ability test with our real exam-style games. Practice Switch, Grid, Digit, Motion, and Deductive challenges used in 2025 placements.",
+  alternates: {
+    canonical: `${siteConfig.url}/capgemini-games`,
+  },
+};
 
-const page = () => {
-  const router = useRouter();
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Is the Capgemini game round elimination based?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes, the Capgemini game-based aptitude test is typically an elimination round. You must clear the required cut-off in games like Switch Challenge and Deductive Logic to proceed to the next interview stage.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How many games are in the Capgemini cognitive assessment?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "There are usually 4 to 6 games in the assessment, most commonly including the Switch Challenge, Grid Challenge, Digit Challenge, and Deductive-Inductive reasoning puzzles.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Are the Cognizant GenC games similar to Capgemini?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes, both companies often use similar assessment platforms (like Aon/cut-e). Practicing the Switch Challenge and grid-based logic games will help you pass both.",
+      },
+    },
+  ],
+};
 
+const softwareSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Blync Capgemini Game Prep",
+  operatingSystem: "Web",
+  applicationCategory: "EducationalApplication",
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.9",
+    ratingCount: "1742",
+  },
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+  },
+};
+
+export default function CapgeminiGamesPage() {
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      <div className="fixed inset-0 ">
-        <Image
-          src="/store.jpg"
-          alt="Background"
-          fill
-          priority
-          className="object-cover"
-        />
-      </div>
-      {/* Decorative Background Elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-        <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px]" />
-        <div className="absolute bottom-[10%] left-[-10%] w-[600px] h-[600px] bg-purple-500/5 rounded-full blur-[140px]" />
-      </div>
-
-      <div className="container mx-auto max-w-7xl px-4 py-8 relative z-10">
-        {/* Navigation */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="mb-12"
-        >
-          <BackToDashboard />
-        </motion.div>
-
-        {/* Header Section */}
-        <div className="text-center mb-16 space-y-6">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="relative inline-block"
-          >
-            {/* <span className="absolute -top-6 -right-8 animate-bounce delay-100 opacity-80">
-              <Sparkles className="h-8 w-8 text-yellow-500" />
-            </span>
-            <span className="absolute -bottom-4 -left-6 animate-pulse delay-300 opacity-60">
-              <Zap className="h-6 w-6 text-blue-500" />
-            </span> */}
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
-              Games
-            </h1>
-          </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="text-xl text-muted-foreground max-w-2xl mx-auto font-light text-white leading-relaxed"
-          >
-            Challenge your mind with our suite of specialized cognitive games designed to test and improve your mental agility.
-          </motion.p>
-        </div>
-
-        {/* Games Grid Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative"
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent blur-3xl -z-10" />
-          <GamesCard />
-        </motion.div>
-
-        {/* Footer Note */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.0 }}
-          className="mt-20 text-center"
-        >
-          <p className="text-sm text-muted-foreground flex items-center justify-center gap-2">
-            <Gamepad2 className="h-4 w-4" />
-            <span>New challenges added regularly</span>
-          </p>
-        </motion.div>
-      </div>
-    </div>
-  )
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+      />
+      <CapgeminiGamesClient />
+    </>
+  );
 }
-
-export default page

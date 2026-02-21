@@ -4,36 +4,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { Brain, Mail, Github, Twitter, Linkedin } from "lucide-react";
 
+import { footerNavItems } from "@/config/navigation";
+import { siteConfig } from "@/config/site";
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
-  const footerLinks = {
-    product: [
-      { name: "Memory Games", href: "/memorygames" },
-      { name: "Capgemini Games", href: "/capgemini-games" },
-      // { name: "IQ Tests", href: "/iq-tests" },
-      { name: "Leaderboard", href: "/Leaderboard" },
-    ],
-    company: [
-      { name: "About Us", href: "/about" },
-      { name: "How It Works", href: "/how-it-works" },
-      // { name: "Blog", href: "/blog" },
-      // { name: "Contact", href: "/contact" },
-    ],
-    legal: [
-      { name: "Privacy Policy", href: "/privacy-policy" },
-      { name: "Terms of Service", href: "/terms-of-service" },
-    ],
-    resources: [
-      { name: "Game Rules", href: "/rules" },
-      { name: "FAQ", href: "/#faq" },
-      { name: "Feedback", href: "/feedback" },
-    ],
-  };
-
   const socialLinks = [
-    { name: "Twitter", href: "https://twitter.com/nishuldhakar", icon: Twitter },
-    { name: "GitHub", href: "https://github.com/Nishuldhakar", icon: Github },
+    { name: "Twitter", href: siteConfig.links.twitter, icon: Twitter },
+    { name: "GitHub", href: siteConfig.links.github, icon: Github },
     { name: "LinkedIn", href: "https://linkedin.com/in/nishuldhakar", icon: Linkedin },
   ];
 
@@ -75,15 +54,15 @@ export default function Footer() {
 
           {/* Product Links */}
           <div>
-            <h3 className="font-semibold mb-4 text-sm">Product</h3>
+            <h3 className="font-semibold mb-4 text-sm">Games</h3>
             <ul className="space-y-3">
-              {footerLinks.product.map((link) => (
-                <li key={link.name}>
+              {footerNavItems.games.slice(0, 5).map((link) => (
+                <li key={link.label}>
                   <Link
                     href={link.href}
                     className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
-                    {link.name}
+                    {link.label}
                   </Link>
                 </li>
               ))}
@@ -94,30 +73,30 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold mb-4 text-sm">Company</h3>
             <ul className="space-y-3">
-              {footerLinks.company.map((link) => (
-                <li key={link.name}>
+              {footerNavItems.resources.slice(3).map((link) => (
+                <li key={link.label}>
                   <Link
                     href={link.href}
                     className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
-                    {link.name}
+                    {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Resources Links */}
+          {/* Resources & Guides Links */}
           <div>
-            <h3 className="font-semibold mb-4 text-sm">Resources</h3>
+            <h3 className="font-semibold mb-4 text-sm">Resources & Guides</h3>
             <ul className="space-y-3">
-              {footerLinks.resources.map((link) => (
-                <li key={link.name}>
+              {footerNavItems.resources.slice(0, 3).map((link) => (
+                <li key={link.label}>
                   <Link
                     href={link.href}
                     className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
-                    {link.name}
+                    {link.label}
                   </Link>
                 </li>
               ))}
@@ -128,13 +107,13 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold mb-4 text-sm">Legal</h3>
             <ul className="space-y-3">
-              {footerLinks.legal.map((link) => (
-                <li key={link.name}>
+              {footerNavItems.legal.map((link) => (
+                <li key={link.label}>
                   <Link
                     href={link.href}
                     className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
-                    {link.name}
+                    {link.label}
                   </Link>
                 </li>
               ))}
@@ -152,23 +131,23 @@ export default function Footer() {
             </p>
           </div>
 
-                    <div className="group flex items-center gap-2">
-              <Image
-                className="size-10 rounded-2xl border border-gray-400 group-hover:border-2"
-                src="/og-logo.png"
-                width={40}
-                height={40}
-                alt="Blync logo"
-              />
-              <p className="text-sm  opacity-50 transition-all duration-300 ease-in-out group-hover:opacity-100">
-                <Link target="_blank" href="https://www.nishul.dev">
-                  Built with ❤️{" "}
-                  <span className="transition-all duration-300 ease-in-out group-hover:underline">
-                    by Nishul
-                  </span>
-                </Link>
-              </p>
-            </div>
+          <div className="group flex items-center gap-2">
+            <Image
+              className="size-10 rounded-2xl border border-gray-400 group-hover:border-2"
+              src="/og-logo.png"
+              width={40}
+              height={40}
+              alt="Blync logo"
+            />
+            <p className="text-sm  opacity-50 transition-all duration-300 ease-in-out group-hover:opacity-100">
+              <Link target="_blank" href="https://www.nishul.dev">
+                Built with ❤️{" "}
+                <span className="transition-all duration-300 ease-in-out group-hover:underline">
+                  by Nishul
+                </span>
+              </Link>
+            </p>
+          </div>
 
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
             <Link href="/sitemap.xml" className="hover:text-primary transition-colors">

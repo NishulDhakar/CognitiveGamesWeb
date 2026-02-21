@@ -3,22 +3,22 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
 
 model User {
-  id            String    @id @default(uuid())
-  email         String    @unique
+  id            String      @id @default(uuid())
+  email         String      @unique
   name          String?
   emailVerified Boolean
   image         String?
   createdAt     DateTime
   updatedAt     DateTime
   accounts      Account[]
-  sessions      Session[]
   scores        GameScore[]
+  sessions      Session[]
 
   @@map("user")
 }
@@ -26,10 +26,10 @@ model User {
 model GameScore {
   id        String   @id @default(uuid())
   userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  gameId    String   // e.g., 'grid-challenge', 'digit-challenge'
+  gameId    String
   score     Int
   createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId, gameId])
   @@map("game_score")
@@ -91,12 +91,12 @@ model Poll {
 }
 
 model PollOption {
-  id        String   @id @default(uuid())
-  label     String
-  votes     Int      @default(0)
-  isInput   Boolean  @default(false)
-  pollId    String
-  poll      Poll     @relation(fields: [pollId], references: [id], onDelete: Cascade)
+  id      String  @id @default(uuid())
+  label   String
+  votes   Int     @default(0)
+  isInput Boolean @default(false)
+  pollId  String
+  poll    Poll    @relation(fields: [pollId], references: [id], onDelete: Cascade)
 
   @@map("poll_option")
 }

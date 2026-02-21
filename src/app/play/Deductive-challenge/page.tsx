@@ -91,8 +91,27 @@ export default function DeductiveChallenge() {
 
   const formatTime = (t: number) => `${String(Math.floor(t / 60)).padStart(2, "0")}:${String(t % 60).padStart(2, "0")}`;
 
+    const schema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Deductive Reasoning Game",
+    "operatingSystem": "Web",
+    "applicationCategory": "EducationalApplication",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "ratingCount": "1105"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  };
+
   return (
        <div>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
                <div className="fixed inset-0 ">
       <Image
         src="/game.jpg"

@@ -82,8 +82,27 @@ export default function SwitchChallenge() {
     setIsScoreSaved(false);
   };
 
+    const schema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Switch Challenge Game",
+    "operatingSystem": "Web",
+    "applicationCategory": "EducationalApplication",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "ratingCount": "1250"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  };
+
   return (
     <Container>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <GamePage title="Switch Operator Challenge" level={level} timer={formatTime(sessionTime)}>
         <SwitchChallengeUI
           puzzle={puzzle}

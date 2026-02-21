@@ -99,7 +99,7 @@ export default function RulePage({ data }: { data: RuleData }) {
                 className="inline-flex items-center px-5 sm:px-6 py-2.5 sm:py-3  text-white rounded-lg font-semibold shadow-md bg-neutral-900 hover:bg-neutral-800 hover:shadow-lg transition-all duration-200 transform hover:scale-105 text-sm sm:text-base"
               >
                 <Play className="mr-2" size={18} />
-                Play Now
+                Play Mock Test Now
               </a>
             </div>
 

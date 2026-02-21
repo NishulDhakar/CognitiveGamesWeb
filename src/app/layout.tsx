@@ -1,21 +1,18 @@
-import type { Metadata, Viewport } from "next";
+import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import "./globals.css";
 import Script from "next/script";
+import { siteConfig } from "@/config/site";
 
 // Lazy load heavy components
 const ReactLenis = dynamic(() => import("lenis/react"));
 
-// ✅ OFFICIAL SITE CANONICAL URL
-const SITE_URL = "https://www.cognitivegames.me";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
+  metadataBase: new URL(siteConfig.url),
 
   other: {
-    "google-adsense-account": "ca-pub-5398084204289432",
+    "google-adsense-account": siteConfig.adsenseId,
   },
-
 
   title: {
     default:
@@ -23,54 +20,28 @@ export const metadata: Metadata = {
     template: "%s | Blync Cognitive Games",
   },
 
-  description:
-    "Play real Capgemini & Cognizant game-based aptitude tests on Blync. Practice Switch, Grid, Digit, Motion, Spacio, Inductive & Deductive Challenges with full tutorials, rules, mock tests & solutions for 2025 placements.",
-
-  keywords: [
-    "Capgemini game based aptitude test 2025",
-    "Capgemini game round practice",
-    "Capgemini cognitive ability test",
-    "Cognizant GenC game based test",
-    "Cognizant puzzle round",
-    "placement game based aptitude",
-    "Switch Challenge practice",
-    "Digit Challenge practice",
-    "Grid Challenge practice",
-    "Motion Challenge practice",
-    "Spacio Challenge practice",
-    "Inductive Challenge puzzles",
-    "Deductive Challenge puzzles",
-    "placement aptitude games",
-    "campus placement 2025 preparation",
-    "cognitive assessment practice online",
-    "capgemini-game-based-aptitude-test-questions",
-    "capgemini coding questions",
-    "capgemini game based aptitude test",
-    "capgemini game based aptitude test 2025",
-    "capgemini technical assessment questions",
-    "Capgemini Exceller Game Based Aptitude Test",
-    "capgemini game based aptitude"
-  ],
+  description: siteConfig.description,
+  keywords: [...siteConfig.keywords],
 
   alternates: {
-    canonical: SITE_URL,
+    canonical: siteConfig.url,
   },
 
   openGraph: {
     title: "Capgemini & Cognizant Game-Based Aptitude Practice | Blync",
     description:
       "Free game-based aptitude practice for Capgemini & Cognizant. Play Switch, Digit, Grid, Motion, Spacio, Inductive & Deductive challenges with full solutions.",
-    url: SITE_URL,
-    siteName: "Blync",
+    url: siteConfig.url,
+    siteName: siteConfig.shortName,
     images: [
       {
-        url: "/og-logo.png",
+        url: siteConfig.ogImage,
         width: 1200,
         height: 630,
         alt: "Blync – Game-Based Placement Aptitude Practice",
       },
     ],
-    locale: "en_IN",
+    locale: siteConfig.locale,
     type: "website",
   },
 
@@ -79,8 +50,8 @@ export const metadata: Metadata = {
     title: "Capgemini & Cognizant Placement Games | Blync",
     description:
       "Crack Capgemini & Cognizant game-based rounds using Blync cognitive games. Real exam-style practice.",
-    images: ["/og-logo.png"],
-    creator: "@nishuldhakar",
+    images: [siteConfig.ogImage],
+    creator: siteConfig.creator,
   },
 
   robots: {
@@ -101,18 +72,18 @@ export const metadata: Metadata = {
   },
 };
 
-// ✅ STRUCTURED DATA (EXTREME SEO BOOST)
+// ✅ STRUCTURED DATA (JSON-LD)
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "Blync Cognitive Games",
+  name: siteConfig.name,
   alternateName: "Capgemini & Cognizant Placement Games",
-  url: SITE_URL,
+  url: siteConfig.url,
   description:
     "Free platform for practicing game-based cognitive aptitude tests used in Capgemini, Cognizant & other campus placements.",
   potentialAction: {
     "@type": "SearchAction",
-    target: `${SITE_URL}/?q={search_term_string}`,
+    target: `${siteConfig.url}/?q={search_term_string}`,
     "query-input": "required name=search_term_string",
   },
 };
@@ -120,20 +91,17 @@ const websiteSchema = {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Blync",
-  url: SITE_URL,
-  logo: `${SITE_URL}/og-logo.png`,
-  sameAs: [
-    "https://twitter.com/nishuldhakar",
-    "https://github.com/Nishuldhakar",
-  ],
+  name: siteConfig.shortName,
+  url: siteConfig.url,
+  logo: `${siteConfig.url}${siteConfig.ogImage}`,
+  sameAs: [siteConfig.links.twitter, siteConfig.links.github],
 };
 
 const webAppSchema = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "Blync Cognitive Placement Games",
-  url: SITE_URL,
+  url: siteConfig.url,
   applicationCategory: "EducationalApplication",
   operatingSystem: "All",
   description:
@@ -148,10 +116,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-
         {/* ✅ Google AdSense */}
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6271827630758167"
-          crossOrigin="anonymous"></script>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6271827630758167"
+          crossOrigin="anonymous"
+        ></script>
 
         {/* ✅ Google Analytics config */}
         <Script id="google-analytics" strategy="afterInteractive">
@@ -159,7 +129,7 @@ export default function RootLayout({
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-2WMDWXGJK7', {
+      gtag('config', '${siteConfig.analyticsId}', {
         page_path: window.location.pathname,
       });`}
         </Script>
@@ -167,7 +137,7 @@ export default function RootLayout({
         {/* ✅ Umami Analytics */}
         <Script
           src="https://cloud.umami.is/script.js"
-          data-website-id="c97607d1-dd2e-479f-b785-a935c0dd5e79"
+          data-website-id={siteConfig.umamiId}
           strategy="afterInteractive"
         />
 
@@ -178,7 +148,9 @@ export default function RootLayout({
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
         />
         <script
           type="application/ld+json"
@@ -194,9 +166,15 @@ export default function RootLayout({
         {/* The Gradient Approximation Element */}
         <div className="absolute top-0 left-0 w-full h-[600px] opacity-40 mix-blend-multiply pointer-events-none overflow-hidden">
           {/* Pink/Red Blob */}
-          <div className="absolute top-0 left-0 w-1/2 h-full bg-[#FF6B6B]/50 rounded-full blur-3xl" style={{ filter: 'blur(100px)', transform: 'translate(-20%, -20%)' }}></div>
+          <div
+            className="absolute top-0 left-0 w-1/2 h-full bg-[#FF6B6B]/50 rounded-full blur-3xl"
+            style={{ filter: "blur(100px)", transform: "translate(-20%, -20%)" }}
+          ></div>
           {/* Blue/Cyan Blob */}
-          <div className="absolute top-0 right-0 w-1/2 h-full bg-[#4F46E5]/50 rounded-full blur-3xl" style={{ filter: 'blur(100px)', transform: 'translate(20%, -20%)' }}></div>
+          <div
+            className="absolute top-0 right-0 w-1/2 h-full bg-[#4F46E5]/50 rounded-full blur-3xl"
+            style={{ filter: "blur(100px)", transform: "translate(20%, -20%)" }}
+          ></div>
         </div>
         <ReactLenis root>
           <main>{children}</main>

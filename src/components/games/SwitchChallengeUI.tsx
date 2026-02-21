@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect } from "react";
-import { SwitchPuzzle } from "@/app/play/Switchchallenge/gameLogic";
+import { SwitchPuzzle } from "@/app/play/Switch-challenge/gameLogic";
 import ResultCard from "../common/Result";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";

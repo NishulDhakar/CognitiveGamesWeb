@@ -1,30 +1,9 @@
 import type { MetadataRoute } from "next";
+import { siteConfig, gameSlugs, ruleSlugs } from "@/config/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://games.nishul.dev";
+  const baseUrl = siteConfig.url;
   const lastModified = new Date();
-
-  // ✅ MAIN GAME ROUTES (Play Pages)
-  const games = [
-    "switchchallenge",
-    "gridchallenge",
-    "digitchallenge",
-    "motionchallenge",
-    "spaciochallenge",
-    "inductivechallenge",
-    "deductivechallenge",
-  ];
-
-  // ✅ RULES / GUIDE ROUTES (SEO GOLD)
-  const rules = [
-    "switch-challenge",
-    "grid-challenge",
-    "digit-challenge",
-    "motion-challenge",
-    "spacio-challenge",
-    "inductive-challenge",
-    "deductive-challenge",
-  ];
 
   // ✅ CORE SITE PAGES (HIGH PRIORITY)
   const corePages: MetadataRoute.Sitemap = [
@@ -35,16 +14,34 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1.0,
     },
     {
-      url: `${baseUrl}/games`,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 0.95,
-    },
-    {
-      url: `${baseUrl}/rules`,
+      url: `${baseUrl}/about`,
       lastModified,
       changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified,
+      changeFrequency: "weekly",
       priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/leaderboard`,
+      lastModified,
+      changeFrequency: "daily",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/how-it-works`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/capgemini`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/capgemini-games`,
@@ -53,28 +50,80 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/capgemini-cognitive-ability-games`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
       url: `${baseUrl}/cognizant-games`,
       lastModified,
       changeFrequency: "weekly",
       priority: 0.9,
     },
+    {
+      url: `${baseUrl}/iq-tests`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/contact`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/feedback`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/privacy-policy`,
+      lastModified,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/terms-of-service`,
+      lastModified,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
   ];
 
-  // ✅ GAME PAGES
-  const gamePages: MetadataRoute.Sitemap = games.map((slug) => ({
-    url: `${baseUrl}/games/${slug}`,
+  // ✅ GAME PLAY PAGES
+  const gamePages: MetadataRoute.Sitemap = gameSlugs.map((slug) => ({
+    url: `${baseUrl}/play/${slug}`,
     lastModified,
-    changeFrequency: "weekly",
+    changeFrequency: "weekly" as const,
     priority: 0.8,
   }));
 
-  // ✅ RULE / GUIDE PAGES
-  const rulePages: MetadataRoute.Sitemap = rules.map((slug) => ({
+  // ✅ RULE / GUIDE PAGES (SEO GOLD — static content)
+  const rulePages: MetadataRoute.Sitemap = ruleSlugs.map((slug) => ({
     url: `${baseUrl}/rules/${slug}`,
     lastModified,
-    changeFrequency: "monthly",
+    changeFrequency: "monthly" as const,
     priority: 0.75,
   }));
 
-  return [...corePages, ...gamePages, ...rulePages];
+  // ✅ MEMORY GAME PAGES
+  const memoryGamePages: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}/memory-games/memory-challenge`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/memory-games/recall-challenge`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.75,
+    },
+  ];
+
+  return [...corePages, ...gamePages, ...rulePages, ...memoryGamePages];
 }

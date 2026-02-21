@@ -1,7 +1,5 @@
-import { authClient } from "@/lib/auth-client";
-
-export const signInWithGoogle = async () => {
-   await authClient.signIn.social({
-      provider: "google"
-   })
-}
+/**
+ * @deprecated Import from `@/features/auth/actions` instead.
+ * This file is kept for backward compatibility.
+ */
+export { signInWithGoogle } from "@/features/auth/actions";
